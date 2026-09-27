@@ -54,8 +54,8 @@ function starPath(cx, cy, R, r, n = 5) {
   return d + 'Z';
 }
 const sketch = svg(38, 44, `
-  <path d="${starPath(20, 29, 13, 5.6)}" fill="none" stroke="#fff" stroke-width="3.2" stroke-linejoin="round"/>
-  <g transform="rotate(-50 11 9)">
+  <path d="${starPath(20, 30, 10.5, 4.6)}" fill="none" stroke="#fff" stroke-width="2.8" stroke-linejoin="round"/>
+  <g transform="translate(1 4) rotate(-50 11 9)">
     <rect x="3" y="6.3" width="17" height="5.4" rx="1" fill="#f4f7fb" stroke="#8c9bb3" stroke-width=".8"/>
     <rect x="3" y="6.3" width="3.2" height="5.4" rx="1" fill="#c9d3e3" stroke="#8c9bb3" stroke-width=".8"/>
     <path d="M20 6.3L25.5 9 20 11.7Z" fill="#f1d8b0" stroke="#8c9bb3" stroke-width=".8"/>

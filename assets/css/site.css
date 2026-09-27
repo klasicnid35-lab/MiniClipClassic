@@ -56,7 +56,7 @@ button, input, select { font-family: inherit; }
 #tabs li a {
   display: block; height: 32px; box-sizing: border-box;
   border-radius: 5px 5px 0 0;
-  color: #fff; font-size: 13px; line-height: 38px;
+  color: #fff; font-size: 13px; line-height: 34px;
   position: relative; white-space: nowrap;
 }
 #tabs li a .ti { position: absolute; }
@@ -65,12 +65,12 @@ button, input, select { font-family: inherit; }
 #tabs .t-games .ti { left: 5px; top: 11px; }
 #tabs .t-players   { width: 104px; background: #fdd8c0; }
 #tabs .t-players a { background: #ff6600; padding-left: 41px; }
-#tabs .t-players .ti { left: 5px; top: 7px; }
+#tabs .t-players .ti { left: 5px; top: 4px; }
 #tabs .t-sketch   { width: 124px; background: #cfd9ee; }
 #tabs .t-sketch a { background: #7d9fd4; padding-left: 40px; }
-#tabs .t-sketch .ti { left: -2px; top: -9px; }
+#tabs .t-sketch .ti { left: -2px; top: -10px; }
 #tabs li.on { height: 42px; }
-#tabs li.on a { height: 37px; font-weight: bold; text-decoration: none; }
+#tabs li.on a { height: 37px; line-height: 38px; font-weight: bold; text-decoration: none; }
 #tabs li.on a::after {
   content: ""; position: absolute; left: 2px; right: 2px; bottom: 0; height: 1px;
   background: repeating-linear-gradient(90deg, #fff 0 1px, transparent 1px 3px);
@@ -147,7 +147,7 @@ button, input, select { font-family: inherit; }
 
 /* ---------- content columns ---------- */
 .cols { display: flex; padding: 10px 5px 0; align-items: flex-start; }
-#lcol { width: 630px; flex: 0 0 630px; background: #cceeff; border-radius: 6px; padding-bottom: 5px; }
+#lcol { width: 630px; flex: 0 0 630px; background: #cceeff; border-radius: 6px; padding-bottom: 0; }
 #rcol { width: 324px; flex: 0 0 324px; margin-left: 6px; }
 
 .lwrap { padding: 5px 5px 0; }
@@ -163,7 +163,7 @@ button, input, select { font-family: inherit; }
 .latest .bhead > a:first-of-type { left: 46px; }
 .hot .bhead > a:first-of-type { left: 36px; }
 .bhead .bico { position: absolute; }
-.latest .bico { left: 12px; top: 10px; }
+.latest .bico { left: 12px; top: 8px; }
 .hot .bico { left: 10px; top: 4px; }
 .bhead .viewall { position: absolute; right: 7px; top: 11px; font-weight: bold; font-size: 10px; }
 
@@ -171,10 +171,10 @@ button, input, select { font-family: inherit; }
 .fbox { width: 296px; height: 295px; background: #fff; border-radius: 4px; position: relative; box-sizing: border-box; padding: 4px 4px 0; }
 .fimg { display: block; width: 274px; height: 199px; background: #eee; overflow: hidden; }
 .fimg img { display: block; width: 274px; height: 199px; }
-.finfo { position: relative; height: 57px; padding: 3px 0 0 4px; }
+.finfo { position: relative; height: 57px; padding: 5px 0 0 4px; box-sizing: border-box; }
 .ftitle { font-weight: bold; font-size: 11px; display: inline-block; margin-top: 1px; }
 .fdesc { width: 170px; line-height: 13px; margin-top: 0; }
-.playnow { position: absolute; right: 6px; top: 23px; font-weight: bold; font-size: 11px; padding-left: 31px; line-height: 24px; }
+.playnow { position: absolute; right: 6px; top: 26px; font-weight: bold; font-size: 11px; padding-left: 31px; line-height: 24px; }
 .playnow .pn-ico { position: absolute; left: 0; top: 0; width: 24px; height: 24px; background: url(../icons/playnow.png) no-repeat 0 0 / 24px 24px; }
 .pager {
   position: absolute; left: 4px; right: 4px; bottom: 5px; height: 21px;
@@ -223,15 +223,15 @@ button, input, select { font-family: inherit; }
 
 /* category boxes: 3 x 203px white boxes */
 .catboxes { display: flex; flex-wrap: wrap; padding: 6px 0 0 5px; }
-.catbox { width: 203px; height: 221px; background: #fff; border-radius: 5px; margin: 0 5px 5px 0; box-sizing: border-box; padding: 10px 10px 0; position: relative; }
+.catbox { width: 203px; height: 221px; background: #fff; border-radius: 5px; margin: 0 5px 5px 0; box-sizing: border-box; padding: 9px 10px 0; position: relative; }
 .catbox:nth-child(3n) { margin-right: 0; }
-.chead { height: 17px; background: #cdeaff; border: 1px solid #99d6ff; border-radius: 4px; line-height: 17px; padding-left: 6px; margin: 0 -2px 0 0; }
+.chead { height: 16px; background: #cdeaff; border: 1px solid #99d6ff; border-radius: 4px; line-height: 16px; padding-left: 6px; margin: 0 -2px 0 0; }
 .chead a { color: #000; font-weight: bold; font-size: 11px; }
-.cthumbs { display: flex; margin-top: 6px; }
+.cthumbs { display: flex; margin-top: 4px; }
 .cthumbs .ct { width: 89px; height: 96px; box-sizing: border-box; background: #e7f6ff; border: 1px solid #99d6ff; border-radius: 5px; padding: 5px 0 0 9px; margin-right: 5px; }
 .cthumbs .ct:last-child { margin-right: 0; }
 .ct a { display: block; width: 76px; line-height: 13px; }
-.clinks { margin-top: 11px; padding-left: 2px; }
+.clinks { margin-top: 5px; padding-left: 2px; }
 .clinks li { height: 15px; line-height: 15px; padding-left: 16px; position: relative; }
 .clinks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 11px; height: 11px; background: url(../icons/bullet-orange.png) no-repeat 0 0 / 11px 11px; }
 .cmore { position: absolute; left: 12px; bottom: 10px; padding-left: 16px; font-weight: bold; }
@@ -255,12 +255,12 @@ button, input, select { font-family: inherit; }
 .ohead { height: 20px; line-height: 20px; background: #ff9900; border-radius: 5px; color: #fff; font-weight: bold; padding-left: 7px; font-size: 11px; }
 .obody { background: #fff; border-radius: 5px; margin-top: 4px; }
 .opanel.topten { margin-top: 6px; }
-.topten .obody { height: 188px; padding: 5px 5px 0; box-sizing: border-box; display: flex; }
-.tlist { width: 140px; counter-reset: tt; }
-.tlist li { height: 16px; line-height: 16px; position: relative; padding-left: 27px; border: 1px solid transparent; margin-right: 1px; white-space: nowrap; overflow: hidden; }
-.tlist li::before { counter-increment: tt; content: counter(tt) "."; position: absolute; left: 0; width: 21px; text-align: right; font-weight: bold; }
+.topten .obody { height: 188px; padding: 5px 4px 0 8px; box-sizing: border-box; display: flex; }
+.tlist { width: 141px; flex: 0 0 141px; counter-reset: tt; }
+.tlist li { height: 16px; line-height: 16px; position: relative; padding-left: 28px; border: 1px solid transparent; margin-right: 1px; white-space: nowrap; overflow: hidden; }
+.tlist li::before { counter-increment: tt; content: counter(tt) "."; position: absolute; left: 0; width: 23px; text-align: right; font-weight: bold; }
 .tlist li.sel { background: #e5f5ff; border-color: #99d6ff; border-radius: 3px; }
-.tprev { width: 162px; height: 174px; background: #e5f5ff; border: 1px solid #99d6ff; border-radius: 3px; box-sizing: border-box; padding: 3px; margin-left: 2px; }
+.tprev { width: 158px; flex: 0 0 158px; height: 174px; background: #e5f5ff; border: 1px solid #99d6ff; border-radius: 3px; box-sizing: border-box; padding: 3px; margin-left: 3px; }
 .tprev img { display: block; width: 148px; height: 107px; border: 1px solid #000; object-fit: cover; }
 .tprev a.tt { display: block; font-weight: bold; font-size: 13px; margin-top: 1px; }
 .tprev p { line-height: 13px; }
@@ -268,7 +268,7 @@ button, input, select { font-family: inherit; }
 .twin { display: flex; }
 .ohalf.played { width: 145px; }
 .ohalf.mine { width: 162px; margin-left: 7px; }
-.twin .obody { height: 97px; box-sizing: border-box; padding: 5px 6px; overflow: hidden; line-height: 13px; }
+.twin .obody { height: 97px; box-sizing: border-box; padding: 3px 6px; overflow: hidden; line-height: 13px; }
 .twin .obody ul li { height: 17px; line-height: 17px; padding-left: 16px; position: relative; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .twin .obody ul li::before { content: ""; position: absolute; left: 0; top: 3px; width: 11px; height: 11px; background: url(../icons/bullet-orange.png) no-repeat 0 0 / 11px 11px; }
 
@@ -296,7 +296,7 @@ button, input, select { font-family: inherit; }
 
 /* ---------- All Categories + Full Games List ---------- */
 #allgames { margin: 5px 5px 0; background: #e5f5ff; border-radius: 6px; padding: 0 6px 5px 5px; }
-.hidebar { height: 23px; line-height: 22px; text-align: center; }
+.hidebar { height: 23px; line-height: 27px; text-align: center; }
 .hidebar a { position: relative; }
 .hidebar .dn { display: inline-block; width: 0; height: 0; border: 3px solid transparent; border-top: 4px solid #000; margin: 0 97px; vertical-align: 1px; }
 .hidebar .dn:first-child { margin-left: 0; margin-right: 85px; }
@@ -304,8 +304,9 @@ button, input, select { font-family: inherit; }
 .agcols { display: flex; align-items: stretch; }
 .agcols.hidden { display: none; }
 .side { width: 168px; flex: 0 0 168px; }
-.full { flex: 1; margin-left: 5px; display: flex; flex-direction: column; }
-.full .fullbox { flex: 1; margin-bottom: 5px; }
+.full { flex: 1; min-width: 0; margin-left: 5px; display: flex; flex-direction: column; }
+.full .fullbox { flex: 1; margin-bottom: 5px; display: flex; flex-direction: column; }
+.full .fullbox .legend { margin-top: auto; padding-top: 10px; }
 .shead { height: 19px; line-height: 19px; background: #0099ff; color: #fff; font-weight: bold; font-size: 11px; padding-left: 7px; border-radius: 5px; }
 .catlist { background: #fff; border-radius: 5px; margin: 5px 0; padding: 5px 5px 3px; }
 .catlist li { height: 20px; margin-bottom: 2px; border-radius: 3px; background: #ccebff; line-height: 20px; }
@@ -316,6 +317,7 @@ button, input, select { font-family: inherit; }
 .fullbox { background: #fff; border-radius: 5px; margin-top: 5px; padding: 7px 5px 8px 7px; }
 .fullcols { display: flex; }
 .fullcols ul { width: 110px; flex: 0 0 110px; }
+.fullcols ul:last-child { flex: 1 1 auto; width: auto; min-width: 0; }
 .fullcols li { height: 12px; line-height: 12px; font-size: 10px; white-space: nowrap; overflow: hidden; }
 .fullcols li.l { font-weight: bold; }
 .fullcols a.c { color: #ff3300; }

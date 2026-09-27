@@ -68,6 +68,38 @@ const STYLE = {
   'sketch-pad': ['Permanent Marker', '#ffffff', '#ffe45a', '#2a4a8a'],
 };
 
+// thumbnails zoom into the action: [x, y, width] of the 640x480 demo frame
+// (height follows the 136x114 aspect ratio). Games not listed use the centre.
+const CROP = {
+  'moto-hill': [70, 160, 330],
+  'hoop-shot': [260, 50, 380],
+  'critter-cannon': [190, 55, 250],
+  'ski-slalom': [130, 0, 330],
+  'penalty-kick': [110, 50, 420],
+  'highway-dash': [130, 40, 380],
+  'cave-copter': [40, 70, 420],
+  'light-cycles': [40, 60, 520],
+  'pixel-runner': [80, 40, 400],
+  'jumpin-jack': [40, 170, 420],
+  'treasure-diver': [140, 60, 380],
+  'tower-stack': [150, 150, 340],
+  'bubble-wrap': [80, 60, 420],
+  'mole-mayhem': [60, 90, 470],
+  'color-echo': [100, 40, 440],
+  'lights-out': [120, 40, 420],
+  'memory-match': [40, 60, 440],
+  'four-in-a-row': [110, 60, 420],
+  'tic-tac-toe': [140, 60, 360],
+  'reversi': [180, 20, 440],
+  'castle-guard': [40, 30, 460],
+  'box-pusher': [140, 60, 380],
+  'number-merge': [150, 50, 360],
+  'sudoku-daily': [10, 30, 440],
+  'block-drop': [180, 20, 300],
+  'mine-sweep': [40, 60, 380],
+  'sketch-pad': [100, 10, 460],
+};
+
 async function captureFrames(browser) {
   const page = await browser.newPage({ viewport: { width: 640, height: 480 }, locale: 'en-US' });
   for (const g of games) {
@@ -92,6 +124,14 @@ async function captureFrames(browser) {
   }
   await page.close();
   console.log(' frames captured');
+}
+
+function thumbImgTag(g, frame) {
+  const c = CROP[g.id];
+  if (!c) return `<img src="${frame}" style="position:absolute;width:162px;height:122px;left:-13px;top:-2px">`;
+  const [x, y, w] = c;
+  const k = 136 / w;
+  return `<img src="${frame}" style="position:absolute;width:${640 * k}px;height:${480 * k}px;left:${-x * k}px;top:${-y * k}px">`;
 }
 
 function title(g, w, h, size, lines) {
@@ -129,7 +169,7 @@ async function compose(browser) {
     const frame = pathToFileURL(path.join(FRAMES, g.id + '.png')).href + '?v=' + Date.now();
     // thumbnail 136x114: crop the middle of the 640x480 frame
     await shot(136, 114, `<div style="position:relative;width:136px;height:114px;overflow:hidden;background:#000">
-        <img src="${frame}" style="position:absolute;width:162px;height:122px;left:-13px;top:-2px">
+        ${thumbImgTag(g, frame)}
         <div style="position:absolute;left:0;right:0;top:0;height:40px;background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,0))"></div>
         ${title(g, 136, 114, 26, 2)}</div>`, path.join(ROOT, 'assets/games', g.id + '.png'));
     // large promo 548x398

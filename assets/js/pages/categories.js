@@ -8,7 +8,7 @@ const lib = await boot();
 setTitle('All Categories');
 
 const boxes = lib.cats.map((c) => {
-  const games = lib.inCat(c.id).slice().sort((a, b) => lib.score(b) - lib.score(a));
+  const games = c.virtual ? lib.inCat(c.id) : lib.byScore(lib.inCat(c.id));
   const n = c.virtual === 'top' ? Math.min(100, games.length) : games.length;
   return `<div class="catbox">
     <div class="chead"><a href="${catUrl(c.id)}">${esc(c.title)}</a></div>
@@ -18,6 +18,6 @@ const boxes = lib.cats.map((c) => {
   </div>`;
 }).join('');
 
-html('#main', `<div class="ipanel" style="margin-bottom:0"><div class="bhead"><img class="bico" src="assets/icons/pad-white.png" width="30" height="16" alt=""><h1>All Categories<span class="cnt">(${lib.cats.length} categories, ${lib.games.length} games)</span></h1><span class="right"><a href="games.html">A-Z list of all games</a></span></div></div>
+html('#main', `<div class="ipanel" style="margin-bottom:0"><div class="bhead"><img class="bico" src="assets/icons/pad-white.png" width="30" height="16" alt=""><h1>All Categories<span class="cnt">(${lib.cats.length} categories, ${lib.games.length} games)</span></h1><span class="right"><a href="allgames.html">A-Z list of all games</a></span></div></div>
   <div class="catboxes all">${boxes}</div>`);
 renderRightColumn(lib);

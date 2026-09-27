@@ -10,7 +10,7 @@ const errs = [];
 page.on('pageerror', (e) => errs.push('pageerror: ' + e.message));
 page.on('console', (m) => { if (m.type() === 'error') errs.push('console: ' + m.text()); });
 page.on('response', (r) => { if (r.status() >= 400) errs.push(r.status() + ' ' + r.url()); });
-const base = 'http://localhost:8080/MiniClipClassic/games/' + id + '/index.html';
+const base = 'http://localhost:8080/MiniClipClassic/games/_extras/' + id + '/index.html';
 if (mode === 'demo') {
   await page.goto(base + '?demo=1');
   await page.waitForFunction(() => window.__demoReady === true, null, { timeout: 8000 }).catch(() => errs.push('demo not ready'));

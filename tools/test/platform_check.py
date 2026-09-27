@@ -1,7 +1,7 @@
 """Approximate reachability check for Jumpin' Jack levels: every coin and the
 door must be reachable from the start with jumps of <=3 tiles up / <=4 across."""
 import json, os, re, sys, collections
-src = open(os.path.join(os.path.dirname(__file__), '../../games/jumpin-jack/game.js')).read()
+src = open(os.path.join(os.path.dirname(__file__), '../../games/_extras/jumpin-jack/game.js')).read()
 block = src[src.index('const LEVELS = [') + len('const LEVELS = '):src.index('];', src.index('const LEVELS')) + 1]
 levels = json.loads(block.replace("'", '"').replace('\n', ' ').replace(',  ]', ']').replace(', ]', ']'))
 W, H = 20, 14

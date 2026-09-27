@@ -1,7 +1,9 @@
 // Game player: picks the right way to run a game from its "type".
-//   html5  - a page in this repository, loaded in an iframe
-//   iframe - an external embed URL, loaded in a sandboxed iframe
-//   flash  - a .swf file, played with the Ruffle Flash emulator
+//   html5     - a page in this repository (games/<id>/index.html), loaded in an iframe
+//   local-web - any other local web build (a folder or .html page), loaded in an iframe
+//   iframe    - an external embed URL, loaded in a sandboxed iframe
+//   flash     - a .swf file, played with the Ruffle Flash emulator
+// Only games with "installed": true reach the player - see gamepage.js.
 import { esc } from '../assets/js/core/util.js';
 
 const RUFFLE_VERSION = '0.6.0';
@@ -59,6 +61,8 @@ export function fitSize(game, maxW) {
  */
 export function mountPlayer(host, game, { maxWidth = 920 } = {}) {
   const { w, h, ratio } = fitSize(game, maxWidth);
+  // a folder means its index.html
+  const src = /\/$/.test(game.file) ? game.file + 'index.html' : game.file;
   host.innerHTML = `<div class="player" id="player" style="width:${w}px;height:${h}px;aspect-ratio:${ratio}">
     <div class="loader" id="loader"><div class="lt">${esc(game.title)}</div><div class="ls">Loading game...</div>
       <div class="bar"><i></i></div><div class="pc">0%</div></div></div>`;
@@ -98,7 +102,7 @@ export function mountPlayer(host, game, { maxWidth = 920 } = {}) {
       frame.referrerPolicy = 'no-referrer';
     }
     frame.addEventListener('load', () => { finish(); try { frame.contentWindow.focus(); } catch (e) { /* cross-origin */ } });
-    frame.src = game.file;
+    frame.src = src;
     box.appendChild(frame);
   };
 
@@ -109,7 +113,7 @@ export function mountPlayer(host, game, { maxWidth = 920 } = {}) {
       box.appendChild(holder);
       ruffle = window.RufflePlayer.newest().createPlayer();
       holder.appendChild(ruffle);
-      return ruffle.load({ url: game.file, allowScriptAccess: false, backgroundColor: '#000000' });
+      return ruffle.load({ url: src, allowScriptAccess: false, backgroundColor: '#000000' });
     }).then(finish).catch((e) => {
       console.error(e);
       fail('The Flash player (Ruffle) could not be started. Please check your internet connection, or add Ruffle to <code>vendor/ruffle/</code>.');
@@ -122,19 +126,19 @@ export function mountPlayer(host, game, { maxWidth = 920 } = {}) {
   };
 
   // make sure local game files exist before trying to run them
-  const local = !/^[a-z]+:\/\//i.test(game.file);
+  const local = !/^[a-z]+:\/\//i.test(src);
   if (local) {
-    fetch(game.file, { method: 'HEAD', cache: 'no-cache' }).then((r) => {
+    fetch(src, { method: 'HEAD', cache: 'no-cache' }).then((r) => {
       if (r.ok) start();
-      else fail(`Sorry, this game's file could not be found:<br><code>${esc(game.file)}</code>`);
+      else fail(`Sorry, this game's file could not be found:<br><code>${esc(src)}</code>`);
     }).catch(() => start());
   } else start();
 
   return {
     el: box,
     restart() {
-      if (frame) { frame.src = game.file; }
-      else if (ruffle) { ruffle.load({ url: game.file, allowScriptAccess: false }); }
+      if (frame) { frame.src = src; }
+      else if (ruffle) { ruffle.load({ url: src, allowScriptAccess: false }); }
     },
     fullscreen() {
       const fsEl = document.fullscreenElement || document.webkitFullscreenElement;

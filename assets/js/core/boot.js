@@ -2,12 +2,15 @@
 import { getData } from './data.js';
 import { renderHeader } from '../../../components/header.js';
 import { renderFooter } from '../../../components/footer.js';
+import { loadPlaceholderFont } from '../../../components/placeholder.js';
 import { $ } from './util.js';
 
 export async function boot() {
   renderFooter();
+  // the generated thumbnails use Lilita One; don't wait for it for more than a moment
+  const font = Promise.race([loadPlaceholderFont(), new Promise((r) => setTimeout(r, 1200))]);
   try {
-    const lib = await getData();
+    const [lib] = await Promise.all([getData(), font]);
     renderHeader(lib);
     return lib;
   } catch (err) {

@@ -1,0 +1,851 @@
+# MiniClip Classic - master catalogue source
+#
+# This file is the editorial source for data/games.json. It is read by
+# tools/catalog/build-catalog.mjs, which MERGES it into the existing
+# data/games.json: records that already exist keep their id/slug and every
+# installation field (installed, gameFile, type, width, height, thumbnail...),
+# and records that exist only in data/games.json are never removed.
+#
+# One game per line:
+#
+#   Title | categories | priority | options...
+#
+#   categories  space separated category ids, the first one is the main one:
+#               action adventure arcade driving racing sports football pool
+#               shooting fighting puzzle strategy platform multiplayer flying
+#               winter skill casual word card board promotional other
+#               ("other" = not categorised yet)
+#   priority    nostalgiaPriority: 3 iconic classic, 2 major classic-era title,
+#               1 normal catalogue entry, 0 obscure / promotional / archive entry
+#   options     v        verificationStatus "verified" (well documented title)
+#               r        verificationStatus "needs-review" (default: "likely")
+#               new      shown in Latest Games
+#               hs       high score challenge game (an orange link in the
+#                        2008-2009 Full Games List)
+#               ht=...   historicalType: standard sponsored licensed promotional
+#                        multiplayer-service external-service (default standard)
+#               type=... flash html5 iframe local-web (default flash)
+#               year= dev= pub=   ONLY facts we are confident about
+#               aka=A; B          alternative / historical names (aliases)
+#               note=             historicalNotes
+#               desc=  how=       description / instructions (only when known)
+#
+# Unknown facts stay empty on purpose - accuracy beats filling every field.
+# Titles come from the maintainer's master list, which was compiled from
+# several historical Miniclip game lists (2007, 2008-2009, 2010), plus a few
+# titles that are visible in the 2008-2009 homepage screenshots (their notes
+# say so). The screenshots also supplied the "hs" challenge flags, several
+# categories (the homepage category boxes), the correct spelling of
+# "Adventures in Italy" and "Overkill Apache", and the Top Ten / Hot Games /
+# Latest Games line-up in data/site.json.
+
+# ------------------------------------------------------------------ # / numbers
+3 Foot Ninja | fighting action platform | 3 | v | desc=A pint-sized ninja fights his way through level after level of enemy ninjas.
+3 Foot Ninja II | fighting action platform | 3 | v | aka=3 Foot Ninja 2 | desc=The little ninja returns for more side-scrolling sword fighting.
+5 Min Shoot 'Em Up | shooting arcade | 1
+8 Ball Pool | pool multiplayer sports | 3 | hs | v | new | year=2010 | dev=Miniclip | pub=Miniclip | desc=Play 8-ball pool online against other players. | note=A separate game from the single-player Quick Fire Pool.
+9 Ball Pool | pool sports | 3 | hs | v | desc=Pot the balls in numerical order and sink the 9 ball to win.
+
+# ------------------------------------------------------------------ A
+A Day of Slacking | other | 0 | r | note=Possibly the same game as "Slacking" - check before merging.
+Aaron Stone | promotional action | 0 | ht=licensed | note=Tie-in with the Disney XD television series.
+Acid Factory | puzzle platform | 3 | hs | v
+Acno's Energizer | puzzle | 1 | note=Same series as Aqua Energizer.
+Adventure Elf | platform adventure | 1
+Adventures in Italy | puzzle adventure | 1 | v | aka=Adventures in Ital | note=Shortened to "Adventures in Ital" in one of the source lists; the full title is on the 2008-2009 homepage (Puzzle Games box).
+Adventures of Bloo | promotional | 0 | ht=licensed | note=Tie-in with the Cartoon Network series Foster's Home for Imaginary Friends.
+Age of Speed | racing driving | 3 | v
+Age of Speed 2 | racing driving | 3 | hs | v
+Agent Freeride | other | 0
+Agent Freeride 2 | other | 0
+Agent P Strikes Back | promotional action | 0 | ht=licensed | note=Tie-in with the Disney series Phineas and Ferb.
+Air Barons | flying | 1
+Air Show | flying skill | 1
+Alex in Danger | platform action | 1
+Alien Abduction | arcade | 1
+Alien Attack | shooting arcade | 1
+Alien Clones | arcade | 1
+Alien Disorder | shooting arcade | 1 | v
+Alien Hive | puzzle | 1
+Aliens Must Die | shooting action | 1 | hs
+All Out | other | 1
+Alphattack | word arcade | 1 | hs | v
+Amazing Sheriff | action | 1
+American Football | football sports | 1
+Anagram Magic | word puzzle | 1
+Anagrammatic | word puzzle | 1
+Anika's Odyssey | adventure | 1
+Overkill Apache | shooting flying action | 1 | v | aka=Apache Overkill | note=Listed as "Overkill Apache" on the 2008-2009 homepage (Shoot 'Em Up box) and as "Apache Overkill" in another list; merged into one record.
+Aqua Energizer | puzzle | 1 | note=Same series as Acno's Energizer.
+Aquanaut | adventure arcade | 1 | hs
+Arctic Drift | racing winter | 1
+Armada Tanks | shooting action | 1
+Art Thief | other | 1
+Asgard | other | 0
+Ask Guru Joe | casual | 0
+Assault Course | sports skill | 1
+Assault Course 2 | sports skill | 1
+Asteroid Rush | shooting arcade | 1
+Astro Boy | promotional action | 1 | ht=licensed | note=Tie-in with the 2009 Astro Boy film.
+Avalanche | arcade | 1
+Axon | skill arcade | 1
+
+# ------------------------------------------------------------------ B
+Baby Blimp | flying skill | 1 | hs
+Backfire | other | 1
+Bad Apple | other | 1
+Badaboom | other | 1
+Baja Motocross | racing driving | 1
+Balance | skill | 1 | hs
+Banana Mania | arcade | 1
+Bang! Howdy | multiplayer strategy | 2 | v | ht=multiplayer-service | type=iframe | year=2006 | dev=Three Rings Design | desc=An online Wild West tactics game with steam-powered units, played in quick multiplayer rounds. | note=Originally a Java game run by Three Rings.
+Bank Robber | action | 1
+Base Jumper | sports skill | 1 | r | note=Possibly related to "Base Jumping" - kept separate until confirmed.
+Base Jumping | sports skill | 1 | hs | r | note=Possibly related to "Base Jumper" - kept separate until confirmed.
+Baseball | sports | 1 | v | hs
+Basketball Jam | sports | 1
+Basketball Jam Shots | sports | 1
+Basketball Slam | sports | 1
+Battle Wheels | driving action | 1
+Battleships | board strategy | 1 | desc=Hide your fleet on the grid and hunt down the enemy ships before they find yours.
+Battlesphere | other | 1
+Beach Soccer | football sports | 1
+Bears & Bees | arcade | 1
+Beat The Wall | skill | 1
+Bee Boxing | fighting sports | 1
+Berry Rush | arcade | 1
+Big Catch | sports | 1
+Big Jump Challenge | sports skill | 1
+Big Snow Tricks | winter sports | 1
+Bike Rivals | driving racing | 1
+Bionic Bugz | arcade | 1
+Black Knight | action | 1 | r | aka=The Black Knight | note=Listed as both "Black Knight" and "The Black Knight"; merged into one record.
+Black Sun | other | 0
+Blackjack Elf | card | 1
+Blair The Motivator | casual | 0 | note=Political parody.
+BlastWave | other | 1
+Blobs | puzzle | 1
+Blobs 2 | puzzle | 1
+Block Drop | puzzle | 1
+Bloomin' Gardens | puzzle | 1 | v | desc=Line up five flowers of the same colour to clear them before the garden fills up.
+Blox Forever | puzzle | 1
+Bloxorz | puzzle | 3 | v | year=2007 | dev=Damien Clarke | desc=Roll a tall block across floating platforms and drop it through the square hole to finish each stage. | how=Use the arrow keys to roll the block.
+Blues Bikers | driving | 1
+BMX Freestyle | sports driving | 1
+Bobulous | other | 1
+Bomba | action | 1 | v
+Boom Volleyball | sports | 1
+Bow Master | skill shooting | 2 | v
+Bow Master Halloween | skill shooting | 1
+Bow Master Japan | skill shooting | 2 | v
+Boxing Bonanza | fighting sports | 1
+Boxo | puzzle | 1
+BP Gas Mania | promotional | 0 | ht=sponsored | note=Sponsored by BP.
+BP Rally | racing driving promotional | 0 | ht=sponsored | note=Sponsored by BP.
+Brainwave | puzzle | 1
+Bubble Town | puzzle arcade | 2 | v
+Bubble Trouble | arcade action | 3 | v | dev=Kresimir Cvitanovic | desc=Pop the bouncing bubbles with your harpoon - every hit splits a bubble into smaller ones until they are all gone.
+Bug On A Wire | arcade | 1
+Bullethead | shooting | 1
+Bullseye | sports skill | 1
+Bunch | other | 1
+Bush Aerobics | casual | 0 | note=Political parody.
+Bush Shoot-Out | shooting action | 3 | v | note=Political parody.
+
+# ------------------------------------------------------------------ C
+Cab Driver | driving | 3 | v
+Cable Capers 2 | platform arcade | 1
+Calabash Bros | other | 0
+Calamari | other | 1
+Canary | other | 1
+Candy and Clyde | puzzle platform | 3 | v
+Candy Magic | puzzle | 1
+Cannon Blast | skill puzzle | 1
+Canyon Defense | strategy | 3 | v | desc=Build and upgrade towers along the canyon to stop wave after wave of enemy units.
+Canyon Defense 2 | strategy | 2 | v
+Canyon Glider | flying skill | 1
+Canyon Shooter | shooting action | 3 | hs | v
+Canyon Shooter 2 | shooting action | 2 | v
+Car Chaos | driving | 1
+Caravan Racers | racing | 1
+Carnival Jackpot | casual skill | 1
+Castle Conquest | strategy | 1
+Castle Corp | strategy | 1
+Catapult | skill strategy | 1
+Cave Chaos | other | 1
+Cave of Despair | adventure platform | 1 | hs
+Caveman | action platform | 3 | v
+Cell Out | other | 1
+Challenge Churchill | other | 0 | r
+Championship Rally | racing driving | 1
+Chasm | adventure | 1
+Cheese Dreams | puzzle platform | 3 | hs | v
+Cherie 'Disco' Blair | casual | 0 | note=Political parody.
+Chick Flick | skill | 1 | hs
+China 2008 | sports | 1 | note=Sports game themed on the 2008 Olympic Games in Beijing.
+Christmas Games | other | 0 | r | note=May be a seasonal collection page rather than a single game.
+Chronotron | puzzle platform | 2 | v | new | year=2008 | dev=Scarybug Games | desc=Travel back in time and team up with your past selves to solve each room's puzzle.
+ChuckaBOOM | other | 1
+Civilization Wars | strategy | 2
+Clash N Slash | fighting action | 1
+Classroom Pilot | flying skill | 1 | hs
+Click & Slide | puzzle | 1
+ClickPLAY | puzzle | 1
+Clowning Around | other | 1
+Club Penguin | multiplayer adventure | 3 | v | ht=multiplayer-service | type=iframe | year=2005 | dev=New Horizon Interactive | desc=A virtual world where you create a penguin, chat with friends, play mini-games and decorate your igloo.
+Coign of Vantage | puzzle | 1 | hs
+Cold Storage | other | 1
+Commander n Chief | other | 0 | note=Political parody.
+Commando | shooting action | 3 | v
+Commando 2 | shooting action | 3 | hs | v
+Commando 2 Trailer | other | 0 | r | ht=promotional | note=A preview/trailer for Commando 2 rather than a playable game.
+Commando 3 | shooting action | 3 | v
+Couronne Deluxe | board skill | 1
+Cowabunga Candace | promotional | 0 | ht=licensed | note=Tie-in with the Disney series Phineas and Ferb.
+Cranergy Ball | promotional | 0 | ht=sponsored | note=Brand promotion for the Cranergy drink.
+Crash Car Combat | driving action | 1
+Crash Football | football sports | 1
+Crashdown | puzzle | 1
+Crazy Go Nuts 2 | other | 1
+Crazy Karts | racing | 1
+Creepy Pong | arcade | 1
+Cricket | sports | 1
+Crimson Viper | other | 1
+Criss Cross Rally | racing driving | 1
+Crossword Daily | word puzzle | 1 | desc=A new crossword to solve every day.
+Crush the Castle 2 | strategy skill | 2 | v | new | dev=Armor Games | desc=Aim your trebuchet and bring down the castles of rival nobles.
+Crypt Raider | puzzle | 2 | v
+Cube Buster | puzzle | 1
+Cursor Chaos | skill | 1
+Cyber Mice Party | other | 1
+
+# ------------------------------------------------------------------ D
+Da Numba | puzzle | 1
+Dance 2 the Beat | skill casual | 1
+Dancing Blair | casual | 0 | note=Political parody.
+Dancing Bush | casual | 0 | note=Political parody.
+Dancing Hillary | casual | 0 | note=Political parody.
+Dancing Palin | casual | 0 | note=Political parody.
+David | other | 0 | r
+DecaJump | sports | 1
+Deep Freeze | puzzle winter | 3 | v
+Deep Sea Patrol | other | 1
+Defenders | other | 1
+Deluxe Pool | pool sports | 3 | v
+Desert Ambush | shooting | 1
+Detonator | puzzle | 1
+Digital Switch | puzzle | 1
+Dino Quake | other | 1
+Dino Run | action platform | 2 | v | new | year=2008 | dev=Pixeljam | desc=Run as a little raptor, eat critters and eggs, and outrun the wall of doom before extinction catches you.
+Dino Strike | other | 1
+Dirk Valentine and the Fortress of Steam | platform action | 3 | v | aka=Dirk Valentine
+Disc Golf | sports skill | 3 | v
+Disc Pool | pool sports | 1
+Doeo | puzzle | 1 | v
+Dofus | multiplayer strategy adventure | 2 | v | ht=multiplayer-service | type=iframe | year=2004 | dev=Ankama Games | desc=A tactical, turn-based fantasy MMORPG from Ankama.
+Dojo Dodge | skill | 1
+Doodle | other | 1
+Doodle 2 | other | 1
+Down Perryscope | promotional | 0 | ht=licensed | note=Tie-in with the Disney series Phineas and Ferb.
+Downhill Chill | winter sports | 1
+Dr Compactor | puzzle | 1
+Dragon Attack | action | 1
+Dream Racer | racing | 1
+Dream Tower | puzzle | 1
+Droid Retaliation | shooting | 1
+Drumming Alchemist | skill | 1
+Dune Buggy | driving racing | 3 | v
+
+# ------------------------------------------------------------------ E
+Egg Blast | other | 1
+Egg Run | other | 1
+Egyptian Tale | adventure | 1
+Elastic Soccer | football sports | 1
+Electro Air Hockey | sports arcade | 1
+European Soccer | football sports | 1
+Evac | other | 1
+Exile | other | 1
+Extreme Pamplona | action skill | 3 | v
+Extreme Quad | driving racing | 1
+Extreme Trial | driving | 1
+Extreme Triathlon | sports | 1
+
+# ------------------------------------------------------------------ F
+FA-18 | flying shooting | 1
+Family Feud | casual | 1 | ht=licensed | note=Based on the television game show.
+Fancy Pants Adventure | platform | 3 | v | year=2006 | dev=Brad Borne | aka=Fancy Pants 1; The Fancy Pants Adventure; The Fancy Pants Adventure: World 1 | desc=A fast, flowing platformer starring a stick figure in very fancy pants.
+Fancy Pants Adventure 2 | platform | 3 | v | new | year=2008 | dev=Brad Borne | aka=Fancy Pants 2; The Fancy Pants Adventure: World 2 | desc=Fancy Pants Man returns for World 2 - more running, sliding and wall-jumping through a bigger world.
+Farmer | other | 1
+Fast Car Frenzy | driving racing | 1
+Fat Cat | other | 1
+Fat Slice | other | 1
+Feather Keeper | skill | 1
+Feed Me | other | 1
+Field Goal | football sports | 1
+Fighter Pilot | flying shooting | 1
+Final Fortress | shooting strategy | 1 | v
+Final Ninja | action platform | 3 | hs | v | desc=A stealthy ninja platformer: sneak past the guards and take them down with your ninja tools.
+Final Ninja Zero | action platform | 3 | hs | v
+Fire Storm | other | 1
+Fireworks | casual | 1 | hs
+Flash Tennis | sports | 1
+Flashman | other | 1
+Flatbread Express | other | 0 | r
+Flea World | other | 1
+Flingo | other | 1 | hs
+Flip Words | word | 1
+Flomo | other | 1
+Flood Runner 2 | action platform | 1
+Fly Guy | flying skill | 1
+Formula G1 | racing | 1
+Formula Racing | racing | 1
+Fowl Words | word | 1
+Fowl Words 2 | word | 1
+Fragger | puzzle strategy | 3 | v | desc=Throw grenades with the right angle and power to take out every enemy on the level.
+Fragger Lost City | puzzle strategy | 2 | v
+Frantic | shooting arcade | 1
+Free Cell | card | 1 | aka=FreeCell | desc=Solitaire with four free cells - move every card to the foundations.
+Free Kick Challenge | football sports | 1
+Free Realms | multiplayer adventure action | 2 | v | new | ht=multiplayer-service | type=iframe | year=2009 | dev=Sony Online Entertainment | desc=An online fantasy world with jobs, mini-games and quests.
+Free Running | sports action | 1
+Free Wheels | driving | 1
+Freestyle Snowboard | winter sports | 1
+Frendz | other | 0
+Fresh Water Bounce | other | 1
+Frost Bite | winter action | 3 | v
+Frost Bite 2 | winter action | 3 | v
+Fruit Smash | arcade | 1
+Funky Nurse | other | 0
+
+# ------------------------------------------------------------------ G
+Galactic Goobers | shooting arcade | 1
+Galactic Warrior | shooting | 1
+Galaxy Gunner | shooting | 1
+Gamma Bros | shooting arcade | 2 | v | dev=Pixeljam | desc=A retro arcade shooter: guide the Gamma brothers home through waves of space enemies.
+Gas & Sand | other | 0
+Gateway | other | 1
+Get Rooney Fit | football promotional | 0 | r
+Ghostfire Attack | shooting | 1
+Ghosts Stole My Dog | other | 1
+Gin Rummy | card | 1
+Gingerbread Circus | other | 1
+Gladiators | sports promotional | 0 | ht=licensed | note=Based on the television show.
+Glassworks | puzzle | 1
+Globe Skater | sports | 1
+Go Karts | racing driving | 1
+Goal Keeper | football sports | 1
+Goldenballs | casual | 0 | ht=licensed | note=Based on the television game show.
+Golf Ace | sports | 1
+Golf Ace Hawaii | sports | 1
+Golf Solitaire | card | 1
+Golfish | sports | 1
+Governor of Poker | card strategy | 2 | v | dev=Youda Games | desc=Win Texas Hold'em games across Texas and buy up houses and towns along the way.
+Graveyard Shift | other | 1
+Gravity | other | 1
+Gravity Guy | action platform | 2 | v | new | year=2010 | dev=Miniclip | pub=Miniclip | desc=Flip gravity to run along floors and ceilings and stay ahead of your pursuer.
+Gripz | other | 1
+Gun Run | shooting action | 1
+Gutterball | sports | 1
+Gyroball | skill puzzle | 2 | v
+
+# ------------------------------------------------------------------ H
+Hamsterball | arcade skill | 1
+Hamsterz Superstar | other | 1
+Hangaroo | word | 2 | v | desc=Guess the hidden phrase letter by letter to save the kangaroo - a hangman game.
+Hangaroo 2 | word | 1
+Hansen's Eyebrows | football casual | 0 | note=Parody game.
+Hap Hazard | other | 1
+Hard Boiled | action | 1 | v
+Harvey Wallbanger | other | 1
+Haunted House | other | 1
+Heart Breaker | other | 1
+Hearts | card | 1 | desc=The classic trick-taking card game - avoid the hearts and the Queen of Spades.
+Heli Attack 2 | shooting action | 3 | v | dev=Squarecircleco
+Heli Attack 3 | shooting action | 3 | v | year=2005 | dev=Squarecircleco | desc=Run, jump and blast your way through endless waves of attack helicopters in this side-scrolling shooter.
+Hen Coops | other | 1
+Hexxagon | board strategy | 2 | v | desc=A hexagonal board game: clone and jump your pieces to take over your opponent's gems.
+Hill Billy Flea | other | 1
+Hive Hero | other | 1
+Hockey Showdown | sports | 1
+Hong Kong Ninja | action fighting | 1
+Horsey Racing | racing sports | 1
+Hostile Skies | flying shooting | 2 | v
+Hot Air | flying skill | 1
+Hot Air 2 | flying skill | 1
+Hot Rods | driving racing | 1
+Hunter | shooting | 1
+Hurricane | other | 1
+
+# ------------------------------------------------------------------ I
+Ice Breaker | winter puzzle | 1
+Ice Breaker RC | winter driving | 1
+Ice Racer | winter racing | 1
+Ice Slide | winter puzzle | 1
+Icy Slicy | winter | 1
+Imagine Artist | casual promotional | 0 | ht=sponsored | note=Promotion for the Imagine series of games.
+In The Doghouse | other | 1
+Insane Ski Jump | winter sports | 1
+iStunt | winter sports | 2 | v
+iStunt 2 | winter sports | 2 | v
+
+# ------------------------------------------------------------------ J
+Jet Ski | sports racing | 1 | r | note=Possibly related to "Jet Ski Racing" - kept separate until confirmed.
+Jet Ski Racing | racing sports | 1 | r | note=Possibly related to "Jet Ski" - kept separate until confirmed.
+Jigsaw Car | puzzle | 1
+Jigsaw Ocean | puzzle | 1
+Jingo | other | 1
+Joe Destructo | other | 1
+Judy Moody Thrill Coaster | promotional | 0 | new | ht=licensed | note=Tie-in with the 2011 film Judy Moody and the Not Bummer Summer.
+
+# ------------------------------------------------------------------ K
+K Million | other | 0
+Karate King | fighting action | 2 | v
+Kerry Workout | casual | 0 | note=Political parody.
+Kickboxing | fighting sports | 1
+Kickups | football sports skill | 1
+Kindergarten | other | 1
+King of the Hill | other | 1
+KingPin Bowling | sports | 1
+Klondike Solitaire | card | 1 | desc=Classic solitaire - build the four foundations from Ace to King.
+Kung Fu Statesmen | fighting | 2 | v | desc=World leaders settle their differences with kung fu in this parody fighting game. | note=Political parody.
+
+# ------------------------------------------------------------------ L
+Lamb Chop Drop | other | 1
+Last Christmas 2 | other | 0
+Lead Storm | shooting | 1
+Leo Steel | other | 1
+Letter Lasso | word | 1
+Letter Rip | word | 1
+Light Heroes | shooting | 1 | v | hs
+Light Temple | other | 1
+Little Fins | other | 1
+Little Wheel | adventure puzzle | 3 | v | new | year=2009 | dev=One Click Dog | desc=A point-and-click adventure: help a little robot wake up a city that has been asleep for thousands of years.
+London 2012 Olympic Games | sports promotional | 1 | ht=licensed
+Love's Arrow | skill | 1 | hs
+Lumberjack Games | sports | 1
+Lunar Command | shooting | 1
+
+# ------------------------------------------------------------------ M
+Magic Balls | puzzle | 1
+Magic Pen | puzzle | 1 | desc=Draw shapes that come to life and use them to push the ball to the flag.
+Magic Pen 2 | puzzle | 1
+Mahjong Daily | puzzle | 1 | hs | desc=Match free pairs of tiles to clear the board - a new layout every day.
+Mallet Mania | other | 1 | hs
+Mars Patrol | other | 1
+Masters of Wrestling | fighting sports | 1
+Math Blaster | puzzle promotional | 0 | ht=licensed
+Max Speed | racing | 1
+McCain Vs Obama | other | 1 | v | note=Political parody. Seen in the 2008-2009 screenshots (full games list); not in the master list.
+Michael Jackson | other | 0 | r
+Milk Shake | other | 1
+Mini Golf | sports | 1
+Mini Putt 3 | sports | 1
+Mini Soccer | football sports | 1
+Miniclip Free Bike | driving | 1
+Miniclip Rally | racing driving | 3 | v
+Minilympics | sports | 1
+Mission Mars | action | 2 | v
+Mister Easter | other | 0
+Moby Dick | other | 1
+Moby Dick 2 | other | 1
+Monkey Kick Off | skill sports | 3 | v
+Monkey Lander | flying skill | 2 | v
+Monkey Snowfight | winter | 1
+Monster Bash | other | 1
+Monster Basher | other | 1
+Monster Golf | sports | 1
+Monster Invasion | other | 1
+Monster Island | other | 1
+Monster Mowdown 2 | action | 1
+Monster Sumo | fighting sports | 1
+Monster Trucks | driving | 2 | v
+Monster Trucks Nitro | driving racing action | 3 | v
+Moon Rush | other | 1
+Moonshadow | other | 1
+Most Wanted | other | 1
+MotherLoad | adventure strategy | 3 | v | year=2004 | dev=XGen Studios | desc=Pilot a mining pod deep beneath the surface of Mars, dig up valuable minerals and upgrade your machine.
+Motocross Country | racing driving | 1
+Motocross Fever | racing driving | 2 | v
+Motocross Urban | racing driving | 1 | v | aka=Motocross Urban Fever; MotoX Urban Fever | note=Shown as "MotoX Urban Fever" in the Motorsports box of the 2008-2009 homepage.
+Mountain Bike | driving sports | 3 | v
+Movie Munchies | other | 1
+Mr Bounce | other | 1
+Mr Men Pinball | arcade promotional | 0 | ht=licensed | note=Based on the Mr. Men books.
+Mud Rally | racing driving | 1
+Mushroom Madness | other | 1
+Music Cube | puzzle | 1
+
+# ------------------------------------------------------------------ N
+Nano Recon | other | 1
+Narnia Prince Caspian | promotional | 0 | ht=licensed | note=Tie-in with the 2008 film The Chronicles of Narnia: Prince Caspian.
+Need for Madness | racing driving | 2 | v | type=html5 | dev=Radicalplay | desc=Crazy stunt racing: win by crossing the line first or by wrecking every other car. | note=Originally a Java game.
+Nerf N-Strike | shooting promotional | 0 | ht=sponsored | note=Promotion for Nerf N-Strike toys.
+NFL Conga Chaos | football promotional | 0 | ht=licensed
+NFL Lateral Collat | football promotional | 0 | r | ht=licensed | note=Title may be truncated in the source list.
+Night at the Museum | promotional | 0 | ht=licensed | note=Film tie-in.
+Ninja Glove | action | 1
+Nordic Chill | winter | 1
+Numbskull | puzzle | 1
+
+# ------------------------------------------------------------------ O
+Obama Alien Defense | shooting | 1 | new | note=Political parody.
+Off The Rails | driving action | 2 | v
+Offroad 4x4 | driving | 1
+On The Run | driving action | 3 | v
+On The Run 2 | driving action | 3 | v
+On The Run Vegas | driving action | 2 | v
+One Man Band | skill | 1
+Onekey | skill | 1
+OurWorld | multiplayer | 2 | v | ht=multiplayer-service | type=iframe
+Apache Overkill
+
+# ------------------------------------------------------------------ P
+Paintball | shooting | 1
+Panfu | multiplayer | 0 | ht=multiplayer-service | type=iframe | note=Online virtual world for children.
+Panik in Chocoland | platform | 2 | v
+Papa Louie | platform | 2 | v | dev=Flipline Studios | aka=Papa Louie: When Pizzas Attack! | desc=Rescue Papa Louie's customers from an army of pizza monsters in this platform adventure.
+Parachute Plunder | skill | 1
+Park a Lot | driving | 1
+Park a Lot 2 | driving | 1
+Peanut | other | 1
+Pearl Diver | other | 1
+Pebble Dash | other | 1
+Pencak Silat | fighting | 1
+Pengapop | puzzle | 1
+Penguin Arcade | arcade | 1
+Penguin Push | other | 1
+Penguin Rush | other | 1
+Pest Control | other | 1 | hs
+Petz Dogz Trickz | casual promotional | 0 | ht=sponsored | note=Promotion for the Petz series.
+Petz Nursery | casual promotional | 0 | ht=sponsored | note=Promotion for the Petz series.
+Petz Splashdown | casual promotional | 0 | ht=sponsored | note=Promotion for the Petz series.
+Phantom Mansion | puzzle | 1
+Pharaoh's Tomb | adventure | 1 | r | aka=The Pharaoh's Tomb | note=Listed as both "Pharaoh's Tomb" and "The Pharaoh's Tomb"; merged into one record.
+Ping Pong | sports | 1 | hs
+Pipsoh! | other | 1
+Piranhas | other | 1
+Pirate Chains | puzzle | 1
+Pirate Golf | sports | 1
+Pixel Cricket | sports | 1
+Pizza Hot | other | 1
+Planet Cruncher | other | 1
+Plant Pong | arcade sports | 2 | v | new | hs
+Platypus | shooting arcade | 1 | v | note=Claymation-style shoot 'em up.
+Plunger | other | 1
+Pod Panic | other | 1 | hs
+Polar Dash | winter | 1
+Polar Hockey | winter sports | 1 | hs
+Polar Jump | winter | 1 | hs
+Polar Rescue | winter | 1
+Police Chopper | flying shooting | 1
+Police Pursuit | driving action | 3 | hs | v
+Pop Pirates | puzzle | 1
+Power Boat | racing | 1
+Power Soccer | football sports | 2 | v
+President Knockout | fighting | 1 | note=Political parody.
+Presidential Paint
+Presidential Paintball | shooting | 1 | aka=Presidential Paint | note=Political parody. Also listed as "Presidential Paint" (probably a shortened title); merged into one record.
+Presidential Pound | other | 0 | note=Political parody.
+Pressure Shot | other | 1
+Pro Football | football sports | 1
+Pro Kick Revolution | football sports | 1
+Protect the City | shooting | 1
+Pumpkin Push | other | 1
+Puzzle Pirates | multiplayer puzzle | 2 | v | ht=multiplayer-service | type=iframe | year=2003 | dev=Three Rings Design | aka=Yohoho! Puzzle Pirates | desc=Swashbuckling online game where sailing, sword fighting and trading are all played as puzzles. | note=Originally a Java game run by Three Rings.
+Puzzled Sheep | puzzle | 1
+
+# ------------------------------------------------------------------ Q
+Quadrow | puzzle board | 1
+Quesadilla Breaks | other | 0 | r
+Quick Fire Pool | pool sports | 3 | v
+QuickHit NFL | football multiplayer | 0 | ht=external-service | type=iframe
+
+# ------------------------------------------------------------------ R
+R.I.F.T. | other | 1
+Raceway 500 | racing | 1
+Rack Runners | other | 1
+Radical Aces | flying shooting | 1
+Raft Wars | shooting strategy | 3 | v | dev=Martijn Kunst | desc=Defend your raft of treasure from rival rafts by lining up the angle and power of every shot.
+Railroad Rampage | other | 1
+Rails of War | other | 1
+Rally Championship | racing driving | 1
+Rango | promotional | 0 | new | ht=licensed | note=Tie-in with the 2011 animated film.
+Rapid Wars | other | 1
+RC Time Trial | racing driving | 1
+Real Space 2 | other | 1
+Red Beard | action | 3 | v
+Red Bugs Puzzle | puzzle | 1
+Red Code 3 | other | 1
+Red Cross ERU | promotional strategy | 0 | ht=sponsored | note=Red Cross campaign game about the Emergency Response Units.
+Red Riot | other | 1
+Reel Gold | sports | 1
+Retroshoot 360 | shooting arcade | 1
+Reversi | board strategy | 1 | desc=Outflank your opponent's pieces to flip them to your colour - most pieces at the end wins.
+Rich Racer | racing | 1
+Ricochet | other | 1
+Rifleman | shooting | 1
+Rigelian Hotshots | other | 1
+Ringshot | skill | 1
+Rival Rage | other | 1
+Robo Pop | other | 1
+Robot Rage | action | 1
+Rocketman | flying skill | 1
+Rockitty | other | 1
+Rockstarter | skill | 1
+Rollercoaster | skill | 1
+Rolley | other | 1
+Rollo and Flex | puzzle | 1
+RollOn | other | 1
+Roly Poly | other | 1
+Rooftop-Hop | platform | 1
+Route Rageous | driving | 1
+Royal Rampage | other | 1
+Royal Wedding | casual | 0 | note=Parody game.
+Rubble Trouble | puzzle | 1
+Rubble Trouble Moscow | puzzle | 1
+Rugby Challenge | sports | 1
+Rule The Beach | other | 1
+Run N Gun | shooting action | 1
+Run The Rapids | sports | 1
+RuneScape | multiplayer adventure | 2 | v | ht=multiplayer-service | type=iframe | year=2001 | dev=Jagex | desc=A fantasy MMORPG: train your skills, complete quests and adventure with thousands of other players. | note=Originally a Java-based browser game run by Jagex.
+Rural Racer | racing driving | 2 | v
+
+# ------------------------------------------------------------------ S
+Saloon Brawl | fighting action | 1
+Samsung Football | football promotional | 0 | ht=sponsored | note=Sponsored by Samsung.
+Samurai Sam | action | 1
+Samurai Warrior | fighting | 1
+Sandman | puzzle | 1 | v
+Santa's Gift Jump | other | 1
+Save the Fallen | other | 1
+Save the Sheriff | other | 1
+Scraper Caper | other | 1
+Scribble | other | 1
+Sewer Run | other | 1
+Shadow Factory | other | 1
+Shanghai Mahjongg | puzzle | 1 | desc=Mahjong solitaire - match free pairs of tiles until the board is clear.
+Shark Bait | other | 1
+Sheep Game | other | 1
+Sheepish | other | 1
+Shell: Le Mans | racing promotional | 0 | ht=sponsored | note=Sponsored by Shell.
+Sheriff Tripeaks | card | 1
+Shift 2 | other | 0 | r | note=Ambiguous title: could be the Shift puzzle-platformer sequel or a Shift 2 racing promotion.
+Shootin' Hoops | sports | 1
+Shopping Mall Parking | driving | 1
+Short History of the World | other | 0 | r
+Shove It | puzzle | 1
+Show Jumping | sports | 1
+Shrunken Heads | other | 1
+Silversphere | puzzle | 2 | v
+Simon Says | skill | 1 | desc=Watch the pattern of lights and sounds, then repeat it back - it gets longer every round.
+Simple Soccer | football sports | 1
+Skateboard Jam | sports | 1
+Sketch Star | skill | 3 | v
+SketchMan | other | 1
+Ski Run | sports winter | 1 | v
+Skies of War | flying shooting | 1
+Sky Golf | sports | 1
+Skyboard | other | 1
+Skywire | skill | 3 | hs | v | desc=Guide the little cable car along the wire without crashing into anything on the way.
+Skywire 2 | skill | 3 | hs | v
+Slacking | other | 0 | r | note=Possibly the same game as "A Day of Slacking" - check before merging.
+Slime Laboratory | platform | 1
+Slime Laboratory 2 | platform | 1
+Sleigh Shot | winter | 1 | v | hs | note=Seen in the 2008-2009 screenshots (full games list, high score challenge); not in the master list.
+Sling | other | 1
+Slingfire | other | 1 | hs
+Slingshot | skill | 1
+Small Fry | other | 1 | hs
+Smashing | other | 1
+Smokin' Barrels | shooting | 1
+Snake | arcade | 1 | desc=Steer the snake to the food and grow longer - just don't run into your own tail.
+Snake Squad | other | 1
+Snap n Spooky | other | 1
+Sneeze | puzzle casual | 2 | v
+Snickers: Mr T Break | promotional | 0 | ht=sponsored | note=Sponsored by Snickers.
+Sniper | shooting | 1
+Snow Day | winter | 1
+Snow Drift | winter racing driving | 3 | v
+Snow Riders | winter racing | 1
+Snowball Warfare | winter shooting | 1
+Snowboard Madness | winter sports | 1
+Snowboarder XS | winter sports | 1
+Snowfight | winter | 1
+Snowmen Invaders | winter shooting | 1
+Snowmen Parade | winter | 1
+Soap Bubble | skill | 1
+Soap Bubble 2 | skill | 1
+Soccer Five | football sports | 1
+Soccer Pro | football sports | 1
+Soccer Stars | football sports | 1
+Space Escape | action | 2 | v
+Space Fighter | shooting | 1
+Space Hopper | other | 1
+Spec Ops | shooting | 1
+Spectral Wizard | other | 1
+Spider Game | other | 1
+Spineworld | multiplayer adventure | 2 | v | new | ht=multiplayer-service | type=iframe | desc=An online world where you get your own pet, explore and make new friends. | note=Featured in Latest Games and the Top Ten on the 2008-2009 homepage.
+Sportbike Sprint | racing | 1
+SQRL Golf | sports | 1
+SQRL Golf 2 | sports | 1
+Square Meal | other | 1
+Squid | other | 1
+Squiggle | other | 1
+Stackopolis | puzzle | 1
+Stan Skates | sports | 1
+Starship Eleven | other | 1
+Starship Gunner | shooting | 1
+Starship Seven | other | 1
+Stay the Distance | other | 1
+Storybook | other | 1 | v | new
+Street Fight | fighting action | 3 | v
+Street Luge | racing sports | 1
+Stunt Dive | sports | 1
+Stunt Driver | driving | 1
+Stunt Pilot | action flying | 1 | v
+Stunt Pilot 2 | flying | 1
+Stuntman | other | 1
+Style Lab Makeover | casual | 0
+Sub Commander | shooting | 2 | v
+Sudoku | puzzle | 1 | desc=Fill the grid so that every row, column and 3x3 box contains the numbers 1 to 9.
+Summer Athletics | sports | 1
+Super Robot War | other | 1
+Super Stocktake | other | 0
+Super Trucks | driving racing | 1
+Superbike GP | racing | 2 | v
+Superhero Pizza | other | 1
+Superstar Racing | racing multiplayer | 1 | v
+Surf's Up | sports promotional | 0 | ht=licensed | note=Tie-in with the 2007 animated film.
+Surfmania | sports | 1
+Sushi Go Round | strategy casual | 3 | v | desc=Run a sushi restaurant: learn the recipes, roll the right sushi and keep your customers happy.
+Sveerz | other | 1
+
+# ------------------------------------------------------------------ T
+Table Tennis | sports | 1
+Tabletop Cricket | sports | 1
+Tank Attack | shooting | 1
+Tanked Up | racing driving | 1 | v
+Tarnation | other | 1 | hs
+Tennis Ace | sports | 1
+Tennis Doubles | sports | 1
+Tennis Game | sports | 1
+Tennis Grand Slam | sports | 1
+Tennis Titans | sports | 1
+Tetris | puzzle | 2 | v | ht=licensed | desc=Rotate and drop the falling blocks to complete lines - the classic puzzle game. | note=Licensed version of the classic puzzle game.
+TGMotocross 3 | racing driving | 1
+The Ashes | sports | 1 | hs | note=Cricket game named after the England v Australia test series.
+The Black Knight
+The Old West | other | 1 | v | note=Seen in the 2008-2009 screenshots (full games list); not in the master list.
+The Old West 2 | other | 1 | v | note=Seen in the 2008-2009 screenshots (full games list); not in the master list.
+The Godfather | promotional | 0 | ht=licensed | note=Film tie-in.
+The Pharaoh's Tomb
+The Professionals | other | 1
+The Scruffs | puzzle | 1 | v
+Thin Ice | winter puzzle | 1 | hs
+Thunder Plunder | other | 1 | v | note=Seen in the 2008-2009 screenshots (full games list); not in the master list.
+Thunder Devil | other | 1 | r | note=Possibly the same game as "Thunder Plunder", which is in the 2008-2009 full games list - check before merging.
+Tiger Golf | sports | 1
+Tiny Castle | other | 1
+TMNT: Double Damage | promotional action | 0 | ht=licensed | aka=Teenage Mutant Ninja Turtles: Double Damage
+Toboggan Run | winter racing | 1
+Tooth N Claw | other | 1
+Top Cop | driving | 1
+Top Figures | puzzle | 1
+Topsy Turvy | other | 1
+Traps, Mines, Sheep | other | 1
+Trapshoot | shooting skill | 1
+Trech | other | 1
+Trech 2 | other | 1
+Trial Bike | driving | 1
+Trial Bike Bundle | driving | 0 | r | note=May be a bundle/collection of the Trial Bike games rather than a single game.
+Trial Bike PRO | driving | 1
+Trials 2 | driving racing sports | 3 | v | dev=RedLynx | desc=Ride a trials motorbike over ramps, crates and logs - lean forwards and back to keep your balance.
+Trials Construction Yard | driving | 1
+Trials Dynamite Tumble | driving | 1
+Trials Mountain | driving | 1
+Tribe | other | 0
+TriPeaks Solitaire | card | 1 | desc=Clear the three peaks by picking cards one higher or lower than the open card.
+Trivia Machine | casual | 1
+Tropi Golf | sports | 1
+Troy | promotional | 0 | ht=licensed | note=Film tie-in.
+Tumblestump 2 | other | 1
+Turbo Spirit | racing | 1
+Turbo Spirit XT | racing | 1
+Turkey Run | other | 1
+Twiddlestix | other | 1
+Twisted City | other | 1
+
+# ------------------------------------------------------------------ U
+UFO Joe | other | 1
+Under Arms | other | 1
+United We Dance | casual | 0
+Up Beat | skill | 1
+Uphill Rush | racing | 1
+Urban Basketball | sports | 1
+Urban Rivals | card multiplayer | 0 | ht=multiplayer-service | type=iframe | note=Online collectible card game.
+Urban Specialist | shooting | 1
+
+# ------------------------------------------------------------------ V
+Vector Rush | other | 1
+Vectoroids | shooting arcade | 1
+Verti Golf | sports | 1
+Verti Golf 2 | sports | 1
+Viking Defense | strategy | 1
+Viper | other | 1
+Virtual Knee Surgery | skill | 0 | note=Educational surgery simulation.
+Volcanic Airways | flying | 1
+Volcano | other | 1
+
+# ------------------------------------------------------------------ W
+Wacky Ballz | other | 1
+Waffle Mania | other | 1
+Wait 4 Me | other | 1
+Wakeboard Pro | sports | 1
+Wakeboarding | sports | 1
+Wakeboarding XS | sports | 1
+War Bears | other | 1
+War on Terrorism | other | 1
+Waterslide | other | 1
+Waterslide Slalom | other | 1
+Wave Jumper | sports | 1
+Way of the Exploding Stick | fighting | 1 | v | desc=Stick-figure kung fu: chain your kicks and punches to beat everyone in sight.
+Weirdville | other | 1
+Whack a Ground Hog | arcade | 1
+Wheels of Salvation | driving | 1
+White Water Rafting | sports | 1
+Wild Wild West | shooting | 1
+Winter Bow Master | winter skill shooting | 1
+Winter Games | winter sports | 1
+Winter Workout | winter | 1
+Wonderputt | sports puzzle | 1 | v | new | year=2011 | dev=Damp Gnat | desc=A whimsical mini golf game played across one ever-changing island.
+Wood Runner | other | 1
+Word Sailing | word | 1
+Word Vine | word | 1
+Wordo | word | 1
+World Cricket 2011 | sports | 1 | new
+World Domination 2 | strategy | 1
+World Golf Tour | sports multiplayer | 1 | ht=external-service | type=iframe | dev=World Golf Tour | desc=Online golf on photo-realistic recreations of real courses.
+World Rugby 2011 | sports | 1 | new
+World Soccer | football sports | 1
+Wormcraft | other | 1
+Wrap Attack | other | 1
+
+# ------------------------------------------------------------------ X
+Xbox Party Mansion | promotional | 0 | ht=sponsored | note=Promotion for Xbox.
+XRaye | other | 1
+
+# ------------------------------------------------------------------ Y
+Yeti Sports | sports skill | 2 | v | aka=YetiSports | desc=Help the yeti send a penguin flying as far as possible with one big swing of the bat.
+Yo-gos Rollers | promotional | 0 | ht=sponsored | note=Brand promotion for Yo-gos snacks.
+YoMe Creator | other | 0
+Youda Camper | strategy casual | 1 | dev=Youda Games
+Youda Legend | adventure puzzle | 1 | dev=Youda Games | aka=Youda Legend: The Curse of the Amsterdam Diamond
+Youda Marina | strategy casual | 1 | dev=Youda Games
+Youda Sushi Chef | strategy casual | 1 | dev=Youda Games
+
+# ------------------------------------------------------------------ Z
+Zed | other | 1
+Zoikz | other | 1
+Zombie Crypt | other | 1
+Zombie Stalker | shooting | 1
+Zubo Zurfing | promotional | 0 | ht=sponsored | note=Promotion for the game Zubo.

@@ -1,7 +1,8 @@
 // Dense game listings used by category, search and My Games pages.
 import { esc, gameUrl, catUrl } from '../assets/js/core/util.js';
 import { favorites, plays } from '../assets/js/core/store.js';
-import { thumbImg, badge, stars } from './thumbs.js';
+import { byTitle } from '../assets/js/core/data.js';
+import { thumbImg, badge, stars, status } from './thumbs.js';
 
 export const SORTS = [
   ['popular', 'Most Popular'],
@@ -12,9 +13,10 @@ export const SORTS = [
 
 export function sortGames(lib, games, key) {
   const list = games.slice();
-  if (key === 'new') return list.sort((a, b) => (b.added > a.added ? 1 : b.added < a.added ? -1 : 0) || a.sortTitle.localeCompare(b.sortTitle));
+  // newest: latest additions first, then by release year (unknown years last)
+  if (key === 'new') return list.sort((a, b) => (b.new - a.new) || (b.year || 0) - (a.year || 0) || lib.score(b) - lib.score(a));
   if (key === 'rated') return list.sort((a, b) => lib.rating(b) - lib.rating(a) || lib.score(b) - lib.score(a));
-  if (key === 'az') return list.sort((a, b) => a.sortTitle.localeCompare(b.sortTitle));
+  if (key === 'az') return list.sort(byTitle);
   return list.sort((a, b) => lib.score(b) - lib.score(a));
 }
 
@@ -26,8 +28,8 @@ export function gameCard(lib, g, extra = '') {
     <a class="tbw" href="${gameUrl(g)}">${thumbImg(g)}${badge(g)}</a>
     <div class="gi">
       <a class="gt" href="${gameUrl(g)}">${esc(g.title)}</a>
-      <p>${esc(g.description)}</p>
-      <div class="meta">${stars(lib.rating(g))} &nbsp;${cat ? `<a href="${catUrl(cat.id)}">${esc(cat.name)}</a>` : ''}${n ? ` &middot; played ${n}x` : ''}${extra}</div>
+      <p>${g.description ? esc(g.description) : `<span class="empty">A classic ${esc(g.categoryName.toLowerCase())} game${g.year ? ' from ' + esc(g.year) : ''}${g.aliases.length ? ', also known as ' + esc(g.aliases[0]) : ''}.</span>`}</p>
+      <div class="meta">${stars(lib.rating(g))} &nbsp;${cat ? `<a href="${catUrl(cat.id)}">${esc(cat.name)}</a>` : ''}${g.year ? ` &middot; ${esc(g.year)}` : ''}${g.installed ? ' &middot; ' + status(g) : ''}${n ? ` &middot; played ${n}x` : ''}${extra}</div>
     </div>
     <a href="#" class="fav${fav ? ' on' : ''}" data-fav="${esc(g.id)}" title="${fav ? 'Remove from My Games' : 'Add to My Games'}">${fav ? '&#9829; My Game' : '+ My Games'}</a>
   </div>`;

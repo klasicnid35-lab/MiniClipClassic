@@ -3,6 +3,7 @@ import { esc, catUrl } from '../assets/js/core/util.js';
 import { link } from './thumbs.js';
 
 export const OTHER_SECTIONS = [
+  ['All Games A-Z', 'allgames.html'],
   ['My Games', 'mygames.html'],
   ['Player Profile', 'players.html'],
   ['New Games Alerts', 'games.html?cat=new'],
@@ -21,13 +22,12 @@ export function otherItems() {
   return OTHER_SECTIONS.map(([t, h]) => `<li><a href="${h}">${t}</a></li>`).join('');
 }
 
-// Full A-Z games list in 7 columns with letter headings.
+// A-Z games list in columns with letter headings (natural title order).
 export function fullList(lib, games = lib.alpha(), cols = 7) {
   const items = [];
   let last = null;
   for (const g of games) {
-    let ch = g.sortTitle.charAt(0).toUpperCase();
-    if (!/[A-Z]/.test(ch)) ch = '#';
+    const ch = g.letter;
     if (ch !== last) { items.push(`<li class="l">${ch}</li>`); last = ch; }
     items.push(`<li>${link(g, g.challenge ? 'c' : '')}</li>`);
   }

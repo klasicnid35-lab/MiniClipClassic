@@ -2,15 +2,15 @@
 // Top Ten Games, Latest Games Played / My Games and the daily puzzles box.
 import { $, $$, esc, gameUrl, usDate, html } from '../assets/js/core/util.js';
 import { recent, favorites } from '../assets/js/core/store.js';
-import { link } from './thumbs.js';
+import { link, bigImg } from './thumbs.js';
 
 export function rightColumnHTML({ ad = true, promo = true, daily = true } = {}) {
   return `
   ${ad ? `<div class="adbox">
-    <div class="adslot"><a id="housead" href="#"><img src="assets/banners/house-ad.png" width="300" height="250" alt="Advertisement"></a></div>
+    <div class="adslot"><a id="housead" href="games.html?cat=top"><img src="assets/banners/house-ad.png" width="300" height="250" alt="Advertisement"></a></div>
     <div class="adlabel"><span>Advertisement</span></div>
   </div>` : ''}
-  ${promo ? '<a class="smallbanner" id="smallbanner" href="#"><img src="assets/banners/promo-small.png" width="314" height="66" alt=""></a>' : ''}
+  ${promo ? '<a class="smallbanner" id="smallbanner" href="games.html?cat=hot"><img src="assets/banners/promo-small.png" width="314" height="66" alt=""></a>' : ''}
   <div class="opanel topten">
     <div class="ohead">Top Ten Games</div>
     <div class="obody"><ol class="tlist" id="tlist"></ol><div class="tprev" id="tprev"></div></div>
@@ -30,20 +30,19 @@ const short = (s, n) => (s.length > n ? s.slice(0, n - 2).replace(/\s+\S*$/, '')
 
 export function fillRightColumn(lib) {
   const site = lib.site;
-  const ad = lib.get(site.houseAd.game);
-  if (ad && $('#housead')) { $('#housead').href = gameUrl(ad); $('#housead img').alt = 'Play ' + ad.title; }
-  const promo = lib.get(site.homePromo.game);
-  if (promo && $('#smallbanner')) { $('#smallbanner').href = gameUrl(promo); $('#smallbanner img').alt = 'Play ' + promo.title; }
+  if (site.houseAd && $('#housead')) { $('#housead').href = site.houseAd.href; $('#housead img').alt = site.houseAd.alt || 'Advertisement'; }
+  if (site.smallBanner && $('#smallbanner')) { $('#smallbanner').href = site.smallBanner.href; $('#smallbanner img').alt = site.smallBanner.alt || ''; }
 
   // Top Ten with hover preview
-  const top = lib.top().slice(0, 10);
+  const top = lib.topTen();
   if ($('#tlist')) {
     html('#tlist', top.map((g, i) => `<li data-i="${i}"${i === 0 ? ' class="sel"' : ''}>${link(g)}</li>`).join(''));
     const preview = (i) => {
       const g = top[i];
       $$('#tlist li').forEach((li) => li.classList.toggle('sel', +li.dataset.i === i));
-      html('#tprev', `<a href="${gameUrl(g)}"><img src="${esc(g.image)}" width="148" height="107" alt="${esc(g.title)}"></a>
-        <a class="tt" href="${gameUrl(g)}">${esc(g.title)}</a><p>${esc(short(g.description, 64))}</p>`);
+      const text = g.description || `A classic ${g.categoryName.toLowerCase()} game${g.year ? ' from ' + g.year : ''}${g.installed ? '' : ' - coming soon to the archive'}.`;
+      html('#tprev', `<a href="${gameUrl(g)}">${bigImg(g, 148, 107)}</a>
+        <a class="tt" href="${gameUrl(g)}">${esc(g.title)}</a><p>${esc(short(text, 64))}</p>`);
     };
     $('#tlist').addEventListener('mouseover', (e) => { const li = e.target.closest('li'); if (li) preview(+li.dataset.i); });
     $('#tlist').addEventListener('focusin', (e) => { const li = e.target.closest('li'); if (li) preview(+li.dataset.i); });
@@ -64,7 +63,7 @@ export function fillRightColumn(lib) {
   window.addEventListener('storage', drawMine);
 
   if ($('#dailybox')) {
-    const dl = lib.get(site.daily.left), dr = lib.get(site.daily.right);
+    const dl = site.daily && lib.get(site.daily.left), dr = site.daily && lib.get(site.daily.right);
     if (dl) $('.daily-l').href = gameUrl(dl);
     if (dr) $('.daily-r').href = gameUrl(dr);
     $('#dailydate').textContent = usDate();

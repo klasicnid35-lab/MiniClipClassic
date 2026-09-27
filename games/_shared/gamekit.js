@@ -18,13 +18,14 @@
 (function () {
   'use strict';
 
+  // fonts live next to this script, wherever the game folder is
+  var SCRIPT_URL = (document.currentScript && document.currentScript.src) || '';
   var FONT_TITLE = '"Titan One", "Arial Black", Impact, sans-serif';
   var FONT_UI = '"Lilita One", "Arial Black", Arial, sans-serif';
 
   function loadFonts() {
     if (!window.FontFace || !document.fonts) return Promise.resolve();
-    var base = (document.currentScript && document.currentScript.src) || '';
-    var dir = '../_shared/fonts/';
+    var dir = SCRIPT_URL ? SCRIPT_URL.replace(/[^/]*$/, '') + 'fonts/' : '../_shared/fonts/';
     var faces = [
       new FontFace('Titan One', 'url(' + dir + 'titan-one.woff2)'),
       new FontFace('Lilita One', 'url(' + dir + 'lilita-one.woff2)'),

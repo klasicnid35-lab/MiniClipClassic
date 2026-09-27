@@ -17,9 +17,12 @@
 <script type="module">
 import { boot } from './assets/js/core/boot.js';
 import { renderGamePage } from './components/gamepage.js';
+// SketchPad is a drawing tool made for this site (games/_extras/sketch-pad),
+// not part of the classic games catalogue.
 const lib = await boot();
-const g = lib.get('sketch-pad');
-if (g) renderGamePage(lib, g);
+const extras = await fetch('games/_extras/extras.json').then((r) => r.json());
+const raw = extras.find((g) => g.id === 'sketch-pad');
+if (raw) renderGamePage(lib, lib.wrap({ ...raw, title: 'SketchPad' }), { noCount: true });
 document.title = 'SketchPad - MiniClip Classic';
 </script>
 </body>

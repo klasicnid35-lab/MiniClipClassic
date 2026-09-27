@@ -25,7 +25,7 @@ export function renderHeader(lib) {
     })).join('');
 
   const moreItems = lib
-    ? lib.cats.map((c) => `<a href="${catUrl(c.id)}">${esc(c.name)}</a>`).join('') + '<a href="categories.html">All Categories...</a>'
+    ? lib.cats.map((c) => `<a href="${catUrl(c.id)}">${esc(c.name)}</a>`).join('') + '<a href="allgames.html">All Games A-Z...</a><a href="categories.html">All Categories...</a>'
     : '';
 
   const q = document.body.dataset.page === 'search' ? (param('q') || '') : '';

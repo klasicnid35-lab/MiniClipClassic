@@ -1,7 +1,7 @@
 """Verify Box Pusher levels are solvable (BFS over push states).
-usage: python3 sokoban_check.py  (reads LEVELS from games/box-pusher/game.js)"""
+usage: python3 sokoban_check.py  (reads LEVELS from games/_extras/box-pusher/game.js)"""
 import re, json, sys, collections, os
-src = open(os.path.join(os.path.dirname(__file__), '../../games/box-pusher/game.js')).read()
+src = open(os.path.join(os.path.dirname(__file__), '../../games/_extras/box-pusher/game.js')).read()
 block = src[src.index('const LEVELS = [') + len('const LEVELS = '):src.index('];') + 1]
 levels = json.loads(block.replace("'", '"').replace(',\n]', '\n]'))
 

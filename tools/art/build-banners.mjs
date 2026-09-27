@@ -1,11 +1,9 @@
-// Draws the promotional banners used on the homepage: the wide 612x77 promo,
-// the small 314x66 promo, the 300x250 house advert and the Sudoku / Mahjong
-// "play daily" backgrounds. All artwork is original SVG, rendered at 2x.
+// Draws the banners used on the homepage: the wide 612x77 "Classic Games A-Z"
+// promo, the small 314x66 promo, the 300x250 "Top 100" house advert and the
+// Sudoku / Mahjong "play daily" backgrounds. All artwork is original SVG,
+// rendered at 2x.
 // usage: node tools/art/build-banners.mjs [filter]
-import path from 'path';
-import fs from 'fs';
-import { pathToFileURL } from 'url';
-import { renderAll, ROOT } from './render.mjs';
+import { renderAll } from './render.mjs';
 
 // ---- cute critters -------------------------------------------------------
 function eye(x, y, r, look = 0) {
@@ -64,9 +62,9 @@ const wide = `<svg xmlns="http://www.w3.org/2000/svg" width="612" height="77" vi
   ${blob(165, 82, 0.45, '#ffd83a', '#8a5a00')}
   ${blob(410, 84, 0.42, '#ff7ad8', '#7a1a5a', true)}
   ${bunnyCritter(478, 68, 0.62, '#7ac8ff', '#d0ecff')}
-  <text x="300" y="44" text-anchor="middle" font-family="'Luckiest Guy'" font-size="44" fill="#fff" stroke="#6a1aa8" stroke-width="7" paint-order="stroke" stroke-linejoin="round" textLength="300" lengthAdjust="spacingAndGlyphs">Critter Cannon</text>
-  <text x="300" y="68" text-anchor="middle" font-family="'Lilita One'" font-size="19" fill="#fff" stroke="#2a4a0a" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Launch your own CRITTER!</text>
-  ${playButton(507, 12, 92, 52)}
+  <text x="300" y="42" text-anchor="middle" font-family="'Luckiest Guy'" font-size="40" fill="#fff" stroke="#6a1aa8" stroke-width="7" paint-order="stroke" stroke-linejoin="round" textLength="286" lengthAdjust="spacingAndGlyphs">Classic Games A-Z</text>
+  <text x="300" y="66" text-anchor="middle" font-family="'Lilita One'" font-size="18" fill="#fff" stroke="#2a4a0a" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Hundreds of classics - find your favourite!</text>
+  ${playButton(507, 12, 92, 52, 'go')}
 </svg>`;
 
 const small = `<svg xmlns="http://www.w3.org/2000/svg" width="314" height="66" viewBox="0 0 314 66">${DEFS}
@@ -78,24 +76,27 @@ const small = `<svg xmlns="http://www.w3.org/2000/svg" width="314" height="66" v
   ${playButton(210, 10, 94, 46)}
 </svg>`;
 
-const frame = (id) => {
-  const f = path.join(ROOT, 'tools/art/output/frames', id + '.png');
-  return fs.existsSync(f) ? pathToFileURL(f).href : '';
-};
-
-const houseAd = `<div style="position:relative;width:300px;height:250px;overflow:hidden;background:#5ab83a;font-family:'Lilita One'">
-  <img src="${frame('castle-guard')}" style="position:absolute;left:-40px;top:-38px;width:380px;height:285px;opacity:.95">
-  <div style="position:absolute;inset:0;background:linear-gradient(rgba(10,30,80,.75),rgba(10,30,80,.1) 45%,rgba(10,30,80,.55))"></div>
-  <svg xmlns="http://www.w3.org/2000/svg" width="300" height="250" style="position:absolute;left:0;top:0">
-    <defs><linearGradient id="t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff5a0"/><stop offset="1" stop-color="#ffb31a"/></linearGradient></defs>
-    <text x="150" y="52" text-anchor="middle" font-family="'Carter One'" font-size="40" fill="url(#t)" stroke="#3a1a00" stroke-width="6" paint-order="stroke" stroke-linejoin="round">Castle Guard</text>
-    <text x="150" y="80" text-anchor="middle" font-family="'Lilita One'" font-size="18" fill="#fff" stroke="#0a1a4a" stroke-width="4" paint-order="stroke">Stop the goblin army!</text>
-    <text x="150" y="188" text-anchor="middle" font-family="'Lilita One'" font-size="15" fill="#fff" stroke="#0a1a4a" stroke-width="3.5" paint-order="stroke">15 waves • 3 towers • FREE</text>
-  </svg>
-  <div style="position:absolute;left:75px;top:200px;width:150px;height:36px;border-radius:14px;border:3px solid #fff;box-sizing:border-box;
-    background:linear-gradient(#ffc34d,#ff8a00 55%,#e06a00);color:#fff;font-size:21px;line-height:30px;text-align:center;letter-spacing:1px;
-    text-shadow:0 2px 0 rgba(120,50,0,.6);box-shadow:0 3px 6px rgba(0,0,0,.5)">PLAY NOW &#9658;</div>
-</div>`;
+// house advert: the Top 100 classics (original artwork, no game screenshots)
+const tiles = [['#ff8a2a', '#c8380a'], ['#72d4ff', '#1a78d8'], ['#b884ff', '#5a2ad0'], ['#86e45a', '#2a961a'], ['#ffe04a', '#e08a0a'], ['#ff5a8a', '#b0104a']];
+const houseAd = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="250" viewBox="0 0 300 250">
+  <defs>
+    <radialGradient id="hbg" cx=".5" cy=".38" r=".75"><stop offset="0" stop-color="#3a7aff"/><stop offset=".55" stop-color="#1a3ab8"/><stop offset="1" stop-color="#0a1250"/></radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff7b0"/><stop offset=".5" stop-color="#ffd23a"/><stop offset="1" stop-color="#e08a00"/></linearGradient>
+    <linearGradient id="btn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc34d"/><stop offset=".55" stop-color="#ff8a00"/><stop offset="1" stop-color="#e06a00"/></linearGradient>
+    ${tiles.map(([a, b], i) => `<linearGradient id="t${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient>`).join('')}
+  </defs>
+  <rect width="300" height="250" fill="url(#hbg)"/>
+  <g fill="#fff" opacity=".07">${Array.from({ length: 18 }, (_, i) => { const a = (i / 18) * Math.PI * 2; const b = a + Math.PI / 30; return `<path d="M150 95 L${150 + Math.cos(a) * 320} ${95 + Math.sin(a) * 320} L${150 + Math.cos(b) * 320} ${95 + Math.sin(b) * 320}Z"/>`; }).join('')}</g>
+  ${Array.from({ length: 22 }, (_, i) => `<circle cx="${(i * 67) % 300}" cy="${(i * 41) % 250}" r="${1 + (i % 3) * 0.6}" fill="#fff" opacity=".5"/>`).join('')}
+  <text x="150" y="44" text-anchor="middle" font-family="'Carter One'" font-size="25" fill="#fff" stroke="#0a1250" stroke-width="5" paint-order="stroke" stroke-linejoin="round">The Classic</text>
+  <text x="150" y="112" text-anchor="middle" font-family="'Luckiest Guy'" font-size="78" fill="url(#gold)" stroke="#5a2a00" stroke-width="7" paint-order="stroke" stroke-linejoin="round">TOP 100</text>
+  <text x="150" y="138" text-anchor="middle" font-family="'Lilita One'" font-size="17" fill="#fff" stroke="#0a1250" stroke-width="4" paint-order="stroke">The games everyone remembers!</text>
+  ${tiles.map((_, i) => `<g transform="translate(${27 + i * 42} 150)"><rect width="36" height="30" rx="4" fill="url(#t${i})" stroke="#fff" stroke-width="1.5"/><path d="M3 3 H33 V13 Q18 18 3 13Z" fill="#fff" opacity=".3"/><path d="M18 8 l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8-4.3-4.1 5.9-.8Z" fill="#fff" opacity=".85"/></g>`).join('')}
+  <rect x="70" y="197" width="160" height="38" rx="14" fill="#fff"/>
+  <rect x="73" y="200" width="154" height="32" rx="12" fill="url(#btn)"/>
+  <rect x="79" y="203" width="142" height="12" rx="6" fill="#fff" opacity=".28"/>
+  <text x="150" y="223" text-anchor="middle" font-family="'Lilita One'" font-size="19" fill="#fff" stroke="#8a3a00" stroke-width="3" paint-order="stroke" letter-spacing="1">VIEW TOP 100 &#9658;</text>
+</svg>`;
 
 const sudokuBg = `<svg xmlns="http://www.w3.org/2000/svg" width="155" height="68" viewBox="0 0 155 68">
   <defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3ac0ff"/><stop offset="1" stop-color="#1a90e8"/></linearGradient></defs>

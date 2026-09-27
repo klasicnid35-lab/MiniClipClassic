@@ -1,4 +1,4 @@
-"""Builds games/flash-bounce/flash-bounce.swf from scratch.
+"""Builds games/_extras/flash-bounce/flash-bounce.swf from scratch.
 
 A tiny, original Flash (SWF v8) animation: a bouncing ball, spinning stars
 and a sun over a gradient sky. It exists so the site's Ruffle integration can
@@ -254,7 +254,7 @@ def build():
 
     body = rect(0, W * TW, 0, H * TW) + struct.pack('<HH', FPS << 8, FRAMES) + b''.join(tags)
     data = b'FWS' + bytes([8]) + struct.pack('<I', 8 + len(body)) + body
-    out = os.path.join(os.path.dirname(__file__), '..', 'games', 'flash-bounce', 'flash-bounce.swf')
+    out = os.path.join(os.path.dirname(__file__), '..', 'games', '_extras', 'flash-bounce', 'flash-bounce.swf')
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, 'wb') as fh:
         fh.write(data)

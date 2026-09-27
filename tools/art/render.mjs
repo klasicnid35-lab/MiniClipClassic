@@ -1,5 +1,5 @@
 // Renders HTML/SVG snippets to PNG files with a headless browser.
-// Used by build-ui.mjs, build-banners.mjs and build-thumbs.mjs.
+// Used by build-ui.mjs and build-banners.mjs.
 //
 // Each asset: { out: 'assets/icons/x.png', w, h, scale = 2, html }
 import { createRequire } from 'module';

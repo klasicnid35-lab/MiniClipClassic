@@ -118,12 +118,12 @@ button, input, select { font-family: inherit; }
   border: 4px solid transparent; border-top: 4px solid #fff; border-bottom: 0;
 }
 #moremenu {
-  display: none; position: absolute; right: -2px; top: 33px; width: 160px; z-index: 50;
+  display: none; position: absolute; right: -2px; top: 33px; width: 260px; z-index: 50; columns: 2; column-gap: 0;
   background: #fff; border: 2px solid #0099ff; border-radius: 0 0 5px 5px;
   padding: 3px 0; box-shadow: 2px 2px 3px rgba(0,0,0,.35);
 }
 #more.open #moremenu { display: block; }
-#moremenu a { display: block; padding: 2px 8px 2px 20px; font-weight: bold; position: relative; }
+#moremenu a { display: block; padding: 2px 6px 2px 20px; font-weight: bold; position: relative; break-inside: avoid; white-space: nowrap; }
 #moremenu a::before { content: ""; position: absolute; left: 7px; top: 5px; width: 7px; height: 7px; border-radius: 50%; background: #0099ff; }
 #moremenu a:hover { background: #ccebff; }
 
@@ -318,7 +318,7 @@ button, input, select { font-family: inherit; }
 .fullcols { display: flex; }
 .fullcols ul { width: 110px; flex: 0 0 110px; }
 .fullcols ul:last-child { flex: 1 1 auto; width: auto; min-width: 0; }
-.fullcols li { height: 12px; line-height: 12px; font-size: 10px; white-space: nowrap; overflow: hidden; }
+.fullcols li { height: 12px; line-height: 12px; font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 3px; }
 .fullcols li.l { font-weight: bold; }
 .fullcols a.c { color: #ff3300; }
 .legend { margin-top: 10px; padding-left: 0; color: #333; }
@@ -497,6 +497,54 @@ button, input, select { font-family: inherit; }
 .notfound .big { font: bold 60px/64px Tahoma, TahomaFallback, sans-serif; color: #0099ff; text-shadow: 3px 3px 0 #cceeff; }
 
 /* ==========================================================================
+   Catalogue additions: status tags, "game currently unavailable" notice,
+   the A-Z directory and the Full Games List link.
+   ========================================================================== */
+.shead .shlink { float: right; margin-right: 7px; color: #fff; font-size: 10px; }
+.st { font-size: 9px; font-weight: bold; text-transform: uppercase; white-space: nowrap; }
+.st.on { color: #fff; background: #3cb31a; border-radius: 2px; padding: 0 3px; }
+.st.off { color: #888; }
+b.st { font-size: 10px; }
+
+/* the notice shown in place of the player */
+.stagebox.na { text-align: left; }
+.unavail { display: flex; align-items: flex-start; gap: 14px; background: linear-gradient(#f2faff, #d9f0ff); border: 1px solid #99d6ff; border-radius: 6px; padding: 10px; }
+.unavail .upic { display: block; flex: 0 0 274px; width: 274px; height: 199px; border: 1px solid #000; background: #cde; }
+.unavail .utext { flex: 1; min-width: 0; line-height: 15px; }
+.unavail .uhead { font: bold 17px/20px Tahoma, TahomaFallback, Verdana, sans-serif; color: #ff6600; text-transform: uppercase; text-shadow: 1px 1px 0 #fff; margin: 2px 0 2px; }
+.unavail .usub { font-weight: bold; color: #003366; font-size: 12px; margin-bottom: 8px; }
+.unavail p { margin: 0 0 8px; }
+.ufacts { border-collapse: collapse; margin-bottom: 10px; }
+.ufacts td { padding: 1px 8px 1px 0; }
+.ufacts td:first-child { font-weight: bold; color: #003366; }
+.ubtns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* A-Z directory */
+.azbar { background: #e5f5ff; border: 1px solid #99d6ff; border-radius: 4px; padding: 4px 4px 2px; margin-bottom: 6px; line-height: 0; }
+.azbar a, .azbar span { display: inline-block; min-width: 15px; height: 18px; line-height: 18px; margin: 0 1px 2px 0; padding: 0 1px; text-align: center; font-weight: bold; font-size: 11px; border-radius: 3px; vertical-align: top; }
+.azbar a { background: linear-gradient(#fff, #d6eeff); border: 1px solid #7cc4f5; text-decoration: none; }
+.azbar a:hover { background: linear-gradient(#fff, #bfe4ff); }
+.azbar a.on { background: linear-gradient(#5ab8ff, #1a8fe0); border-color: #1a70c0; color: #fff; }
+.azbar a:first-child { padding: 0 5px; margin-right: 4px; }
+.azbar span.dis { color: #aac; border: 1px solid #d4e6f2; }
+.azfilter { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-bottom: 4px; font-size: 11px; }
+.azfilter label { font-weight: bold; }
+.azfilter select { font-size: 11px; max-width: 190px; }
+.azfilter .azcount { margin-left: auto; color: #333; }
+.azsec { margin-top: 6px; }
+.azh { height: 19px; line-height: 19px; margin: 0 0 4px !important; padding: 0 6px; background: #0099ff; color: #fff !important; border-radius: 4px; font-size: 12px !important; }
+.azh span { font-weight: normal; font-size: 10px; margin-left: 6px; }
+.azh .up { float: right; color: #fff; font-size: 10px; font-weight: normal; }
+.azcols { columns: 3; column-gap: 10px; padding: 0 2px; }
+.azcols li { break-inside: avoid; font-size: 11px; line-height: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.azrows { display: flex; flex-wrap: wrap; justify-content: space-between; }
+.azrows li { width: calc(50% - 5px); box-sizing: border-box; display: flex; align-items: baseline; gap: 6px; padding: 1px 4px; border-bottom: 1px dotted #cde; line-height: 15px; }
+.azrows li > a { font-weight: bold; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.azrows .azi { margin-left: auto; font-size: 10px; color: #666; white-space: nowrap; }
+.azcols a.c, .azrows a.c { color: #ff3300; }
+.azpanel .legend { margin-top: 10px; font-size: 11px; }
+
+/* ==========================================================================
    Tablets and phones. The desktop layout above 980px is untouched - below
    that the fixed 970px page reflows into a single column.
    ========================================================================== */
@@ -567,6 +615,11 @@ button, input, select { font-family: inherit; }
   .ipanel { margin: 5px 5px 0; }
   .stats { flex-wrap: wrap; }
   .stats div { flex: 1 1 40%; }
+  .unavail { flex-direction: column; }
+  .unavail .upic { width: 100%; max-width: 274px; height: auto; aspect-ratio: 274 / 199; flex: none; }
+  .azcols { columns: 150px; }
+  .azrows li { width: 100%; }
+  .azfilter .azcount { margin-left: 0; }
 }
 @media (max-width: 480px) {
   #tabs { position: static; display: flex; padding: 0 4px; height: auto; }

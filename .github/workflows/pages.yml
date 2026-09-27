@@ -35,6 +35,14 @@ jobs:
       - name: Download Ruffle (self-hosted Flash emulator)
         run: bash tools/fetch-ruffle.sh
 
+      # game files dropped into games/<id>/ and artwork in assets/games/ go live
+      # even if data/games.json was not updated by hand
+      - name: Pick up game files and artwork
+        run: node tools/catalog/sync-files.mjs
+
+      - name: Check the games catalogue
+        run: node tools/catalog/validate.mjs
+
       - name: Build the games RSS feed
         run: node tools/build-feed.mjs "${{ steps.pages.outputs.base_url }}/"
 

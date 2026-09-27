@@ -2,19 +2,38 @@
   "name": "MiniClip Classic",
   "tagline": "Play Free Games",
   "navCategories": ["action", "multiplayer", "sports", "puzzle"],
-  "homeCategories": ["action", "multiplayer", "sports", "puzzle", "shooting", "racing"],
-  "homePromo": {
-    "game": "critter-cannon",
-    "banner": "assets/banners/promo-wide.png",
-    "bannerSmall": "assets/banners/promo-small.png"
-  },
-  "houseAd": {
-    "game": "castle-guard",
-    "image": "assets/banners/house-ad.png"
-  },
-  "daily": {
-    "left": "sudoku-daily",
-    "right": "mahjong-daily",
-    "image": "assets/banners/daily-puzzles.png"
-  }
+
+  "_homeCategories": "Homepage category boxes. 'games' lists the games shown first (2 thumbnails + 4 links); the rest is filled in automatically. The picks are the ones visible in the 2008-2009 screenshots.",
+  "homeCategories": [
+    { "id": "action",      "games": ["monster-trucks-nitro", "stunt-pilot", "commando-2", "hard-boiled", "bomba", "free-realms"] },
+    { "id": "multiplayer", "games": ["club-penguin", "free-realms", "spineworld", "ourworld", "puzzle-pirates", "superstar-racing"] },
+    { "id": "sports",      "games": ["8-ball-pool", "baseball", "mountain-bike", "trials-2", "ski-run", "jet-ski"] },
+    { "id": "puzzle",      "games": ["bloxorz", "adventures-in-italy", "the-scruffs", "doeo", "sneeze", "sandman"] },
+    { "id": "shooting",    "games": ["canyon-shooter", "commando-2", "final-fortress", "overkill-apache", "light-heroes", "alien-disorder"] },
+    { "id": "racing",      "games": ["motocross-urban", "trials-2", "superstar-racing", "miniclip-rally", "monster-trucks-nitro", "tanked-up"] }
+  ],
+
+  "_homeLatest": "Latest Games panel: the big picture pages through homeFeatured (3 pages); the three thumbnails next to it are homeLatestThumbs - as in the 2008-2009 screenshots (Plant Pong, Spineworld, Storybook).",
+  "homeFeatured": ["spineworld", "gravity-guy", "little-wheel"],
+  "homeLatestThumbs": ["plant-pong", "spineworld", "storybook"],
+
+  "_hotGames": "Hot Games panel (6 games), as in the 2008-2009 screenshots. Topped up from popular games.",
+  "hotGames": ["club-penguin", "8-ball-pool", "heli-attack-3", "sneeze", "karate-king", "monster-trucks-nitro"],
+
+  "_topTen": "Top Ten Games, as in the 2008-2009 screenshots.",
+  "topTen": ["club-penguin", "commando-2", "9-ball-pool", "ourworld", "final-ninja-zero", "monster-trucks-nitro", "plant-pong", "8-ball-pool", "free-realms", "spineworld"],
+
+  "_topGames": "Editorial popularity order used for 'Most Popular' sorting and the Top 100, after the Top Ten.",
+  "topGames": [
+    "club-penguin", "commando-2", "9-ball-pool", "ourworld", "final-ninja-zero", "monster-trucks-nitro", "plant-pong", "8-ball-pool", "free-realms", "spineworld",
+    "heli-attack-3", "bloxorz", "motherload", "bubble-trouble", "runescape", "commando", "commando-3", "final-ninja", "on-the-run", "raft-wars",
+    "fancy-pants-adventure", "age-of-speed", "dune-buggy", "canyon-defense", "3-foot-ninja", "sushi-go-round", "trials-2", "miniclip-rally",
+    "deluxe-pool", "quick-fire-pool", "skywire", "snow-drift", "mountain-bike", "monkey-kick-off", "fragger", "frost-bite", "cab-driver",
+    "police-pursuit", "heli-attack-2", "canyon-shooter", "karate-king", "sneeze", "puzzle-pirates"
+  ],
+
+  "promo": { "href": "allgames.html", "banner": "assets/banners/promo-wide.png", "alt": "Browse hundreds of classic games from A to Z" },
+  "smallBanner": { "href": "games.html?cat=hot", "banner": "assets/banners/promo-small.png", "alt": "Play the hot classics" },
+  "houseAd": { "href": "games.html?cat=top", "image": "assets/banners/house-ad.png", "alt": "The Top 100 classic games" },
+  "daily": { "left": "sudoku", "right": "mahjong-daily" }
 }

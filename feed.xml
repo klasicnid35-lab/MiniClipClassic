@@ -9,7 +9,7 @@
       <title>Spineworld (archive)</title>
       <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=spineworld</link>
       <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=spineworld</guid>
-      <description>A classic multiplayer game.</description>
+      <description>An online world where you get your own pet, explore and make new friends.</description>
       <category>Multiplayer</category>
     </item>
     <item>
@@ -39,13 +39,6 @@
       <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=storybook</guid>
       <description>A classic other game.</description>
       <category>Other</category>
-    </item>
-    <item>
-      <title>8 Ball Pool (archive)</title>
-      <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=8-ball-pool</link>
-      <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=8-ball-pool</guid>
-      <description>Play 8-ball pool online against other players.</description>
-      <category>Pool</category>
     </item>
     <item>
       <title>Chronotron (archive)</title>
@@ -90,10 +83,10 @@
       <category>Promotional</category>
     </item>
     <item>
-      <title>Obama Alien Defense (archive)</title>
+      <title>Obama Alien Defense</title>
       <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=obama-alien-defense</link>
       <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=obama-alien-defense</guid>
-      <description>A classic shooting game.</description>
+      <description>A classic shooting game from 2009.</description>
       <category>Shooting</category>
     </item>
     <item>
@@ -139,6 +132,20 @@
       <category>Fighting</category>
     </item>
     <item>
+      <title>8 Ball Pool</title>
+      <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=8-ball-pool</link>
+      <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=8-ball-pool</guid>
+      <description>Single-player 8-ball pool: pot your group of balls, then sink the black to win the frame.</description>
+      <category>Pool</category>
+    </item>
+    <item>
+      <title>8 Ball Pool Multiplayer (archive)</title>
+      <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=8-ball-pool-multiplayer</link>
+      <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=8-ball-pool-multiplayer</guid>
+      <description>Play 8-ball pool online against real players from around the world.</description>
+      <category>Pool</category>
+    </item>
+    <item>
       <title>9 Ball Pool (archive)</title>
       <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=9-ball-pool</link>
       <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=9-ball-pool</guid>
@@ -163,18 +170,18 @@
       <title>Age of Speed 2 (archive)</title>
       <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=age-of-speed-2</link>
       <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=age-of-speed-2</guid>
-      <description>A classic racing game.</description>
+      <description>A classic racing game from 2009.</description>
       <category>Racing</category>
     </item>
     <item>
-      <title>Bloxorz (archive)</title>
+      <title>Bloxorz</title>
       <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=bloxorz</link>
       <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=bloxorz</guid>
       <description>Roll a tall block across floating platforms and drop it through the square hole to finish each stage.</description>
       <category>Puzzle</category>
     </item>
     <item>
-      <title>Bubble Trouble (archive)</title>
+      <title>Bubble Trouble</title>
       <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=bubble-trouble</link>
       <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=bubble-trouble</guid>
       <description>Pop the bouncing bubbles with your harpoon - every hit splits a bubble into smaller ones until they are all gone.</description>
@@ -198,7 +205,7 @@
       <title>Candy and Clyde (archive)</title>
       <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=candy-and-clyde</link>
       <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=candy-and-clyde</guid>
-      <description>A classic puzzle game.</description>
+      <description>A classic puzzle game from 2007.</description>
       <category>Puzzle</category>
     </item>
     <item>
@@ -219,7 +226,7 @@
       <title>Caveman (archive)</title>
       <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=caveman</link>
       <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=caveman</guid>
-      <description>A classic action game.</description>
+      <description>A classic action game from 2007.</description>
       <category>Action</category>
     </item>
     <item>
@@ -244,7 +251,7 @@
       <category>Shooting</category>
     </item>
     <item>
-      <title>Commando 2 (archive)</title>
+      <title>Commando 2</title>
       <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=commando-2</link>
       <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=commando-2</guid>
       <description>A classic shooting game.</description>
@@ -258,7 +265,7 @@
       <category>Shooting</category>
     </item>
     <item>
-      <title>Deep Freeze (archive)</title>
+      <title>Deep Freeze</title>
       <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=deep-freeze</link>
       <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=deep-freeze</guid>
       <description>A classic puzzle game.</description>
@@ -277,13 +284,6 @@
       <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=dirk-valentine-and-the-fortress-of-steam</guid>
       <description>A classic platform game.</description>
       <category>Platform</category>
-    </item>
-    <item>
-      <title>Disc Golf (archive)</title>
-      <link>https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=disc-golf</link>
-      <guid isPermaLink="true">https://klasicnid35-lab.github.io/MiniClipClassic/game.html?id=disc-golf</guid>
-      <description>A classic sports game.</description>
-      <category>Sports</category>
     </item>
   </channel>
 </rss>

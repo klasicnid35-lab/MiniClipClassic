@@ -1,7 +1,7 @@
 // Full game page: player (or the "Game currently unavailable" notice) +
 // toolbar + description, instructions, game/archive information, related
 // and recommended games. Used by game.html, sketch.html and playertest.html.
-import { $, esc, catUrl, html, setTitle } from '../assets/js/core/util.js';
+import { $, esc, catUrl, gameUrl, html, setTitle } from '../assets/js/core/util.js';
 import { favorites, ratings, plays, recent, highScore } from '../assets/js/core/store.js';
 import { mountPlayer } from './player.js';
 import { ct, stars, bigImg } from './thumbs.js';
@@ -9,10 +9,20 @@ import { renderRightColumn } from './rightcol.js';
 
 const TYPE_NAMES = { html5: 'HTML5 game', 'local-web': 'Web game', flash: 'Flash game (played with Ruffle)', iframe: 'Online / embedded game' };
 const HISTORY = {
-  sponsored: 'Sponsored game', licensed: 'Licensed tie-in', promotional: 'Promotional release',
-  'multiplayer-service': 'Online multiplayer service', 'external-service': 'External online service',
+  multiplayer: 'Online multiplayer game', promotional: 'Promotional release', licensed: 'Licensed tie-in',
+  sponsored: 'Sponsored game', seasonal: 'Seasonal / holiday game', 'political-parody': 'Political / celebrity parody',
+  'external-service': 'External online service',
 };
-const VERIFIED = { verified: 'Verified classic', likely: 'Listed in the classic game lists', 'needs-review': 'Details still being checked' };
+const VERIFIED = {
+  verified: 'Verified - direct evidence (Miniclip\'s own archive, CD or downloads, or the 2008-2009 homepage)',
+  'cross-verified': 'Cross-verified - found in several independent sources',
+  'single-source': 'Single source - listed in one historical source',
+  'needs-review': 'Needs review - details still being checked',
+};
+const RELATIONSHIP = {
+  developed: 'Developed by Miniclip', published: 'Published by Miniclip', hosted: 'Hosted on Miniclip',
+  licensed: 'Licensed game on Miniclip', sponsored: 'Sponsored game on Miniclip', 'external-service': 'External service promoted by Miniclip',
+};
 
 // turn "LEFT / RIGHT arrow keys", "SPACE" etc. into little key caps
 function keycaps(text) {
@@ -32,8 +42,8 @@ function unavailableHTML(lib, g) {
     ${bigImg(g, 274, 199, 'upic')}
     <div class="utext">
       <div class="uhead">Game currently unavailable</div>
-      <div class="usub">This game has not been added yet.</div>
-      <p><b>${esc(g.title)}</b> is part of our classic games archive, but its game file is not on the site at the moment. Add it to <b>My Games</b> and check back soon - or try one of the related games below!</p>
+      <div class="usub">This game is part of the historical catalog but no playable local file has been added yet.</div>
+      <p>You can still add <b>${esc(g.title)}</b> to <b>My Games</b> and check back later - or try one of the related games below!</p>
       <table class="ufacts">${facts.map(([k, v]) => `<tr><td>${k}:</td><td>${v}</td></tr>`).join('')}</table>
       <div class="ubtns">${cat ? `<a class="btn orange" href="${catUrl(cat.id)}">More ${esc(cat.title)}</a>` : ''}<a class="btn" href="allgames.html?letter=${encodeURIComponent(g.letter === '#' ? '0' : g.letter)}">Games A-Z</a></div>
     </div>
@@ -50,6 +60,7 @@ export function renderGamePage(lib, g, opts = {}) {
   const rec = inCatalogue ? lib.recommended(g, 6) : lib.hot().slice(0, 6);
   const playable = g.installed;
   const history = HISTORY[g.historicalType];
+  const series = inCatalogue ? lib.series(g) : [];
 
   const info = [
     ['Category', cat ? `<a href="${catUrl(cat.id)}">${esc(cat.title)}</a>` : '-'],
@@ -59,10 +70,14 @@ export function renderGamePage(lib, g, opts = {}) {
     ['Released', g.year ? esc(g.year) : 'Unknown'],
     ['Developer', g.developer ? esc(g.developer) : 'Unknown'],
     g.publisher && ['Publisher', esc(g.publisher)],
+    series.length > 1 && ['Series', series.map((o) => (o.id === g.id ? `<b>${esc(o.title)}</b>` : `<a href="${gameUrl(o)}">${esc(o.title)}</a>`)).join(' &middot; ')],
     history && ['Game type', history],
+    RELATIONSHIP[g.relationship] && ['Miniclip', RELATIONSHIP[g.relationship]],
     ['Format', `${esc(TYPE_NAMES[g.type] || g.type)} &middot; ${playable ? '<b class="st on">Playable</b>' : '<b class="st off">Not added yet</b>'}${g.challenge ? ' &middot; <span style="color:#ff3300;font-weight:bold">High score challenge</span>' : ''}`],
+    g.streamed && ['Game file', `Streamed from ${esc(g.host)}${g.host === 'classic.miniclip.com' ? ", Miniclip's official classic games archive" : " (the game's official host)"} - the game file is not copied to this site.`],
     playable && ['Size', `${esc(g.width)} x ${esc(g.height)}`],
     inCatalogue && g.hostedByMiniclip !== false && ['Archive', esc(VERIFIED[g.verificationStatus] || g.verificationStatus)],
+    g.sources.length && ['Sources', g.sources.map((x) => esc(x.name)).join('; ')],
     g.historicalNotes && ['Notes', esc(g.historicalNotes)],
   ].filter(Boolean);
 
@@ -94,16 +109,22 @@ export function renderGamePage(lib, g, opts = {}) {
     <div class="gr" id="rcol"></div>
   </div>`);
 
+  // Only a game that has really started counts as played ("Latest Games
+  // Played", play counter) - opening the page of an unavailable game does not.
   let ctl = null;
   if (playable) {
-    ctl = mountPlayer($('#stage'), g);
-    if (!opts.noCount) plays.inc(g.id);
+    ctl = mountPlayer($('#stage'), g, {
+      onStart: () => {
+        if (opts.noCount) return;
+        plays.inc(g.id);
+        if (inCatalogue) recent.push(g.id);
+        drawStats();
+      },
+    });
   } else {
     // for whoever looks after the site: where the file should go
     console.info(`[MiniClip Classic] "${g.title}" is not installed yet. Copy its file to games/${g.id}/ and set "installed": true and "gameFile" in data/games.json (or run: node tools/catalog/install-game.mjs ${g.id} <file>).`);
   }
-  // remember the visit in "Latest Games Played" (unavailable games too)
-  if (inCatalogue && !opts.noCount) recent.push(g.id);
 
   // favourites
   const favbtn = $('#favbtn');

@@ -531,6 +531,13 @@ b.st { font-size: 10px; }
 .azfilter label { font-weight: bold; }
 .azfilter select { font-size: 11px; max-width: 190px; }
 .azfilter .azcount { margin-left: auto; color: #333; }
+.azstats { display: flex; flex-wrap: wrap; gap: 2px 14px; margin: -2px 0 4px; padding: 3px 6px; background: #fff7e0; border: 1px solid #ffcc66; border-radius: 3px; font-size: 11px; color: #333; }
+.azstats b { color: #ff6600; }
+.azquick { margin-bottom: 4px; font-size: 11px; line-height: 16px; color: #99b; }
+.azquick b, .azera b { color: #333; }
+.azquick a, .azera a { white-space: nowrap; }
+.azquick a.on, .azera a.on { color: #fff; background: #1a8fe0; border-radius: 2px; padding: 0 3px; text-decoration: none; font-weight: bold; }
+.azera { color: #99b; }
 .azsec { margin-top: 6px; }
 .azh { height: 19px; line-height: 19px; margin: 0 0 4px !important; padding: 0 6px; background: #0099ff; color: #fff !important; border-radius: 4px; font-size: 12px !important; }
 .azh span { font-weight: normal; font-size: 10px; margin-left: 6px; }

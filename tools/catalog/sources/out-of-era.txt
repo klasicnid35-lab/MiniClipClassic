@@ -1,0 +1,24 @@
+# name: Candidates rejected by the audit
+# type: rejected
+# about: Titles that turned up while researching but are NOT added to the
+#   catalogue. The archive covers Miniclip's web games from 2001 to 2012.
+#   reason= says why each one was left out. Kept here so the next audit does
+#   not re-add them by mistake.
+Guns of Anarchy | reason=out-of-era | note=2013 or later (Miniclip Shockwave collection).
+Zombie Big Trouble | reason=out-of-era | note=2013 or later (Miniclip Shockwave collection).
+Centre Court Tennis | reason=out-of-era | note=2013 or later (Miniclip Shockwave collection).
+Upipe Skateboard | reason=out-of-era | note=2013 or later (Miniclip Shockwave collection).
+Transformers Beast Hunters | reason=out-of-era | note=2013 tie-in (Miniclip Shockwave collection).
+Papa Louie 2 | reason=out-of-era | note=2013 or later.
+Domestos Flush | reason=out-of-era | note=Dated June 2013 on the Internet Archive.
+Rail Rush | reason=out-of-era | note=2013 mobile game.
+On The Run The Getaway | reason=out-of-era | note=Dated September 2013 on the Internet Archive.
+Hambo | reason=out-of-era | note=Mobile game (2012), not a Miniclip web game.
+Sketch Man | reason=not-a-web-game | note=2012 mobile game.
+Mini Soccer | reason=out-of-era | note=2015 mobile game.
+Agar.io | reason=out-of-era | note=2015 mobile / web game.
+Arcuz | reason=no-miniclip-evidence | note=Preserved on the Internet Archive without any link to Miniclip.
+Arcuz 2: Dungeons | reason=no-miniclip-evidence | note=Preserved on the Internet Archive without any link to Miniclip.
+World Domination | reason=no-miniclip-evidence | note=A Newgrounds game.
+Ask Guru Joe | reason=not-a-game | note=Internet Archive item credited to NetCent Communications and Miniclip; not a game.
+Rocketman Demo | reason=duplicate | note=Demo of Rocketman, which is already in the catalogue.

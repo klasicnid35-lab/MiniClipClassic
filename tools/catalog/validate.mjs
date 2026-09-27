@@ -7,7 +7,7 @@ import fs from 'fs';
 import crypto from 'crypto';
 import {
   GAMES_JSON, loadCategories, titleKey, byTitle, isRemote, localPath, letterOf,
-  TYPES, HISTORICAL_TYPES, VERIFICATION, ROOT,
+  TYPES, HISTORICAL_TYPES, VERIFICATION, RELATIONSHIPS, SOURCE_TYPES, ROOT,
 } from './lib.mjs';
 import path from 'path';
 
@@ -47,6 +47,7 @@ const REQUIRED = {
   secondaryCategories: 'array', type: 'string', gameFile: 'string', installed: 'boolean',
   featured: 'boolean', popular: 'boolean', new: 'boolean', nostalgiaPriority: 'number',
   rating: 'number', plays: 'number', verificationStatus: 'string', historicalType: 'string',
+  relationship: 'string', sources: 'array',
 };
 const kind = (v) => (Array.isArray(v) ? 'array' : v === null ? 'null' : typeof v);
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -95,6 +96,17 @@ games.forEach((g, i) => {
   if (g.historicalType && !HISTORICAL_TYPES.includes(g.historicalType)) err(`${w}: unknown historicalType "${g.historicalType}"`);
   if (g.verificationStatus && !VERIFICATION.includes(g.verificationStatus)) err(`${w}: unknown verificationStatus "${g.verificationStatus}"`);
   if (g.verificationStatus === 'needs-review') needsReview++;
+  if (g.relationship && !RELATIONSHIPS.includes(g.relationship)) err(`${w}: unknown relationship "${g.relationship}" (use ${RELATIONSHIPS.join(', ')})`);
+  if (Array.isArray(g.sources)) {
+    if (!g.sources.length) err(`${w}: no sources - every game needs at least one source in tools/catalog/sources/`);
+    for (const src of g.sources) {
+      if (!src || typeof src.name !== 'string' || !src.name) err(`${w}: every source needs a name`);
+      else if (!SOURCE_TYPES.includes(src.type)) err(`${w}: source "${src.name}" has unknown type "${src.type}"`);
+    }
+    if (g.verificationStatus === 'verified' && !g.sources.some((x) => x && (x.type === 'official' || x.type === 'screenshot'))) err(`${w}: "verified" needs an official or screenshot source`);
+  }
+  if (g.series !== undefined && g.series !== null && typeof g.series !== 'string') err(`${w}: series should be text or null`);
+  if (g.seriesOrder !== undefined && g.seriesOrder !== null && !(Number.isInteger(g.seriesOrder) && g.seriesOrder > 0)) err(`${w}: seriesOrder should be a whole number or null`);
   if (typeof g.nostalgiaPriority === 'number' && ![0, 1, 2, 3].includes(g.nostalgiaPriority)) err(`${w}: nostalgiaPriority must be 0, 1, 2 or 3`);
   if (typeof g.rating === 'number' && (g.rating < 0 || g.rating > 5)) err(`${w}: rating must be between 0 and 5`);
   if (typeof g.plays === 'number' && g.plays < 0) err(`${w}: plays can't be negative`);
@@ -119,7 +131,7 @@ games.forEach((g, i) => {
   const f = g.gameFile;
   if (g.installed) {
     if (!f) { err(`${w}: installed is true but gameFile is empty`); brokenFiles++; }
-    else if (isRemote(f)) { if (!/^https:\/\//i.test(f)) warn(`${w}: gameFile should use https:// - browsers block http content on https pages`); }
+    else if (isRemote(f)) { if (!/^https:\/\//i.test(f)) err(`${w}: gameFile must use https:// - browsers block http content on https pages`); }
     else if (!fs.existsSync(localPath(f))) { err(`${w}: installed is true but "${f}" does not exist`); brokenFiles++; }
     else {
       const ext = path.extname(f).toLowerCase();
@@ -172,17 +184,16 @@ if (!quiet) {
   row('Duplicate IDs', dupIds);
   row('Duplicate titles/aliases', dupTitles);
   row('Aliases', aliases);
-  row('Installed (playable)', n((g) => g.installed));
+  row('Installed (playable)', `${n((g) => g.installed)} (${n((g) => g.installed && isRemote(g.gameFile))} streamed from their official host)`);
   row('Not installed yet', n((g) => !g.installed));
   row('Broken local game files', brokenFiles);
   row('Broken image paths', brokenImages);
   row('Using generated thumbnails', placeholders);
-  row('Verified', n((g) => g.verificationStatus === 'verified'));
-  row('Likely', n((g) => g.verificationStatus === 'likely'));
-  row('Needs metadata review', needsReview);
+  row('Verified/cross/single/review', VERIFICATION.map((v) => n((g) => g.verificationStatus === v)).join(' / '));
   row('Flash / HTML5 / iframe / local', ['flash', 'html5', 'iframe', 'local-web'].map((t) => n((g) => g.type === t)).join(' / '));
-  row('Sponsored / licensed / promo', ['sponsored', 'licensed', 'promotional'].map((t) => n((g) => g.historicalType === t)).join(' / '));
-  row('Multiplayer / external services', ['multiplayer-service', 'external-service'].map((t) => n((g) => g.historicalType === t)).join(' / '));
+  row('Historical types', HISTORICAL_TYPES.map((t) => `${t} ${n((g) => g.historicalType === t)}`).join(', '));
+  row('Relationship with Miniclip', RELATIONSHIPS.map((t) => `${t} ${n((g) => g.relationship === t)}`).join(', '));
+  row('Series', `${new Set(valid.filter((g) => g.series).map((g) => g.series)).size} (${n((g) => g.series)} games)`);
   row('Priority 3 / 2 / 1 / 0', [3, 2, 1, 0].map((p) => n((g) => g.nostalgiaPriority === p)).join(' / '));
   row('Unknown year / developer', `${n((g) => g.year == null)} / ${n((g) => !g.developer)}`);
   row('Empty categories', emptyCats.length);

@@ -1,0 +1,26 @@
+# name: Miniclip Arcade (classic.miniclip.com)
+# type: official
+# url: https://classic.miniclip.com/
+# about: Miniclip's own classic Flash games archive, run with the Ruffle
+#   emulator. Its game list (https://classic.miniclip.com/games.json) names 16
+#   games. The files are served by Miniclip with "Access-Control-Allow-Origin: *",
+#   so these games can be STREAMED from Miniclip's server into this site's
+#   Ruffle player - nothing is copied into this repository.
+#   play= is the official SWF address, size= the stage size read from the SWF
+#   header. id= points the entry at the catalogue record it belongs to.
+Dancing Bush | play=https://classic.miniclip.com/game-files/dancing-bush/dancingbushnew2.swf | size=530x340
+Peanut | play=https://classic.miniclip.com/game-files/peanut/peanut.swf | size=550x400
+Bubble Trouble | play=https://classic.miniclip.com/game-files/bubble-trouble/bubbletrouble.swf | size=700x450
+Motherload | play=https://classic.miniclip.com/game-files/motherload/motherload.swf | size=550x400
+8Ball Quick Fire Pool | id=8-ball-pool | play=https://classic.miniclip.com/game-files/8-ball-quick-fire-pool/en/8ballquickfirepool.swf | size=700x500 | note=Listed as "8 Ball Pool" in the 2008-2009 Full Games List, with the "Quick Fire Pool 8 Ball" thumbnail.
+Mad Skills Motocross | play=https://classic.miniclip.com/game-files/mad-skills-motocross/game-files/MadSkillMotocrossFlashPort.swf | size=938x480
+Moto Jumping | play=https://classic.miniclip.com/game-files/moto-jumping/game-files/MotoJumping.swf | size=800x600
+Obama Alien Defense | play=https://classic.miniclip.com/game-files/obama-alien-defense/game-files/obama-alien-defense.swf | size=590x400
+Raft Wars 2 | play=https://classic.miniclip.com/game-files/raft-wars-2/game-files/rw2.swf | size=700x500
+Heli Attack 3 | play=https://classic.miniclip.com/game-files/heli-attack-3/game-files/ha3miniclip.swf | size=448x320
+Miniclip Free Bike | play=https://classic.miniclip.com/game-files/miniclip-free-bike/game-files/freebike.swf | size=550x400
+Commando II | id=commando-2 | play=https://classic.miniclip.com/game-files/commando-2/game-files/commando2_v2.swf | size=590x400
+Miniclip Tetris | id=tetris | play=https://classic.miniclip.com/game-files/tetris/Tetris.swf | size=465x360
+Bloxorz | play=https://classic.miniclip.com/game-files/bloxorz/game-files/bloxorz_miniclip.swf | size=550x300
+Deep Freeze | play=https://classic.miniclip.com/game-files/deep-freeze/game-files/deepfreeze.swf | size=550x400
+Boom Boom Volleyball | id=boom-volleyball | play=https://classic.miniclip.com/game-files/boom-boom-volleyball/boomboom.swf | size=550x350

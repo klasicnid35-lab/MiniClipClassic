@@ -2,7 +2,9 @@
 //   html5     - a page in this repository (games/<id>/index.html), loaded in an iframe
 //   local-web - any other local web build (a folder or .html page), loaded in an iframe
 //   iframe    - an external embed URL, loaded in a sandboxed iframe
-//   flash     - a .swf file, played with the Ruffle Flash emulator
+//   flash     - a .swf file, played with the Ruffle Flash emulator; either a
+//               local file or an official stream (an https:// address on the
+//               game's own official host, e.g. Miniclip's classic archive)
 // Only games with "installed": true reach the player - see gamepage.js.
 import { esc } from '../assets/js/core/util.js';
 
@@ -59,7 +61,7 @@ export function fitSize(game, maxW) {
 /**
  * Mounts a game into `host`. Returns a small controller.
  */
-export function mountPlayer(host, game, { maxWidth = 920 } = {}) {
+export function mountPlayer(host, game, { maxWidth = 920, onStart = null } = {}) {
   const { w, h, ratio } = fitSize(game, maxWidth);
   // a folder means its index.html
   const src = /\/$/.test(game.file) ? game.file + 'index.html' : game.file;
@@ -78,6 +80,10 @@ export function mountPlayer(host, game, { maxWidth = 920 } = {}) {
     bar.style.width = pct + '%'; pc.textContent = Math.round(pct) + '%';
   }, 80);
 
+  // onStart runs once, when the game has really started (a page loaded, or
+  // the SWF's header arrived) - that is what counts as "played".
+  let started = false;
+  const start1 = () => { if (!started) { started = true; if (onStart) onStart(); } };
   const finish = () => {
     if (done) return;
     done = true; clearInterval(tick);
@@ -92,6 +98,13 @@ export function mountPlayer(host, game, { maxWidth = 920 } = {}) {
 
   let frame = null;
   let ruffle = null;
+  // A remote SWF loads its extra files (levels, sounds...) relative to its own
+  // folder, as it did on its original site.
+  const remote = /^[a-z]+:\/\//i.test(src);
+  const swfOptions = () => Object.assign(
+    { url: src, allowScriptAccess: false, backgroundColor: '#000000' },
+    remote ? { base: src.replace(/[?#].*$/, '').replace(/[^/]*$/, '') } : {},
+  );
 
   const startHtml = () => {
     frame = document.createElement('iframe');
@@ -101,7 +114,7 @@ export function mountPlayer(host, game, { maxWidth = 920 } = {}) {
       frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-forms');
       frame.referrerPolicy = 'no-referrer';
     }
-    frame.addEventListener('load', () => { finish(); try { frame.contentWindow.focus(); } catch (e) { /* cross-origin */ } });
+    frame.addEventListener('load', () => { finish(); start1(); try { frame.contentWindow.focus(); } catch (e) { /* cross-origin */ } });
     frame.src = src;
     box.appendChild(frame);
   };
@@ -112,11 +125,14 @@ export function mountPlayer(host, game, { maxWidth = 920 } = {}) {
       holder.className = 'ruffle-host';
       box.appendChild(holder);
       ruffle = window.RufflePlayer.newest().createPlayer();
+      ruffle.addEventListener('loadedmetadata', start1);
       holder.appendChild(ruffle);
-      return ruffle.load({ url: src, allowScriptAccess: false, backgroundColor: '#000000' });
+      return ruffle.load(swfOptions());
     }).then(finish).catch((e) => {
       console.error(e);
-      fail('The Flash player (Ruffle) could not be started. Please check your internet connection, or add Ruffle to <code>vendor/ruffle/</code>.');
+      fail(remote
+        ? `The game could not be loaded from ${esc(game.host || 'its official server')}. Please check your internet connection and try again.`
+        : 'The Flash player (Ruffle) could not be started. Please check your internet connection, or add Ruffle to <code>vendor/ruffle/</code>.');
     });
   };
 
@@ -126,8 +142,7 @@ export function mountPlayer(host, game, { maxWidth = 920 } = {}) {
   };
 
   // make sure local game files exist before trying to run them
-  const local = !/^[a-z]+:\/\//i.test(src);
-  if (local) {
+  if (!remote) {
     fetch(src, { method: 'HEAD', cache: 'no-cache' }).then((r) => {
       if (r.ok) start();
       else fail(`Sorry, this game's file could not be found:<br><code>${esc(src)}</code>`);
@@ -138,7 +153,7 @@ export function mountPlayer(host, game, { maxWidth = 920 } = {}) {
     el: box,
     restart() {
       if (frame) { frame.src = src; }
-      else if (ruffle) { ruffle.load({ url: src, allowScriptAccess: false }); }
+      else if (ruffle) { ruffle.load(swfOptions()); }
     },
     fullscreen() {
       const fsEl = document.fullscreenElement || document.webkitFullscreenElement;

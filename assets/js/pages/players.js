@@ -16,8 +16,9 @@ function draw() {
   const allPlays = plays.all();
   const total = Object.values(allPlays).reduce((a, b) => a + b, 0);
   const distinct = Object.keys(allPlays).filter((id) => lib.get(id)).length;
-  // high score games that can actually be played here
-  const scores = lib.alpha().filter((g) => g.challenge && g.installed).map((g) => ({ g, s: highScore(g.id) }));
+  // high score games that are played here and can report their scores (games
+  // streamed from their official host keep their scores inside the game)
+  const scores = lib.alpha().filter((g) => g.challenge && g.installed && !g.streamed).map((g) => ({ g, s: highScore(g.id) }));
   const rated = Object.entries(ratings.all()).map(([id, n]) => ({ g: lib.get(id), n })).filter((r) => r.g);
   const most = Object.entries(allPlays).map(([id, n]) => ({ g: lib.get(id), n })).filter((r) => r.g).sort((a, b) => b.n - a.n).slice(0, 5);
   const rank = total >= 100 ? 'Game Legend' : total >= 50 ? 'Arcade Ace' : total >= 20 ? 'Pro Player' : total >= 5 ? 'Regular' : 'Newbie';
@@ -38,7 +39,7 @@ function draw() {
     <div class="bhead"><h1>My High Scores<span class="cnt">(challenge games)</span></h1></div>
     <div class="ibody">${scores.length ? `<table class="hstable"><tr><th>Game</th><th>Your best score</th><th>Played</th></tr>
       ${scores.map(({ g, s }) => `<tr><td><a href="${gameUrl(g)}" style="color:#ff3300">${esc(g.title)}</a></td><td>${s != null ? '<b>' + s + '</b>' : '<span class="empty">not played yet</span>'}</td><td>${plays.get(g.id) || 0}x</td></tr>`).join('')}
-    </table>` : `<p class="empty">None of the ${lib.games.filter((g) => g.challenge).length} high score challenge games (the <span style="color:#ff3300">orange links</span> in the games lists) has been added to the archive yet. Your best scores will appear here as soon as they are playable.</p>`}</div>
+    </table>` : `<p class="empty">None of the ${lib.games.filter((g) => g.challenge).length} high score challenge games (the <span style="color:#ff3300">orange links</span> in the games lists) can save its scores on this site yet (the games streamed from Miniclip's own archive keep their scores inside the game). Your best scores will appear here as soon as they can.</p>`}</div>
   </div>
   <div class="ipanel">
     <div class="bhead"><h1>Most Played &amp; My Ratings</h1></div>

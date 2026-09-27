@@ -1,11 +1,15 @@
-// Client-side search over the whole catalogue: titles, aliases, categories,
-// developer, publisher and description. Tolerates capitals, apostrophes,
-// hyphens, punctuation, "&"/"and", "II"/"2" and a few alternate spellings.
+// Client-side search over the whole catalogue: titles, aliases, categories
+// (main and secondary), developer, publisher, year, kind of game (seasonal,
+// multiplayer, political parody...), series and description. Tolerates
+// capitals, apostrophes, hyphens, punctuation, "&"/"and", "II"/"2" and a few
+// alternate spellings.
 
 const ROMAN = { ii: '2', iii: '3', iv: '4' };
 const SPELLING = { defence: 'defense', mahjongg: 'mahjong', minute: 'min', minutes: 'min', colour: 'color', favourite: 'favorite', grey: 'gray' };
 // words people add to a search that don't narrow it down
 const NOISE = new Set(['game', 'games', 'play', 'online', 'free', 'flash', 'the', 'a', 'an', 'of']);
+// extra words that find a kind of game ("holiday" finds the seasonal games)
+const KIND_WORDS = { seasonal: 'holiday', 'political-parody': 'politics satire', multiplayer: 'mmo', licensed: 'tie in', sponsored: 'sponsor' };
 
 export function norm(s) {
   return String(s || '').toLowerCase()
@@ -35,7 +39,9 @@ function fields(lib, g) {
       aliases,
       aliasWords: aliases.join(' ').split(' ').filter(Boolean),
       aliasCompact: aliases.map(compact),
-      cat: norm(catText + ' ' + g.historicalType.replace('-', ' ') + ' ' + g.type).split(' '),
+      cat: norm(catText + ' ' + g.historicalType.replace(/-/g, ' ') + ' ' + (KIND_WORDS[g.historicalType] || '') + ' ' + g.type).split(' '),
+      series: norm(g.seriesName || ''),
+      year: g.year ? String(g.year) : '',
       people: norm(g.developer + ' ' + g.publisher),
       text: ' ' + norm(g.description + ' ' + g.instructions + ' ' + g.historicalNotes + ' ' + (g.year || '')) + ' ',
     };
@@ -52,7 +58,9 @@ function wordScore(f, w) {
   if (f.aliasWords.some((t) => t.startsWith(w))) return 22;
   if (w.length >= 3 && f.titleCompact.includes(w)) return 16;
   if (w.length >= 3 && f.aliasCompact.some((a) => a.includes(w))) return 12;
+  if (f.year && w === f.year) return 18;
   if (f.cat.includes(w) || (w.length >= 4 && f.cat.some((t) => t.startsWith(w)))) return 14;
+  if (w.length >= 3 && f.series && (' ' + f.series).includes(' ' + w)) return 12;
   if (w.length >= 3 && f.people.includes(w)) return 10;
   if (w.length >= 3 && f.text.includes(' ' + w)) return 6;
   return 0;

@@ -1,0 +1,59 @@
+# name: Miniclip Shockwave games collection
+# type: archive
+# url: https://archive.org/details/miniclip_shockwave-games
+# about: A preservation collection of Miniclip's Shockwave (Director) games,
+#   credited to Miniclip. Only the file LISTING was read. Where the archive
+#   file name credits a developer ("... - Silent Bay Studios") it is given as
+#   dev=. Titles from 2013 and later are left out here and listed in
+#   out-of-era.txt instead.
+Air Show | dev=Silent Bay Studios
+American Football | dev=Silent Bay Studios
+Arctic Drift
+Basketball Jam | dev=Silent Bay Studios
+Basketball Slam | dev=Silent Bay Studios
+Battle Wheels
+Beach Soccer | dev=Silent Bay Studios
+Blues Bikers
+Creepy Pong | dev=Silent Bay Studios
+Delta Force: Operation Fire Shield | aka=Delta Force Operation Fire Shield
+Drift Trike
+European Soccer Champions | id=european-soccer | dev=Silent Bay Studios
+Extreme Quad | dev=Silent Bay Studios
+Extreme Trial | dev=Silent Bay Studios
+Fast Car Frenzy | dev=Silent Bay Studios
+Formula G1
+Free Running | dev=Silent Bay Studios
+Free Wheels | dev=Silent Bay Studios
+Go Karts | dev=Silent Bay Studios
+Golf Ace | dev=Silent Bay Studios
+Hot Rods
+Ice Racer | dev=Silent Bay Studios
+Insane Ski Jump | dev=Silent Bay Studios
+Jet Ski Racing | dev=Silent Bay Studios
+Jousting | dev=Silent Bay Studios
+Karate King | dev=Silent Bay Studios
+Minilympics
+Monster Bash
+Motocross Country Fever | id=motocross-country
+Motorcross Urban Fever | id=motocross-urban
+On The Run 2
+Pizza Hot
+Power Boat | dev=Silent Bay Studios
+Raceway 500 | dev=Silent Bay Studios
+Rifleman
+Rule the Beach Volleyball | id=rule-the-beach
+Skyboard | dev=Silent Bay Studios
+Snowboard Madness | dev=Silent Bay Studios
+Soccer Five | dev=Silent Bay Studios
+Sportbike Sprint | dev=Silent Bay Studios
+Stunt Driver | dev=Silent Bay Studios
+Super Trucks | dev=Silent Bay Studios
+Superbike GP
+Turbo Racing
+Turbo Racing 2
+Under Arms
+Wakeboard Pro | dev=Silent Bay Studios
+War Copter
+White Water Rafting
+Winter Games | dev=Silent Bay Studios
+World Rugby 2011 | dev=Silent Bay Studios

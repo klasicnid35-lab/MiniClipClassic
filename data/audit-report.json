@@ -1,0 +1,3580 @@
+{
+ "title": "MiniClip Classic - historical catalogue audit",
+ "generated": "2026-09-27",
+ "summary": {
+  "totalGames": 828,
+  "uniqueNormalizedTitles": 828,
+  "existingBeforeAudit": 753,
+  "candidateTitlesDiscovered": 430,
+  "candidatesAlreadyInCatalogue": 355,
+  "newUniqueGamesAdded": 75,
+  "masterListSpellingsMerged": 4,
+  "aliases": 53,
+  "aliasesCreated": 33,
+  "rejectedCandidates": 18,
+  "uncertainVariants": 17,
+  "verification": {
+   "verified": 246,
+   "cross-verified": 157,
+   "single-source": 417,
+   "needs-review": 8
+  },
+  "playable": 16,
+  "playableFlash": 16,
+  "playableHtml5": 0,
+  "playableIframe": 0,
+  "playableStreamedFromMiniclip": 16,
+  "playableLocal": 0,
+  "unavailable": 812,
+  "generatedPlaceholders": 828,
+  "historicalType": {
+   "standard": 736,
+   "multiplayer": 11,
+   "promotional": 2,
+   "licensed": 22,
+   "sponsored": 15,
+   "seasonal": 18,
+   "political-parody": 21,
+   "external-service": 3
+  },
+  "relationship": {
+   "developed": 3,
+   "published": 1,
+   "hosted": 244,
+   "licensed": 2,
+   "sponsored": 0,
+   "external-service": 0,
+   "unknown": 578
+  },
+  "series": 36,
+  "gamesInSeries": 77,
+  "unknownYear": 771,
+  "unknownDeveloper": 747
+ },
+ "checks": {
+  "duplicateIds": [],
+  "duplicateSlugs": [],
+  "duplicateTitles": [],
+  "aliasCollisions": [],
+  "sequelCollisions": [],
+  "sequelFamiliesKeptApart": 34,
+  "installedWithMissingFiles": [],
+  "brokenArtwork": [],
+  "recordsWithoutSources": [],
+  "unknownEnumValues": [],
+  "unmatchedSourceLines": [],
+  "sourceProblems": [],
+  "factDisagreements": []
+ },
+ "sourcesChecked": [
+  {
+   "file": "tools/catalog/sources/internet-archive.txt",
+   "name": "Internet Archive items credited to Miniclip",
+   "type": "archive",
+   "url": "https://archive.org/search?query=creator%3AMiniclip",
+   "about": "Preserved game items on the Internet Archive whose creator field names Miniclip (searched with the archive.org advanced search API; only the item metadata was read, no game files were downloaded). Items from the numbered \"casa\" collection carry exact dates (year= below). Other upload dates are often just the upload year and are NOT used as release years. dev= is only given when the item credits a developer.",
+   "entries": 86,
+   "matched": 86,
+   "alreadyInCatalogue": 66,
+   "addedByAudit": 20,
+   "unmatched": []
+  },
+  {
+   "file": "tools/catalog/sources/maintainer-audit-checklist.txt",
+   "name": "Maintainer's audit checklist (2026)",
+   "type": "maintainer",
+   "url": null,
+   "about": "Titles the project maintainer asked the 2026 audit to check and to add when missing. Spellings as supplied; \"T. or Treat Smash\" is the shortened \"Trick or Treat Smash\" and \"Mystic Mermaid Pin\" the shortened \"Mystic Mermaid Pinball\".",
+   "entries": 48,
+   "matched": 48,
+   "alreadyInCatalogue": 5,
+   "addedByAudit": 43,
+   "unmatched": []
+  },
+  {
+   "file": "tools/catalog/sources/maintainer-master-list.txt",
+   "name": "Maintainer's master list",
+   "type": "maintainer",
+   "url": null,
+   "about": "The 752-title list of classic Miniclip games supplied by the project maintainer, compiled from several historical Miniclip game lists (2007, 2008-2009 and 2010). Spellings are kept exactly as supplied - duplicate or shortened spellings are merged into one record by the catalogue tools.",
+   "entries": 752,
+   "matched": 752,
+   "unmatched": []
+  },
+  {
+   "file": "tools/catalog/sources/miniclip-arcade.txt",
+   "name": "Miniclip Arcade (classic.miniclip.com)",
+   "type": "official",
+   "url": "https://classic.miniclip.com/",
+   "about": "Miniclip's own classic Flash games archive, run with the Ruffle emulator. Its game list (https://classic.miniclip.com/games.json) names 16 games. The files are served by Miniclip with \"Access-Control-Allow-Origin: *\", so these games can be STREAMED from Miniclip's server into this site's Ruffle player - nothing is copied into this repository. play= is the official SWF address, size= the stage size read from the SWF header. id= points the entry at the catalogue record it belongs to.",
+   "entries": 16,
+   "matched": 16,
+   "alreadyInCatalogue": 13,
+   "addedByAudit": 3,
+   "unmatched": []
+  },
+  {
+   "file": "tools/catalog/sources/miniclip-cd-2006.txt",
+   "name": "Miniclip CD \"Ultimate Game Pack\" (Christmas 2006)",
+   "type": "official",
+   "url": "https://archive.org/details/miniclip-cd",
+   "about": "Miniclip's own offline games CD. Titles are taken from the CD's menu (index.htm) and its game pages; where the menu and the game page spell a title differently both spellings are kept (aka=). Only the file LISTING of the CD was read - no game files were downloaded.",
+   "entries": 44,
+   "matched": 44,
+   "alreadyInCatalogue": 41,
+   "addedByAudit": 3,
+   "unmatched": []
+  },
+  {
+   "file": "tools/catalog/sources/miniclip-offline-downloads.txt",
+   "name": "Miniclip offline game downloads (early 2000s)",
+   "type": "official",
+   "url": "https://archive.org/details/Miniclip",
+   "about": "Miniclip offered many early games as self-contained Windows downloads named \"Miniclip Game <title>.exe\". The Internet Archive item \"66 Offline EXE Old Miniclip games\" preserves them; only its file LISTING was read. Files in that collection WITHOUT the \"Miniclip Game\" prefix (Elf Bowling, Pacman, Desktop Destroyer...) are other companies' games and are NOT used as evidence. \"abduction.exe\" is the same download as \"Miniclip Game Alien Abduction.exe\" and \"paintball.exe\" the same as \"Miniclip Game Stress Relief Paintball.exe\".",
+   "entries": 67,
+   "matched": 67,
+   "alreadyInCatalogue": 63,
+   "addedByAudit": 4,
+   "unmatched": []
+  },
+  {
+   "file": "tools/catalog/sources/out-of-era.txt",
+   "name": "Candidates rejected by the audit",
+   "type": "rejected",
+   "url": null,
+   "about": "Titles that turned up while researching but are NOT added to the catalogue. The archive covers Miniclip's web games from 2001 to 2012. reason= says why each one was left out. Kept here so the next audit does not re-add them by mistake.",
+   "entries": 18
+  },
+  {
+   "file": "tools/catalog/sources/references.txt",
+   "name": "Game databases and wikis",
+   "type": "reference",
+   "url": null,
+   "about": "Facts (mostly release years and developers) found in game databases, encyclopedias and fan wikis through web searches during the 2026 audit. ref= names where the fact came from; each ref counts as its own source. Only facts that were stated plainly are used - where two sources disagree the year stays empty (see conflicts at the bottom).",
+   "entries": 41,
+   "matched": 41,
+   "alreadyInCatalogue": 33,
+   "addedByAudit": 8,
+   "unmatched": []
+  },
+  {
+   "file": "tools/catalog/sources/screenshots-2008-2009.txt",
+   "name": "Miniclip homepage screenshots (2008-2009)",
+   "type": "screenshot",
+   "url": null,
+   "about": "The four screenshots of the 2008-2009 Miniclip homepage this site was rebuilt from. Titles are transcribed from what is legible: the Latest Games, Hot Games and Top Ten panels, the six category boxes and the parts of the Full Games List that are visible (the list is cut off in the screenshots, so most titles are NOT visible - absence here means nothing). Spellings are exactly as shown.",
+   "entries": 162,
+   "matched": 162,
+   "alreadyInCatalogue": 162,
+   "addedByAudit": 0,
+   "unmatched": []
+  },
+  {
+   "file": "tools/catalog/sources/shockwave-collection.txt",
+   "name": "Miniclip Shockwave games collection",
+   "type": "archive",
+   "url": "https://archive.org/details/miniclip_shockwave-games",
+   "about": "A preservation collection of Miniclip's Shockwave (Director) games, credited to Miniclip. Only the file LISTING was read. Where the archive file name credits a developer (\"... - Silent Bay Studios\") it is given as dev=. Titles from 2013 and later are left out here and listed in out-of-era.txt instead.",
+   "entries": 51,
+   "matched": 51,
+   "alreadyInCatalogue": 45,
+   "addedByAudit": 6,
+   "unmatched": []
+  },
+  {
+   "file": "tools/catalog/sources/uncertain-variants.txt",
+   "name": "Uncertain variants - decisions",
+   "type": "uncertain",
+   "url": null,
+   "about": "Spellings that COULD be the same game as a catalogue record (or not), and what the audit decided. merged = kept as an alias of the record; separate = kept as its own record; not-added = left out until better evidence turns up. Not evidence - notes for the next audit.",
+   "entries": 17
+  },
+  {
+   "file": "tools/catalog/sources/web-search.txt",
+   "name": "Web search - miniclip.com game pages",
+   "type": "web",
+   "url": null,
+   "about": "Titles checked with a web search during the 2026 catalogue audit. Each one turned up an old miniclip.com game page address (www.miniclip.com/games/<slug>/<lang>/, or the same address on Miniclip's site., sapo., fungames. and sandbox. mirrors) in the search results, which shows the game was hosted on Miniclip. The pages themselves could not be opened (the Wayback Machine and most sites were unreachable from the audit machine), so this counts as one independent source, not as direct proof. page= is the slug that was found; year=/dev= only where the result said so.",
+   "entries": 100,
+   "matched": 100,
+   "alreadyInCatalogue": 60,
+   "addedByAudit": 40,
+   "unmatched": []
+  }
+ ],
+ "comparison": {
+  "baseline": {
+   "commit": "e5ef2f1",
+   "records": 753,
+   "uniqueTitles": 753
+  },
+  "newTitles": [
+   {
+    "id": "8-ball-pool-multiplayer",
+    "title": "8 Ball Pool Multiplayer",
+    "year": 2010,
+    "category": "Pool",
+    "historicalType": "multiplayer",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Wikipedia",
+     "Miniclip Wiki",
+     "Web search - miniclip.com game pages"
+    ]
+   },
+   {
+    "id": "alpine-escape",
+    "title": "Alpine Escape",
+    "year": 2002,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Internet Archive items credited to Miniclip"
+    ]
+   },
+   {
+    "id": "atom-drop",
+    "title": "Atom Drop",
+    "year": null,
+    "category": "Puzzle",
+    "historicalType": "standard",
+    "verificationStatus": "verified",
+    "sources": [
+     "Miniclip CD \"Ultimate Game Pack\" (Christmas 2006)"
+    ]
+   },
+   {
+    "id": "battle-pong",
+    "title": "Battle Pong",
+    "year": null,
+    "category": "Arcade",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "bearbarians",
+    "title": "BearBarians",
+    "year": null,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Internet Archive items credited to Miniclip"
+    ]
+   },
+   {
+    "id": "best-friends",
+    "title": "Best Friends",
+    "year": null,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "board",
+    "title": "Board",
+    "year": null,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "needs-review",
+    "sources": [
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "britney-brawl",
+    "title": "Britney Brawl",
+    "year": null,
+    "category": "Fighting",
+    "historicalType": "political-parody",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Internet Archive items credited to Miniclip"
+    ]
+   },
+   {
+    "id": "cactus-mccoy",
+    "title": "Cactus McCoy",
+    "year": null,
+    "category": "Platform",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Web search - miniclip.com game pages"
+    ]
+   },
+   {
+    "id": "cactus-mccoy-2",
+    "title": "Cactus McCoy 2",
+    "year": null,
+    "category": "Platform",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Web search - miniclip.com game pages"
+    ]
+   },
+   {
+    "id": "chess",
+    "title": "Chess",
+    "year": null,
+    "category": "Board",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "commando-assault",
+    "title": "Commando Assault",
+    "year": 2010,
+    "category": "Shooting",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Web search - miniclip.com game pages"
+    ]
+   },
+   {
+    "id": "cricket-defend-the-wicket",
+    "title": "Cricket Defend the Wicket",
+    "year": 2009,
+    "category": "Sports",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Web search - miniclip.com game pages"
+    ]
+   },
+   {
+    "id": "delta-force-operation-fire-shield",
+    "title": "Delta Force: Operation Fire Shield",
+    "year": null,
+    "category": "Shooting",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Miniclip Shockwave games collection",
+     "Web search - miniclip.com game pages"
+    ]
+   },
+   {
+    "id": "drift-trike",
+    "title": "Drift Trike",
+    "year": null,
+    "category": "Racing",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Miniclip Shockwave games collection",
+     "Web search - miniclip.com game pages"
+    ]
+   },
+   {
+    "id": "empty-santas-sack",
+    "title": "Empty Santa's Sack",
+    "year": null,
+    "category": "Other",
+    "historicalType": "seasonal",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "epic-coaster",
+    "title": "Epic Coaster",
+    "year": 2010,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "falafel-king",
+    "title": "Falafel King",
+    "year": null,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "verified",
+    "sources": [
+     "Miniclip offline game downloads (early 2000s)"
+    ]
+   },
+   {
+    "id": "fred-figglehorn-the-game",
+    "title": "Fred Figglehorn: The Game",
+    "year": null,
+    "category": "Promotional",
+    "historicalType": "licensed",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Internet Archive items credited to Miniclip"
+    ]
+   },
+   {
+    "id": "fruit-shooting-gallery",
+    "title": "Fruit Shooting Gallery",
+    "year": null,
+    "category": "Shooting",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Internet Archive items credited to Miniclip"
+    ]
+   },
+   {
+    "id": "governor-of-poker-2",
+    "title": "Governor of Poker 2",
+    "year": null,
+    "category": "Card",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Web search - miniclip.com game pages"
+    ]
+   },
+   {
+    "id": "heli-attack",
+    "title": "Heli Attack",
+    "year": null,
+    "category": "Shooting",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Internet Archive items credited to Miniclip"
+    ]
+   },
+   {
+    "id": "hip-hop-debate",
+    "title": "Hip-Hop Debate",
+    "year": null,
+    "category": "Casual",
+    "historicalType": "political-parody",
+    "verificationStatus": "verified",
+    "sources": [
+     "Miniclip offline game downloads (early 2000s)",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "ice-breakout",
+    "title": "Ice Breakout",
+    "year": null,
+    "category": "Arcade",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "jousting",
+    "title": "Jousting",
+    "year": null,
+    "category": "Sports",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Miniclip Shockwave games collection",
+     "Web search - miniclip.com game pages"
+    ]
+   },
+   {
+    "id": "karaoke",
+    "title": "Karaoke",
+    "year": null,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "keepy-ups",
+    "title": "Keepy Ups",
+    "year": null,
+    "category": "Football",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "mad-skills-motocross",
+    "title": "Mad Skills Motocross",
+    "year": null,
+    "category": "Driving",
+    "historicalType": "standard",
+    "verificationStatus": "verified",
+    "sources": [
+     "Miniclip Arcade (classic.miniclip.com)",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "mahjong-classic",
+    "title": "Mahjong Classic",
+    "year": null,
+    "category": "Puzzle",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "mahjong-medley",
+    "title": "Mahjong Medley",
+    "year": null,
+    "category": "Puzzle",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Internet Archive items credited to Miniclip",
+     "Web search",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "mancala-bugs",
+    "title": "Mancala Bugs",
+    "year": null,
+    "category": "Board",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "master-solitaire",
+    "title": "Master Solitaire",
+    "year": null,
+    "category": "Card",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Internet Archive items credited to Miniclip"
+    ]
+   },
+   {
+    "id": "masterkick",
+    "title": "Masterkick",
+    "year": null,
+    "category": "Football",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "merry-christmas",
+    "title": "Merry Christmas",
+    "year": null,
+    "category": "Other",
+    "historicalType": "seasonal",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "monster-trucks-nitro-ii",
+    "title": "Monster Trucks Nitro II",
+    "year": null,
+    "category": "Driving",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Internet Archive items credited to Miniclip",
+     "Web search - miniclip.com game pages"
+    ]
+   },
+   {
+    "id": "moto-jumping",
+    "title": "Moto Jumping",
+    "year": null,
+    "category": "Driving",
+    "historicalType": "standard",
+    "verificationStatus": "verified",
+    "sources": [
+     "Miniclip Arcade (classic.miniclip.com)",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "mystic-mermaid-pinball",
+    "title": "Mystic Mermaid Pinball",
+    "year": null,
+    "category": "Arcade",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "online-soccer-manager",
+    "title": "Online Soccer Manager",
+    "year": 2010,
+    "category": "Football",
+    "historicalType": "external-service",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Web search"
+    ]
+   },
+   {
+    "id": "pirates-of-the-caribbean-dead-mans-chest",
+    "title": "Pirates of the Caribbean: Dead Man's Chest",
+    "year": 2006,
+    "category": "Promotional",
+    "historicalType": "licensed",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Internet Archive items credited to Miniclip"
+    ]
+   },
+   {
+    "id": "present-panic",
+    "title": "Present Panic",
+    "year": null,
+    "category": "Other",
+    "historicalType": "seasonal",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "raft-wars-2",
+    "title": "Raft Wars 2",
+    "year": null,
+    "category": "Shooting",
+    "historicalType": "standard",
+    "verificationStatus": "verified",
+    "sources": [
+     "Miniclip Arcade (classic.miniclip.com)",
+     "Internet Archive items credited to Miniclip",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "river-raider",
+    "title": "River Raider",
+    "year": null,
+    "category": "Shooting",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Internet Archive items credited to Miniclip"
+    ]
+   },
+   {
+    "id": "robo-rampage",
+    "title": "Robo Rampage",
+    "year": null,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Internet Archive items credited to Miniclip"
+    ]
+   },
+   {
+    "id": "rubble-trouble-tokyo",
+    "title": "Rubble Trouble Tokyo",
+    "year": 2011,
+    "category": "Puzzle",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Web search - miniclip.com game pages"
+    ]
+   },
+   {
+    "id": "ruff-riders",
+    "title": "Ruff Riders",
+    "year": null,
+    "category": "Driving",
+    "historicalType": "standard",
+    "verificationStatus": "verified",
+    "sources": [
+     "Miniclip CD \"Ultimate Game Pack\" (Christmas 2006)"
+    ]
+   },
+   {
+    "id": "santa-balls",
+    "title": "Santa Balls",
+    "year": null,
+    "category": "Other",
+    "historicalType": "seasonal",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Internet Archive items credited to Miniclip"
+    ]
+   },
+   {
+    "id": "santa-balls-2",
+    "title": "Santa Balls 2",
+    "year": null,
+    "category": "Other",
+    "historicalType": "seasonal",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Internet Archive items credited to Miniclip",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "santa-ski-jump",
+    "title": "Santa Ski Jump",
+    "year": null,
+    "category": "Winter",
+    "historicalType": "seasonal",
+    "verificationStatus": "verified",
+    "sources": [
+     "Miniclip offline game downloads (early 2000s)",
+     "Internet Archive items credited to Miniclip",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "santas-factory",
+    "title": "Santa's Factory",
+    "year": null,
+    "category": "Other",
+    "historicalType": "seasonal",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "secret-of-maya",
+    "title": "Secret of Maya",
+    "year": null,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "shroomz",
+    "title": "Shroomz",
+    "year": null,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "skidoo-tt",
+    "title": "Skidoo TT",
+    "year": null,
+    "category": "Winter",
+    "historicalType": "standard",
+    "verificationStatus": "verified",
+    "sources": [
+     "Miniclip CD \"Ultimate Game Pack\" (Christmas 2006)",
+     "Internet Archive items credited to Miniclip",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "slingette",
+    "title": "Slingette",
+    "year": null,
+    "category": "Skill",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Internet Archive items credited to Miniclip"
+    ]
+   },
+   {
+    "id": "snooker",
+    "title": "Snooker",
+    "year": null,
+    "category": "Pool",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "snow-line",
+    "title": "Snow Line",
+    "year": 2008,
+    "category": "Winter",
+    "historicalType": "seasonal",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Internet Archive items credited to Miniclip",
+     "Backloggd / IGDB",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "snowman-stacker",
+    "title": "Snowman Stacker",
+    "year": null,
+    "category": "Skill",
+    "historicalType": "seasonal",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "space-invaders",
+    "title": "Space Invaders",
+    "year": null,
+    "category": "Shooting",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Internet Archive items credited to Miniclip",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "spades",
+    "title": "Spades",
+    "year": null,
+    "category": "Card",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "sub-hunt",
+    "title": "Sub Hunt",
+    "year": null,
+    "category": "Shooting",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "super-gerball",
+    "title": "Super Gerball",
+    "year": null,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "super-web-soccer",
+    "title": "Super Web Soccer",
+    "year": null,
+    "category": "Football",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "trick-or-treat-smash",
+    "title": "Trick or Treat Smash",
+    "year": null,
+    "category": "Other",
+    "historicalType": "seasonal",
+    "verificationStatus": "verified",
+    "sources": [
+     "Miniclip offline game downloads (early 2000s)",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "turbo-racing",
+    "title": "Turbo Racing",
+    "year": null,
+    "category": "Racing",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Miniclip Shockwave games collection"
+    ]
+   },
+   {
+    "id": "turbo-racing-2",
+    "title": "Turbo Racing 2",
+    "year": null,
+    "category": "Racing",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Miniclip Shockwave games collection"
+    ]
+   },
+   {
+    "id": "turbo-racing-3",
+    "title": "Turbo Racing 3",
+    "year": null,
+    "category": "Racing",
+    "historicalType": "standard",
+    "verificationStatus": "single-source",
+    "sources": [
+     "Web search - miniclip.com game pages"
+    ]
+   },
+   {
+    "id": "war-copter",
+    "title": "War Copter",
+    "year": null,
+    "category": "Shooting",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Miniclip Shockwave games collection",
+     "Web search - miniclip.com game pages"
+    ]
+   },
+   {
+    "id": "western",
+    "title": "Western",
+    "year": null,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "needs-review",
+    "sources": [
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "wild-wild-words",
+    "title": "Wild Wild Words",
+    "year": null,
+    "category": "Word",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "world-cup-glory",
+    "title": "World Cup Glory",
+    "year": null,
+    "category": "Football",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "world-cup-goal",
+    "title": "World Cup Goal",
+    "year": null,
+    "category": "Football",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "world-cup-soccer",
+    "title": "World Cup Soccer",
+    "year": null,
+    "category": "Football",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "world-game-audition",
+    "title": "World Game Audition",
+    "year": null,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "world-game-star",
+    "title": "World Game Star",
+    "year": null,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   },
+   {
+    "id": "you-make-the-game",
+    "title": "You Make the Game",
+    "year": 2010,
+    "category": "Other",
+    "historicalType": "standard",
+    "verificationStatus": "needs-review",
+    "sources": [
+     "Web search"
+    ]
+   },
+   {
+    "id": "zen-puzzle-garden",
+    "title": "Zen Puzzle Garden",
+    "year": null,
+    "category": "Puzzle",
+    "historicalType": "standard",
+    "verificationStatus": "cross-verified",
+    "sources": [
+     "Web search - miniclip.com game pages",
+     "Maintainer's audit checklist (2026)"
+    ]
+   }
+  ],
+  "removed": [],
+  "aliasesCreated": [
+   {
+    "id": "8-ball-pool",
+    "title": "8 Ball Pool",
+    "alias": "8 Ball Quick Fire Pool"
+   },
+   {
+    "id": "9-ball-pool",
+    "title": "9 Ball Pool",
+    "alias": "9 Ball Quick Fire Pool"
+   },
+   {
+    "id": "short-history-of-the-world",
+    "title": "A Short History of the World",
+    "alias": "Short History of the World"
+   },
+   {
+    "id": "alien-abduction",
+    "title": "Alien Abduction",
+    "alias": "Abduction"
+   },
+   {
+    "id": "battleships",
+    "title": "Battleships",
+    "alias": "Battleships - General Quarters II"
+   },
+   {
+    "id": "bloomin-gardens",
+    "title": "Bloomin' Gardens",
+    "alias": "Blooming Gardens"
+   },
+   {
+    "id": "bloxorz",
+    "title": "Bloxorz",
+    "alias": "Bloxorz Classic"
+   },
+   {
+    "id": "boom-volleyball",
+    "title": "Boom Volleyball",
+    "alias": "Boom Boom Volleyball"
+   },
+   {
+    "id": "britney-brawl",
+    "title": "Britney Brawl",
+    "alias": "Britney Brawl Featuring Bill Clinton vs. Britney"
+   },
+   {
+    "id": "bubble-trouble",
+    "title": "Bubble Trouble",
+    "alias": "Bubble Struggle"
+   },
+   {
+    "id": "challenge-churchill",
+    "title": "Challenge Churchill",
+    "alias": "Challenge Churchil"
+   },
+   {
+    "id": "dance-2-the-beat",
+    "title": "Dance 2 the Beat",
+    "alias": "Dance to the Beat"
+   },
+   {
+    "id": "david",
+    "title": "David",
+    "alias": "David - Dawn of a King"
+   },
+   {
+    "id": "european-soccer",
+    "title": "European Soccer",
+    "alias": "European Soccer Champions"
+   },
+   {
+    "id": "fred-figglehorn-the-game",
+    "title": "Fred Figglehorn: The Game",
+    "alias": "Fred Figglehorn"
+   },
+   {
+    "id": "goldenballs",
+    "title": "Goldenballs",
+    "alias": "Beckham 'Golden Balls'"
+   },
+   {
+    "id": "motocross-country",
+    "title": "Motocross Country",
+    "alias": "Motocross Country Fever"
+   },
+   {
+    "id": "motocross-urban",
+    "title": "Motocross Urban",
+    "alias": "Motorcross Urban Fever"
+   },
+   {
+    "id": "mystic-mermaid-pinball",
+    "title": "Mystic Mermaid Pinball",
+    "alias": "Mystic Mermaid Pin"
+   },
+   {
+    "id": "nfl-lateral-collat",
+    "title": "NFL Lateral Collateral",
+    "alias": "NFL Lateral Collat"
+   },
+   {
+    "id": "paintball",
+    "title": "Paintball",
+    "alias": "Stress Relief Paintball"
+   },
+   {
+    "id": "pharaohs-tomb",
+    "title": "Pharaoh's Tomb",
+    "alias": "The Pharoah's Tomb"
+   },
+   {
+    "id": "president-knockout",
+    "title": "President Knockout",
+    "alias": "Bush vs. Kerry"
+   },
+   {
+    "id": "president-knockout",
+    "title": "President Knockout",
+    "alias": "Bush Vs. Kerry: Presidential Knock-Out"
+   },
+   {
+    "id": "royal-rampage",
+    "title": "Royal Rampage",
+    "alias": "Bush Royal Rampage"
+   },
+   {
+    "id": "rubble-trouble",
+    "title": "Rubble Trouble",
+    "alias": "Rubble Trouble New York"
+   },
+   {
+    "id": "ruff-riders",
+    "title": "Ruff Riders",
+    "alias": "Ruff Rider"
+   },
+   {
+    "id": "rule-the-beach",
+    "title": "Rule The Beach",
+    "alias": "Rule the Beach Volleyball"
+   },
+   {
+    "id": "santa-ski-jump",
+    "title": "Santa Ski Jump",
+    "alias": "Santa's Jump"
+   },
+   {
+    "id": "sheep-game",
+    "title": "Sheep Game",
+    "alias": "Sheep The Game"
+   },
+   {
+    "id": "space-fighter",
+    "title": "Space Fighter",
+    "alias": "Space Fighter Rebellion"
+   },
+   {
+    "id": "tetris",
+    "title": "Tetris",
+    "alias": "Miniclip Tetris"
+   },
+   {
+    "id": "wheels-of-salvation",
+    "title": "Wheels of Salvation",
+    "alias": "Dr. Carter and the Wheels of Salvation"
+   }
+  ],
+  "corrections": [
+   {
+    "id": "8-ball-pool",
+    "field": "secondaryCategories",
+    "before": [
+     "Multiplayer",
+     "Sports"
+    ],
+    "after": [
+     "Sports"
+    ]
+   },
+   {
+    "id": "8-ball-pool",
+    "field": "year",
+    "before": 2010,
+    "after": 2008
+   },
+   {
+    "id": "8-ball-pool",
+    "field": "developer",
+    "before": "Miniclip",
+    "after": null
+   },
+   {
+    "id": "8-ball-pool",
+    "field": "publisher",
+    "before": "Miniclip",
+    "after": null
+   },
+   {
+    "id": "8-ball-pool",
+    "field": "description",
+    "before": "Play 8-ball pool online against other players.",
+    "after": "Single-player 8-ball pool: pot your group of balls, then sink the black to win the frame."
+   },
+   {
+    "id": "8-ball-pool",
+    "field": "historicalNotes",
+    "before": "A separate game from the single-player Quick Fire Pool.",
+    "after": "Called \"8 Ball Quick Fire Pool\" in Miniclip's own game archive and listed as \"8 Ball Pool\" in the 2008-2009 Full Games List. The online multiplayer game that followed in 2010 is listed separately as \"8 Ball Pool Multiplayer\"."
+   },
+   {
+    "id": "8-ball-pool",
+    "field": "installed",
+    "before": false,
+    "after": true
+   },
+   {
+    "id": "8-ball-pool",
+    "field": "gameFile",
+    "before": "",
+    "after": "https://classic.miniclip.com/game-files/8-ball-quick-fire-pool/en/8ballquickfirepool.swf"
+   },
+   {
+    "id": "9-ball-pool",
+    "field": "year",
+    "before": null,
+    "after": 2009
+   },
+   {
+    "id": "short-history-of-the-world",
+    "field": "title",
+    "before": "Short History of the World",
+    "after": "A Short History of the World"
+   },
+   {
+    "id": "short-history-of-the-world",
+    "field": "description",
+    "before": "",
+    "after": "Race through history in quick-fire mini-games, from freeing a mammoth from the ice to rubbing sticks together to make fire."
+   },
+   {
+    "id": "age-of-speed-2",
+    "field": "year",
+    "before": null,
+    "after": 2009
+   },
+   {
+    "id": "air-show",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "american-football",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "aqua-energizer",
+    "field": "year",
+    "before": null,
+    "after": 2002
+   },
+   {
+    "id": "aqua-energizer",
+    "field": "developer",
+    "before": null,
+    "after": "Uselab"
+   },
+   {
+    "id": "base-jumper",
+    "field": "historicalNotes",
+    "before": "Possibly related to \"Base Jumping\" - kept separate until confirmed.",
+    "after": "Miniclip had separate game pages for \"Base Jumper\" and \"Base Jumping\"."
+   },
+   {
+    "id": "base-jumping",
+    "field": "historicalNotes",
+    "before": "Possibly related to \"Base Jumper\" - kept separate until confirmed.",
+    "after": "Miniclip had separate game pages for \"Base Jumping\" and \"Base Jumper\"."
+   },
+   {
+    "id": "basketball-jam",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "basketball-slam",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "beach-soccer",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "blair-the-motivator",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "bloxorz",
+    "field": "installed",
+    "before": false,
+    "after": true
+   },
+   {
+    "id": "bloxorz",
+    "field": "gameFile",
+    "before": "",
+    "after": "https://classic.miniclip.com/game-files/bloxorz/game-files/bloxorz_miniclip.swf"
+   },
+   {
+    "id": "boom-volleyball",
+    "field": "installed",
+    "before": false,
+    "after": true
+   },
+   {
+    "id": "boom-volleyball",
+    "field": "gameFile",
+    "before": "",
+    "after": "https://classic.miniclip.com/game-files/boom-boom-volleyball/boomboom.swf"
+   },
+   {
+    "id": "bow-master-halloween",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "seasonal"
+   },
+   {
+    "id": "bubble-trouble",
+    "field": "installed",
+    "before": false,
+    "after": true
+   },
+   {
+    "id": "bubble-trouble",
+    "field": "gameFile",
+    "before": "",
+    "after": "https://classic.miniclip.com/game-files/bubble-trouble/bubbletrouble.swf"
+   },
+   {
+    "id": "bush-aerobics",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "bush-shoot-out",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "candy-and-clyde",
+    "field": "year",
+    "before": null,
+    "after": 2007
+   },
+   {
+    "id": "canyon-defense",
+    "field": "year",
+    "before": null,
+    "after": 2008
+   },
+   {
+    "id": "canyon-defense",
+    "field": "developer",
+    "before": null,
+    "after": "IriySoft"
+   },
+   {
+    "id": "caveman",
+    "field": "year",
+    "before": null,
+    "after": 2007
+   },
+   {
+    "id": "cherie-disco-blair",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "christmas-games",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "seasonal"
+   },
+   {
+    "id": "commander-n-chief",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "commando-2",
+    "field": "installed",
+    "before": false,
+    "after": true
+   },
+   {
+    "id": "commando-2",
+    "field": "gameFile",
+    "before": "",
+    "after": "https://classic.miniclip.com/game-files/commando-2/game-files/commando2_v2.swf"
+   },
+   {
+    "id": "creepy-pong",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "dancing-blair",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "dancing-bush",
+    "field": "year",
+    "before": null,
+    "after": 2001
+   },
+   {
+    "id": "dancing-bush",
+    "field": "developer",
+    "before": null,
+    "after": "Miniclip"
+   },
+   {
+    "id": "dancing-bush",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "dancing-bush",
+    "field": "installed",
+    "before": false,
+    "after": true
+   },
+   {
+    "id": "dancing-bush",
+    "field": "gameFile",
+    "before": "",
+    "after": "https://classic.miniclip.com/game-files/dancing-bush/dancingbushnew2.swf"
+   },
+   {
+    "id": "dancing-hillary",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "dancing-palin",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "david",
+    "field": "historicalNotes",
+    "before": "",
+    "after": "Preserved as \"David - Dawn of a King\"."
+   },
+   {
+    "id": "deep-freeze",
+    "field": "installed",
+    "before": false,
+    "after": true
+   },
+   {
+    "id": "deep-freeze",
+    "field": "gameFile",
+    "before": "",
+    "after": "https://classic.miniclip.com/game-files/deep-freeze/game-files/deepfreeze.swf"
+   },
+   {
+    "id": "disc-golf",
+    "field": "year",
+    "before": null,
+    "after": 2008
+   },
+   {
+    "id": "dune-buggy",
+    "field": "year",
+    "before": null,
+    "after": 2007
+   },
+   {
+    "id": "european-soccer",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "extreme-quad",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "extreme-trial",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "fast-car-frenzy",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "feed-me",
+    "field": "year",
+    "before": null,
+    "after": 2006
+   },
+   {
+    "id": "free-running",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "free-wheels",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "get-rooney-fit",
+    "field": "secondaryCategories",
+    "before": [
+     "Promotional"
+    ],
+    "after": []
+   },
+   {
+    "id": "get-rooney-fit",
+    "field": "year",
+    "before": null,
+    "after": 2006
+   },
+   {
+    "id": "get-rooney-fit",
+    "field": "historicalNotes",
+    "before": "",
+    "after": "Made while Wayne Rooney was racing to be fit for the 2006 World Cup."
+   },
+   {
+    "id": "go-karts",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "goldenballs",
+    "field": "year",
+    "before": null,
+    "after": 2003
+   },
+   {
+    "id": "goldenballs",
+    "field": "historicalType",
+    "before": "licensed",
+    "after": "political-parody"
+   },
+   {
+    "id": "goldenballs",
+    "field": "historicalNotes",
+    "before": "Based on the television game show.",
+    "after": "A parody of footballer David Beckham (\"Golden Balls\") - not the television game show."
+   },
+   {
+    "id": "golf-ace",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "heli-attack-2",
+    "field": "year",
+    "before": null,
+    "after": 2003
+   },
+   {
+    "id": "heli-attack-3",
+    "field": "installed",
+    "before": false,
+    "after": true
+   },
+   {
+    "id": "heli-attack-3",
+    "field": "gameFile",
+    "before": "",
+    "after": "https://classic.miniclip.com/game-files/heli-attack-3/game-files/ha3miniclip.swf"
+   },
+   {
+    "id": "ice-racer",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "insane-ski-jump",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "istunt-2",
+    "field": "year",
+    "before": null,
+    "after": 2011
+   },
+   {
+    "id": "jet-ski-racing",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "jet-ski-racing",
+    "field": "historicalNotes",
+    "before": "Possibly related to \"Jet Ski\" - kept separate until confirmed.",
+    "after": "A Silent Bay Studios Shockwave game, separate from \"Jet Ski\"."
+   },
+   {
+    "id": "karate-king",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "kerry-workout",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "kung-fu-statesmen",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "last-christmas-2",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "seasonal"
+   },
+   {
+    "id": "london-2012-olympic-games",
+    "field": "year",
+    "before": null,
+    "after": 2012
+   },
+   {
+    "id": "mccain-vs-obama",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "michael-jackson",
+    "field": "historicalNotes",
+    "before": "",
+    "after": "The Miniclip Wiki describes a \"Michael Jackson Tribute\" made with Commando 2 graphics; this is probably it, but that is not confirmed."
+   },
+   {
+    "id": "miniclip-free-bike",
+    "field": "installed",
+    "before": false,
+    "after": true
+   },
+   {
+    "id": "miniclip-free-bike",
+    "field": "gameFile",
+    "before": "",
+    "after": "https://classic.miniclip.com/game-files/miniclip-free-bike/game-files/freebike.swf"
+   },
+   {
+    "id": "mister-easter",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "seasonal"
+   },
+   {
+    "id": "monkey-kick-off",
+    "field": "year",
+    "before": null,
+    "after": 2006
+   },
+   {
+    "id": "monkey-kick-off",
+    "field": "developer",
+    "before": null,
+    "after": "Totebo"
+   },
+   {
+    "id": "monkey-lander",
+    "field": "year",
+    "before": null,
+    "after": 2002
+   },
+   {
+    "id": "monkey-lander",
+    "field": "developer",
+    "before": null,
+    "after": "Totebo"
+   },
+   {
+    "id": "motherload",
+    "field": "installed",
+    "before": false,
+    "after": true
+   },
+   {
+    "id": "motherload",
+    "field": "gameFile",
+    "before": "",
+    "after": "https://classic.miniclip.com/game-files/motherload/motherload.swf"
+   },
+   {
+    "id": "nfl-lateral-collat",
+    "field": "title",
+    "before": "NFL Lateral Collat",
+    "after": "NFL Lateral Collateral"
+   },
+   {
+    "id": "nfl-lateral-collat",
+    "field": "historicalType",
+    "before": "licensed",
+    "after": "promotional"
+   },
+   {
+    "id": "nfl-lateral-collat",
+    "field": "historicalNotes",
+    "before": "Title may be truncated in the source list.",
+    "after": "An NFL Rush game. Shortened to \"NFL Lateral Collat\" in the maintainer's list."
+   },
+   {
+    "id": "obama-alien-defense",
+    "field": "year",
+    "before": null,
+    "after": 2009
+   },
+   {
+    "id": "obama-alien-defense",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "obama-alien-defense",
+    "field": "installed",
+    "before": false,
+    "after": true
+   },
+   {
+    "id": "obama-alien-defense",
+    "field": "gameFile",
+    "before": "",
+    "after": "https://classic.miniclip.com/game-files/obama-alien-defense/game-files/obama-alien-defense.swf"
+   },
+   {
+    "id": "park-a-lot",
+    "field": "year",
+    "before": null,
+    "after": 2002
+   },
+   {
+    "id": "peanut",
+    "field": "installed",
+    "before": false,
+    "after": true
+   },
+   {
+    "id": "peanut",
+    "field": "gameFile",
+    "before": "",
+    "after": "https://classic.miniclip.com/game-files/peanut/peanut.swf"
+   },
+   {
+    "id": "polar-rescue",
+    "field": "year",
+    "before": null,
+    "after": 2002
+   },
+   {
+    "id": "police-pursuit",
+    "field": "year",
+    "before": null,
+    "after": 2008
+   },
+   {
+    "id": "power-boat",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "power-soccer",
+    "field": "year",
+    "before": null,
+    "after": 2005
+   },
+   {
+    "id": "president-knockout",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "presidential-paintball",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "presidential-pound",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "pumpkin-push",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "seasonal"
+   },
+   {
+    "id": "raceway-500",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "raft-wars",
+    "field": "year",
+    "before": null,
+    "after": 2007
+   },
+   {
+    "id": "royal-rampage",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "royal-rampage",
+    "field": "historicalNotes",
+    "before": "",
+    "after": "Miniclip's download of the game is called \"Bush Royal Rampage\"."
+   },
+   {
+    "id": "royal-wedding",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "political-parody"
+   },
+   {
+    "id": "rubble-trouble",
+    "field": "year",
+    "before": null,
+    "after": 2010
+   },
+   {
+    "id": "rubble-trouble",
+    "field": "developer",
+    "before": null,
+    "after": "Nitrome"
+   },
+   {
+    "id": "samurai-sam",
+    "field": "year",
+    "before": null,
+    "after": 2006
+   },
+   {
+    "id": "santas-gift-jump",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "seasonal"
+   },
+   {
+    "id": "sheep-game",
+    "field": "year",
+    "before": null,
+    "after": 2002
+   },
+   {
+    "id": "shift-2",
+    "field": "historicalNotes",
+    "before": "Ambiguous title: could be the Shift puzzle-platformer sequel or a Shift 2 racing promotion.",
+    "after": "Miniclip had a \"Shift 2\" game page; whether it was the Shift puzzle-platformer sequel or a racing-game promotion is not confirmed."
+   },
+   {
+    "id": "shove-it",
+    "field": "developer",
+    "before": null,
+    "after": "matmi"
+   },
+   {
+    "id": "skateboard-jam",
+    "field": "year",
+    "before": null,
+    "after": 2007
+   },
+   {
+    "id": "skyboard",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "sleigh-shot",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "seasonal"
+   },
+   {
+    "id": "sling",
+    "field": "developer",
+    "before": null,
+    "after": "ezone"
+   },
+   {
+    "id": "smashing",
+    "field": "year",
+    "before": null,
+    "after": 2002
+   },
+   {
+    "id": "snowboard-madness",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "soccer-five",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "sportbike-sprint",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "sqrl-golf",
+    "field": "developer",
+    "before": null,
+    "after": "TechRadium"
+   },
+   {
+    "id": "sqrl-golf-2",
+    "field": "developer",
+    "before": null,
+    "after": "TechRadium"
+   },
+   {
+    "id": "stunt-driver",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "super-trucks",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "surfs-up",
+    "field": "secondaryCategories",
+    "before": [
+     "Promotional"
+    ],
+    "after": []
+   },
+   {
+    "id": "surfs-up",
+    "field": "historicalType",
+    "before": "licensed",
+    "after": "standard"
+   },
+   {
+    "id": "surfs-up",
+    "field": "description",
+    "before": "",
+    "after": "Ride the wave and pull off jumps and spins to rack up points."
+   },
+   {
+    "id": "surfs-up",
+    "field": "historicalNotes",
+    "before": "Tie-in with the 2007 animated film.",
+    "after": "A Miniclip surfing game (on Miniclip's 2006 games CD) - not connected with the 2007 film of the same name."
+   },
+   {
+    "id": "tetris",
+    "field": "installed",
+    "before": false,
+    "after": true
+   },
+   {
+    "id": "tetris",
+    "field": "gameFile",
+    "before": "",
+    "after": "https://classic.miniclip.com/game-files/tetris/Tetris.swf"
+   },
+   {
+    "id": "trials-2",
+    "field": "year",
+    "before": null,
+    "after": 2007
+   },
+   {
+    "id": "turkey-run",
+    "field": "historicalType",
+    "before": "standard",
+    "after": "seasonal"
+   },
+   {
+    "id": "wakeboard-pro",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "winter-games",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "world-rugby-2011",
+    "field": "developer",
+    "before": null,
+    "after": "Silent Bay Studios"
+   },
+   {
+    "id": "zed",
+    "field": "year",
+    "before": null,
+    "after": 2001
+   }
+  ],
+  "renamedTypes": [
+   "historicalType \"multiplayer-service\" is now \"multiplayer\" (10 games)"
+  ],
+  "alreadyPresent": [
+   "3 Foot Ninja",
+   "3 Foot Ninja II",
+   "8 Ball Pool",
+   "9 Ball Pool",
+   "A Day of Slacking",
+   "A Short History of the World",
+   "Acid Factory",
+   "Acno's Energizer",
+   "Adventure Elf",
+   "Adventures in Italy",
+   "Age of Speed",
+   "Age of Speed 2",
+   "Air Barons",
+   "Air Show",
+   "Alex in Danger",
+   "Alien Abduction",
+   "Alien Attack",
+   "Alien Clones",
+   "Alien Disorder",
+   "Alien Hive",
+   "Aliens Must Die",
+   "All Out",
+   "Alphattack",
+   "American Football",
+   "Aqua Energizer",
+   "Arctic Drift",
+   "BMX Freestyle",
+   "Balance",
+   "Bang! Howdy",
+   "Base Jumper",
+   "Base Jumping",
+   "Baseball",
+   "Basketball Jam",
+   "Basketball Slam",
+   "Battle Wheels",
+   "Battleships",
+   "Beach Soccer",
+   "Black Knight",
+   "Blair The Motivator",
+   "Bloomin' Gardens",
+   "Blox Forever",
+   "Bloxorz",
+   "Blues Bikers",
+   "Bomba",
+   "Boom Volleyball",
+   "Bow Master",
+   "Bow Master Japan",
+   "Bubble Town",
+   "Bubble Trouble",
+   "Bug On A Wire",
+   "Bush Aerobics",
+   "Bush Shoot-Out",
+   "Cab Driver",
+   "Cable Capers 2",
+   "Candy and Clyde",
+   "Cannon Blast",
+   "Canyon Defense",
+   "Canyon Defense 2",
+   "Canyon Glider",
+   "Canyon Shooter",
+   "Canyon Shooter 2",
+   "Caravan Racers",
+   "Carnival Jackpot",
+   "Castle Conquest",
+   "Cave of Despair",
+   "Caveman",
+   "Cell Out",
+   "Challenge Churchill",
+   "Championship Rally",
+   "Chasm",
+   "Cheese Dreams",
+   "Cherie 'Disco' Blair",
+   "Chick Flick",
+   "China 2008",
+   "Chronotron",
+   "Civilization Wars",
+   "Clash N Slash",
+   "Classroom Pilot",
+   "Click & Slide",
+   "Clowning Around",
+   "Club Penguin",
+   "Commando",
+   "Commando 2",
+   "Commando 2 Trailer",
+   "Commando 3",
+   "Crash Car Combat",
+   "Crashdown",
+   "Creepy Pong",
+   "Crimson Viper",
+   "Crush the Castle 2",
+   "Crypt Raider",
+   "Cube Buster",
+   "Cyber Mice Party",
+   "Dance 2 the Beat",
+   "Dancing Blair",
+   "Dancing Bush",
+   "Dancing Hillary",
+   "David",
+   "Deep Freeze",
+   "Deluxe Pool",
+   "Dino Run",
+   "Dirk Valentine and the Fortress of Steam",
+   "Disc Golf",
+   "Doeo",
+   "Dofus",
+   "Dr Compactor",
+   "Dune Buggy",
+   "Egg Run",
+   "European Soccer",
+   "Exile",
+   "Extreme Pamplona",
+   "Extreme Quad",
+   "Extreme Trial",
+   "Fancy Pants Adventure",
+   "Fancy Pants Adventure 2",
+   "Fast Car Frenzy",
+   "Feed Me",
+   "Field Goal",
+   "Fighter Pilot",
+   "Final Fortress",
+   "Final Ninja",
+   "Final Ninja Zero",
+   "Fire Storm",
+   "Fireworks",
+   "Flatbread Express",
+   "Flea World",
+   "Flingo",
+   "Flip Words",
+   "Formula G1",
+   "Formula Racing",
+   "Fowl Words",
+   "Fowl Words 2",
+   "Fragger",
+   "Fragger Lost City",
+   "Frantic",
+   "Free Kick Challenge",
+   "Free Realms",
+   "Free Running",
+   "Free Wheels",
+   "Frendz",
+   "Frost Bite",
+   "Fruit Smash",
+   "Galactic Warrior",
+   "Gamma Bros",
+   "Get Rooney Fit",
+   "Go Karts",
+   "Goldenballs",
+   "Golf Ace",
+   "Governor of Poker",
+   "Gravity Guy",
+   "Gun Run",
+   "Gyroball",
+   "Hangaroo",
+   "Hangaroo 2",
+   "Hard Boiled",
+   "Heli Attack 2",
+   "Heli Attack 3",
+   "Hexxagon",
+   "Hive Hero",
+   "Hostile Skies",
+   "Hot Rods",
+   "Ice Racer",
+   "Insane Ski Jump",
+   "Jet Ski",
+   "Jet Ski Racing",
+   "Karate King",
+   "Kerry Workout",
+   "King of the Hill",
+   "KingPin Bowling",
+   "Kung Fu Statesmen",
+   "Lamb Chop Drop",
+   "Last Christmas 2",
+   "Leo Steel",
+   "Letter Lasso",
+   "Letter Rip",
+   "Light Heroes",
+   "Little Wheel",
+   "London 2012 Olympic Games",
+   "Love's Arrow",
+   "Lunar Command",
+   "Magic Balls",
+   "Magic Pen",
+   "Mahjong Daily",
+   "Mallet Mania",
+   "Mars Patrol",
+   "Masters of Wrestling",
+   "McCain Vs Obama",
+   "Mini Golf",
+   "Miniclip Free Bike",
+   "Miniclip Rally",
+   "Minilympics",
+   "Mission Mars",
+   "Monkey Kick Off",
+   "Monkey Lander",
+   "Monster Bash",
+   "Monster Trucks",
+   "Monster Trucks Nitro",
+   "MotherLoad",
+   "Motocross Country",
+   "Motocross Fever",
+   "Motocross Urban",
+   "Mountain Bike",
+   "NFL Lateral Collateral",
+   "Need for Madness",
+   "Nordic Chill",
+   "Obama Alien Defense",
+   "Off The Rails",
+   "On The Run",
+   "On The Run 2",
+   "On The Run Vegas",
+   "OurWorld",
+   "Overkill Apache",
+   "Paintball",
+   "Panik in Chocoland",
+   "Papa Louie",
+   "Park a Lot",
+   "Peanut",
+   "Pearl Diver",
+   "Penguin Arcade",
+   "Penguin Push",
+   "Penguin Rush",
+   "Pest Control",
+   "Phantom Mansion",
+   "Pharaoh's Tomb",
+   "Ping Pong",
+   "Pipsoh!",
+   "Piranhas",
+   "Pizza Hot",
+   "Plant Pong",
+   "Platypus",
+   "Pod Panic",
+   "Polar Dash",
+   "Polar Hockey",
+   "Polar Jump",
+   "Polar Rescue",
+   "Police Chopper",
+   "Police Pursuit",
+   "Pop Pirates",
+   "Power Boat",
+   "Power Soccer",
+   "President Knockout",
+   "Presidential Paintball",
+   "Puzzle Pirates",
+   "Quesadilla Breaks",
+   "RC Time Trial",
+   "Raceway 500",
+   "Raft Wars",
+   "Red Beard",
+   "Reel Gold",
+   "Rifleman",
+   "Rigelian Hotshots",
+   "Rocketman",
+   "RollOn",
+   "Rollo and Flex",
+   "Royal Rampage",
+   "Rubble Trouble",
+   "Rule The Beach",
+   "Run The Rapids",
+   "RuneScape",
+   "Rural Racer",
+   "SQRL Golf",
+   "SQRL Golf 2",
+   "Samurai Sam",
+   "Samurai Warrior",
+   "Sandman",
+   "Save the Sheriff",
+   "Scraper Caper",
+   "Sheep Game",
+   "Sheepish",
+   "Shift 2",
+   "Shootin' Hoops",
+   "Shove It",
+   "Show Jumping",
+   "Shrunken Heads",
+   "Silversphere",
+   "Simon Says",
+   "Skateboard Jam",
+   "Sketch Star",
+   "Ski Run",
+   "Skies of War",
+   "Sky Golf",
+   "Skyboard",
+   "Skywire",
+   "Skywire 2",
+   "Slacking",
+   "Sleigh Shot",
+   "Sling",
+   "Slingfire",
+   "Slingshot",
+   "Small Fry",
+   "Smashing",
+   "Snake",
+   "Sneeze",
+   "Snow Drift",
+   "Snowboard Madness",
+   "Soccer Five",
+   "Space Escape",
+   "Space Fighter",
+   "Spineworld",
+   "Sportbike Sprint",
+   "Stan Skates",
+   "Starship Eleven",
+   "Storybook",
+   "Street Fight",
+   "Street Luge",
+   "Stunt Driver",
+   "Stunt Pilot",
+   "Sub Commander",
+   "Sudoku",
+   "Super Trucks",
+   "Superbike GP",
+   "Superstar Racing",
+   "Surf's Up",
+   "Sushi Go Round",
+   "Tanked Up",
+   "Tarnation",
+   "Tennis Ace",
+   "Tennis Doubles",
+   "Tennis Grand Slam",
+   "Tennis Titans",
+   "Tetris",
+   "The Ashes",
+   "The Old West",
+   "The Old West 2",
+   "The Scruffs",
+   "Thin Ice",
+   "Thunder Plunder",
+   "Tiger Golf",
+   "Toboggan Run",
+   "Top Cop",
+   "Topsy Turvy",
+   "Traps, Mines, Sheep",
+   "Trapshoot",
+   "Trech",
+   "Trech 2",
+   "Trial Bike",
+   "Trial Bike PRO",
+   "Trials 2",
+   "Trivia Machine",
+   "Twiddlestix",
+   "UFO Joe",
+   "Under Arms",
+   "United We Dance",
+   "Verti Golf 2",
+   "Wakeboard Pro",
+   "Wakeboarding XS",
+   "War on Terrorism",
+   "Wheels of Salvation",
+   "White Water Rafting",
+   "Winter Bow Master",
+   "Winter Games",
+   "World Rugby 2011",
+   "XRaye",
+   "Zed",
+   "iStunt 2"
+  ]
+ },
+ "streams": [
+  {
+   "id": "8-ball-pool",
+   "title": "8 Ball Pool",
+   "url": "https://classic.miniclip.com/game-files/8-ball-quick-fire-pool/en/8ballquickfirepool.swf"
+  },
+  {
+   "id": "bloxorz",
+   "title": "Bloxorz",
+   "url": "https://classic.miniclip.com/game-files/bloxorz/game-files/bloxorz_miniclip.swf"
+  },
+  {
+   "id": "boom-volleyball",
+   "title": "Boom Volleyball",
+   "url": "https://classic.miniclip.com/game-files/boom-boom-volleyball/boomboom.swf"
+  },
+  {
+   "id": "bubble-trouble",
+   "title": "Bubble Trouble",
+   "url": "https://classic.miniclip.com/game-files/bubble-trouble/bubbletrouble.swf"
+  },
+  {
+   "id": "commando-2",
+   "title": "Commando 2",
+   "url": "https://classic.miniclip.com/game-files/commando-2/game-files/commando2_v2.swf"
+  },
+  {
+   "id": "dancing-bush",
+   "title": "Dancing Bush",
+   "url": "https://classic.miniclip.com/game-files/dancing-bush/dancingbushnew2.swf"
+  },
+  {
+   "id": "deep-freeze",
+   "title": "Deep Freeze",
+   "url": "https://classic.miniclip.com/game-files/deep-freeze/game-files/deepfreeze.swf"
+  },
+  {
+   "id": "heli-attack-3",
+   "title": "Heli Attack 3",
+   "url": "https://classic.miniclip.com/game-files/heli-attack-3/game-files/ha3miniclip.swf"
+  },
+  {
+   "id": "mad-skills-motocross",
+   "title": "Mad Skills Motocross",
+   "url": "https://classic.miniclip.com/game-files/mad-skills-motocross/game-files/MadSkillMotocrossFlashPort.swf"
+  },
+  {
+   "id": "miniclip-free-bike",
+   "title": "Miniclip Free Bike",
+   "url": "https://classic.miniclip.com/game-files/miniclip-free-bike/game-files/freebike.swf"
+  },
+  {
+   "id": "motherload",
+   "title": "MotherLoad",
+   "url": "https://classic.miniclip.com/game-files/motherload/motherload.swf"
+  },
+  {
+   "id": "moto-jumping",
+   "title": "Moto Jumping",
+   "url": "https://classic.miniclip.com/game-files/moto-jumping/game-files/MotoJumping.swf"
+  },
+  {
+   "id": "obama-alien-defense",
+   "title": "Obama Alien Defense",
+   "url": "https://classic.miniclip.com/game-files/obama-alien-defense/game-files/obama-alien-defense.swf"
+  },
+  {
+   "id": "peanut",
+   "title": "Peanut",
+   "url": "https://classic.miniclip.com/game-files/peanut/peanut.swf"
+  },
+  {
+   "id": "raft-wars-2",
+   "title": "Raft Wars 2",
+   "url": "https://classic.miniclip.com/game-files/raft-wars-2/game-files/rw2.swf"
+  },
+  {
+   "id": "tetris",
+   "title": "Tetris",
+   "url": "https://classic.miniclip.com/game-files/tetris/Tetris.swf"
+  }
+ ],
+ "uncertainVariants": [
+  {
+   "title": "Quick Fire Pool",
+   "with": "8 Ball Pool",
+   "decision": "separate",
+   "note": "Miniclip's archive calls the 2008 game \"8 Ball Quick Fire Pool\", and Miniclip also had a \"Quick Fire Pool Instant\" page, so it is not certain which game the maintainer list's \"Quick Fire Pool\" is - both records stay."
+  },
+  {
+   "title": "Slacking",
+   "with": "A Day of Slacking",
+   "decision": "separate",
+   "note": "\"Slacking\" is in the 2008-2009 Full Games List and \"A Day of Slacking\" was an official download; they may be the same game."
+  },
+  {
+   "title": "Royal Rampage",
+   "with": "Bush Royal Rampage",
+   "decision": "merged",
+   "note": "Miniclip's own download is called \"Bush Royal Rampage\"."
+  },
+  {
+   "title": "Paintball",
+   "with": "Stress Relief Paintball",
+   "decision": "merged",
+   "note": "The same download file under two names."
+  },
+  {
+   "title": "Battleships",
+   "with": "Battleships - General Quarters II",
+   "decision": "merged",
+   "note": "The name of the preserved Miniclip copy; the game lists just say \"Battleships\"."
+  },
+  {
+   "title": "Boom Volleyball",
+   "with": "Boom Boom Volleyball",
+   "decision": "merged",
+   "note": "Miniclip's archive calls it \"Boom Boom Volleyball\" (boomboom.swf)."
+  },
+  {
+   "title": "Tetris",
+   "with": "Miniclip Tetris",
+   "decision": "merged",
+   "note": "Miniclip's archive calls it \"Miniclip Tetris\"."
+  },
+  {
+   "title": "Bubble Trouble",
+   "with": "Bubble Struggle",
+   "decision": "merged",
+   "note": "The same game by Kresimir Cvitanovic; \"Bubble Struggle\" is its later name."
+  },
+  {
+   "title": "Alien Abduction",
+   "with": "Abduction",
+   "decision": "merged",
+   "note": "The same official download under two names."
+  },
+  {
+   "title": "Mahjongg",
+   "with": "Mahjong Classic",
+   "decision": "not-added",
+   "note": "An Internet Archive item \"Mahjongg\" is credited to Miniclip; it may be Mahjong Classic or another mahjong game."
+  },
+  {
+   "title": "Helicopter Gunship",
+   "with": "Operation Flashpoint",
+   "decision": "not-added",
+   "note": "The Miniclip Shockwave collection has \"Operation Flashpoint Cold War Crisis - Helicopter Gunship\"; unclear whether it was a Miniclip game or a promotional download."
+  },
+  {
+   "title": "Texas Hold'em",
+   "with": "",
+   "decision": "not-added",
+   "note": "An Internet Archive item \"minicliptexasholdem\" (2008) has no title or description."
+  },
+  {
+   "title": "Cable Capers",
+   "with": "Cable Capers 2",
+   "decision": "not-added",
+   "note": "Only the sequel turned up in the sources - the first game is not added without evidence."
+  },
+  {
+   "title": "Rubble Trouble Moscow",
+   "with": "Rubble Trouble",
+   "decision": "separate",
+   "note": "Part of the Rubble Trouble series; its release order is not confirmed, so it has no series number."
+  },
+  {
+   "title": "Michael Jackson",
+   "with": "Michael Jackson Tribute",
+   "decision": "separate",
+   "note": "The Miniclip Wiki describes a \"Michael Jackson Tribute\"; probably the same entry, not merged until confirmed."
+  },
+  {
+   "title": "Thunder Devil",
+   "with": "Thunder Plunder",
+   "decision": "separate",
+   "note": "No trace of \"Thunder Devil\" was found; kept as needs-review."
+  },
+  {
+   "title": "Papa Louie 2",
+   "with": "Papa Louie",
+   "decision": "not-added",
+   "note": "Miniclip hosted it, but from 2013 on - outside the 2001-2012 archive."
+  }
+ ],
+ "rejected": [
+  {
+   "title": "Guns of Anarchy",
+   "reason": "out-of-era",
+   "note": "2013 or later (Miniclip Shockwave collection)."
+  },
+  {
+   "title": "Zombie Big Trouble",
+   "reason": "out-of-era",
+   "note": "2013 or later (Miniclip Shockwave collection)."
+  },
+  {
+   "title": "Centre Court Tennis",
+   "reason": "out-of-era",
+   "note": "2013 or later (Miniclip Shockwave collection)."
+  },
+  {
+   "title": "Upipe Skateboard",
+   "reason": "out-of-era",
+   "note": "2013 or later (Miniclip Shockwave collection)."
+  },
+  {
+   "title": "Transformers Beast Hunters",
+   "reason": "out-of-era",
+   "note": "2013 tie-in (Miniclip Shockwave collection)."
+  },
+  {
+   "title": "Papa Louie 2",
+   "reason": "out-of-era",
+   "note": "2013 or later."
+  },
+  {
+   "title": "Domestos Flush",
+   "reason": "out-of-era",
+   "note": "Dated June 2013 on the Internet Archive."
+  },
+  {
+   "title": "Rail Rush",
+   "reason": "out-of-era",
+   "note": "2013 mobile game."
+  },
+  {
+   "title": "On The Run The Getaway",
+   "reason": "out-of-era",
+   "note": "Dated September 2013 on the Internet Archive."
+  },
+  {
+   "title": "Hambo",
+   "reason": "out-of-era",
+   "note": "Mobile game (2012), not a Miniclip web game."
+  },
+  {
+   "title": "Sketch Man",
+   "reason": "not-a-web-game",
+   "note": "2012 mobile game."
+  },
+  {
+   "title": "Mini Soccer",
+   "reason": "out-of-era",
+   "note": "2015 mobile game."
+  },
+  {
+   "title": "Agar.io",
+   "reason": "out-of-era",
+   "note": "2015 mobile / web game."
+  },
+  {
+   "title": "Arcuz",
+   "reason": "no-miniclip-evidence",
+   "note": "Preserved on the Internet Archive without any link to Miniclip."
+  },
+  {
+   "title": "Arcuz 2: Dungeons",
+   "reason": "no-miniclip-evidence",
+   "note": "Preserved on the Internet Archive without any link to Miniclip."
+  },
+  {
+   "title": "World Domination",
+   "reason": "no-miniclip-evidence",
+   "note": "A Newgrounds game."
+  },
+  {
+   "title": "Ask Guru Joe",
+   "reason": "not-a-game",
+   "note": "Internet Archive item credited to NetCent Communications and Miniclip; not a game."
+  },
+  {
+   "title": "Rocketman Demo",
+   "reason": "duplicate",
+   "note": "Demo of Rocketman, which is already in the catalogue."
+  }
+ ],
+ "eras": {
+  "unknown": 771,
+  "2007-2009": 21,
+  "2001-2003": 13,
+  "2004-2006": 12,
+  "2010-2012": 11
+ },
+ "categories": {
+  "Other": 230,
+  "Sports": 79,
+  "Puzzle": 68,
+  "Shooting": 61,
+  "Racing": 42,
+  "Driving": 41,
+  "Winter": 37,
+  "Skill": 34,
+  "Football": 31,
+  "Action": 22,
+  "Casual": 22,
+  "Promotional": 22,
+  "Arcade": 20,
+  "Flying": 18,
+  "Fighting": 17,
+  "Word": 15,
+  "Card": 13,
+  "Platform": 13,
+  "Strategy": 12,
+  "Adventure": 9,
+  "Multiplayer": 9,
+  "Pool": 7,
+  "Board": 6
+ },
+ "baseline": {
+  "commit": "e5ef2f1",
+  "ids": [
+   "3-foot-ninja",
+   "3-foot-ninja-ii",
+   "5-min-shoot-em-up",
+   "8-ball-pool",
+   "9-ball-pool",
+   "a-day-of-slacking",
+   "aaron-stone",
+   "acid-factory",
+   "acnos-energizer",
+   "adventure-elf",
+   "adventures-in-italy",
+   "adventures-of-bloo",
+   "age-of-speed",
+   "age-of-speed-2",
+   "agent-freeride",
+   "agent-freeride-2",
+   "agent-p-strikes-back",
+   "air-barons",
+   "air-show",
+   "alex-in-danger",
+   "alien-abduction",
+   "alien-attack",
+   "alien-clones",
+   "alien-disorder",
+   "alien-hive",
+   "aliens-must-die",
+   "all-out",
+   "alphattack",
+   "amazing-sheriff",
+   "american-football",
+   "anagram-magic",
+   "anagrammatic",
+   "anikas-odyssey",
+   "aqua-energizer",
+   "aquanaut",
+   "arctic-drift",
+   "armada-tanks",
+   "art-thief",
+   "asgard",
+   "ask-guru-joe",
+   "assault-course",
+   "assault-course-2",
+   "asteroid-rush",
+   "astro-boy",
+   "avalanche",
+   "axon",
+   "baby-blimp",
+   "backfire",
+   "bad-apple",
+   "badaboom",
+   "baja-motocross",
+   "balance",
+   "banana-mania",
+   "bang-howdy",
+   "bank-robber",
+   "base-jumper",
+   "base-jumping",
+   "baseball",
+   "basketball-jam",
+   "basketball-jam-shots",
+   "basketball-slam",
+   "battle-wheels",
+   "battleships",
+   "battlesphere",
+   "beach-soccer",
+   "bears-and-bees",
+   "beat-the-wall",
+   "bee-boxing",
+   "berry-rush",
+   "big-catch",
+   "big-jump-challenge",
+   "big-snow-tricks",
+   "bike-rivals",
+   "bionic-bugz",
+   "black-knight",
+   "black-sun",
+   "blackjack-elf",
+   "blair-the-motivator",
+   "blastwave",
+   "blobs",
+   "blobs-2",
+   "block-drop",
+   "bloomin-gardens",
+   "blox-forever",
+   "bloxorz",
+   "blues-bikers",
+   "bmx-freestyle",
+   "bobulous",
+   "bomba",
+   "boom-volleyball",
+   "bow-master",
+   "bow-master-halloween",
+   "bow-master-japan",
+   "boxing-bonanza",
+   "boxo",
+   "bp-gas-mania",
+   "bp-rally",
+   "brainwave",
+   "bubble-town",
+   "bubble-trouble",
+   "bug-on-a-wire",
+   "bullethead",
+   "bullseye",
+   "bunch",
+   "bush-aerobics",
+   "bush-shoot-out",
+   "cab-driver",
+   "cable-capers-2",
+   "calabash-bros",
+   "calamari",
+   "canary",
+   "candy-and-clyde",
+   "candy-magic",
+   "cannon-blast",
+   "canyon-defense",
+   "canyon-defense-2",
+   "canyon-glider",
+   "canyon-shooter",
+   "canyon-shooter-2",
+   "car-chaos",
+   "caravan-racers",
+   "carnival-jackpot",
+   "castle-conquest",
+   "castle-corp",
+   "catapult",
+   "cave-chaos",
+   "cave-of-despair",
+   "caveman",
+   "cell-out",
+   "challenge-churchill",
+   "championship-rally",
+   "chasm",
+   "cheese-dreams",
+   "cherie-disco-blair",
+   "chick-flick",
+   "china-2008",
+   "christmas-games",
+   "chronotron",
+   "chuckaboom",
+   "civilization-wars",
+   "clash-n-slash",
+   "classroom-pilot",
+   "click-and-slide",
+   "clickplay",
+   "clowning-around",
+   "club-penguin",
+   "coign-of-vantage",
+   "cold-storage",
+   "commander-n-chief",
+   "commando",
+   "commando-2",
+   "commando-2-trailer",
+   "commando-3",
+   "couronne-deluxe",
+   "cowabunga-candace",
+   "cranergy-ball",
+   "crash-car-combat",
+   "crash-football",
+   "crashdown",
+   "crazy-go-nuts-2",
+   "crazy-karts",
+   "creepy-pong",
+   "cricket",
+   "crimson-viper",
+   "criss-cross-rally",
+   "crossword-daily",
+   "crush-the-castle-2",
+   "crypt-raider",
+   "cube-buster",
+   "cursor-chaos",
+   "cyber-mice-party",
+   "da-numba",
+   "dance-2-the-beat",
+   "dancing-blair",
+   "dancing-bush",
+   "dancing-hillary",
+   "dancing-palin",
+   "david",
+   "decajump",
+   "deep-freeze",
+   "deep-sea-patrol",
+   "defenders",
+   "deluxe-pool",
+   "desert-ambush",
+   "detonator",
+   "digital-switch",
+   "dino-quake",
+   "dino-run",
+   "dino-strike",
+   "dirk-valentine-and-the-fortress-of-steam",
+   "disc-golf",
+   "disc-pool",
+   "doeo",
+   "dofus",
+   "dojo-dodge",
+   "doodle",
+   "doodle-2",
+   "down-perryscope",
+   "downhill-chill",
+   "dr-compactor",
+   "dragon-attack",
+   "dream-racer",
+   "dream-tower",
+   "droid-retaliation",
+   "drumming-alchemist",
+   "dune-buggy",
+   "egg-blast",
+   "egg-run",
+   "egyptian-tale",
+   "elastic-soccer",
+   "electro-air-hockey",
+   "european-soccer",
+   "evac",
+   "exile",
+   "extreme-pamplona",
+   "extreme-quad",
+   "extreme-trial",
+   "extreme-triathlon",
+   "fa-18",
+   "family-feud",
+   "fancy-pants-adventure",
+   "fancy-pants-adventure-2",
+   "farmer",
+   "fast-car-frenzy",
+   "fat-cat",
+   "fat-slice",
+   "feather-keeper",
+   "feed-me",
+   "field-goal",
+   "fighter-pilot",
+   "final-fortress",
+   "final-ninja",
+   "final-ninja-zero",
+   "fire-storm",
+   "fireworks",
+   "flash-tennis",
+   "flashman",
+   "flatbread-express",
+   "flea-world",
+   "flingo",
+   "flip-words",
+   "flomo",
+   "flood-runner-2",
+   "fly-guy",
+   "formula-g1",
+   "formula-racing",
+   "fowl-words",
+   "fowl-words-2",
+   "fragger",
+   "fragger-lost-city",
+   "frantic",
+   "free-cell",
+   "free-kick-challenge",
+   "free-realms",
+   "free-running",
+   "free-wheels",
+   "freestyle-snowboard",
+   "frendz",
+   "fresh-water-bounce",
+   "frost-bite",
+   "frost-bite-2",
+   "fruit-smash",
+   "funky-nurse",
+   "galactic-goobers",
+   "galactic-warrior",
+   "galaxy-gunner",
+   "gamma-bros",
+   "gas-and-sand",
+   "gateway",
+   "get-rooney-fit",
+   "ghostfire-attack",
+   "ghosts-stole-my-dog",
+   "gin-rummy",
+   "gingerbread-circus",
+   "gladiators",
+   "glassworks",
+   "globe-skater",
+   "go-karts",
+   "goal-keeper",
+   "goldenballs",
+   "golf-ace",
+   "golf-ace-hawaii",
+   "golf-solitaire",
+   "golfish",
+   "governor-of-poker",
+   "graveyard-shift",
+   "gravity",
+   "gravity-guy",
+   "gripz",
+   "gun-run",
+   "gutterball",
+   "gyroball",
+   "hamsterball",
+   "hamsterz-superstar",
+   "hangaroo",
+   "hangaroo-2",
+   "hansens-eyebrows",
+   "hap-hazard",
+   "hard-boiled",
+   "harvey-wallbanger",
+   "haunted-house",
+   "heart-breaker",
+   "hearts",
+   "heli-attack-2",
+   "heli-attack-3",
+   "hen-coops",
+   "hexxagon",
+   "hill-billy-flea",
+   "hive-hero",
+   "hockey-showdown",
+   "hong-kong-ninja",
+   "horsey-racing",
+   "hostile-skies",
+   "hot-air",
+   "hot-air-2",
+   "hot-rods",
+   "hunter",
+   "hurricane",
+   "ice-breaker",
+   "ice-breaker-rc",
+   "ice-racer",
+   "ice-slide",
+   "icy-slicy",
+   "imagine-artist",
+   "in-the-doghouse",
+   "insane-ski-jump",
+   "istunt",
+   "istunt-2",
+   "jet-ski",
+   "jet-ski-racing",
+   "jigsaw-car",
+   "jigsaw-ocean",
+   "jingo",
+   "joe-destructo",
+   "judy-moody-thrill-coaster",
+   "k-million",
+   "karate-king",
+   "kerry-workout",
+   "kickboxing",
+   "kickups",
+   "kindergarten",
+   "king-of-the-hill",
+   "kingpin-bowling",
+   "klondike-solitaire",
+   "kung-fu-statesmen",
+   "lamb-chop-drop",
+   "last-christmas-2",
+   "lead-storm",
+   "leo-steel",
+   "letter-lasso",
+   "letter-rip",
+   "light-heroes",
+   "light-temple",
+   "little-fins",
+   "little-wheel",
+   "london-2012-olympic-games",
+   "loves-arrow",
+   "lumberjack-games",
+   "lunar-command",
+   "magic-balls",
+   "magic-pen",
+   "magic-pen-2",
+   "mahjong-daily",
+   "mallet-mania",
+   "mars-patrol",
+   "masters-of-wrestling",
+   "math-blaster",
+   "max-speed",
+   "mccain-vs-obama",
+   "michael-jackson",
+   "milk-shake",
+   "mini-golf",
+   "mini-putt-3",
+   "mini-soccer",
+   "miniclip-free-bike",
+   "miniclip-rally",
+   "minilympics",
+   "mission-mars",
+   "mister-easter",
+   "moby-dick",
+   "moby-dick-2",
+   "monkey-kick-off",
+   "monkey-lander",
+   "monkey-snowfight",
+   "monster-bash",
+   "monster-basher",
+   "monster-golf",
+   "monster-invasion",
+   "monster-island",
+   "monster-mowdown-2",
+   "monster-sumo",
+   "monster-trucks",
+   "monster-trucks-nitro",
+   "moon-rush",
+   "moonshadow",
+   "most-wanted",
+   "motherload",
+   "motocross-country",
+   "motocross-fever",
+   "motocross-urban",
+   "mountain-bike",
+   "movie-munchies",
+   "mr-bounce",
+   "mr-men-pinball",
+   "mud-rally",
+   "mushroom-madness",
+   "music-cube",
+   "nano-recon",
+   "narnia-prince-caspian",
+   "need-for-madness",
+   "nerf-n-strike",
+   "nfl-conga-chaos",
+   "nfl-lateral-collat",
+   "night-at-the-museum",
+   "ninja-glove",
+   "nordic-chill",
+   "numbskull",
+   "obama-alien-defense",
+   "off-the-rails",
+   "offroad-4x4",
+   "on-the-run",
+   "on-the-run-2",
+   "on-the-run-vegas",
+   "one-man-band",
+   "onekey",
+   "ourworld",
+   "overkill-apache",
+   "paintball",
+   "panfu",
+   "panik-in-chocoland",
+   "papa-louie",
+   "parachute-plunder",
+   "park-a-lot",
+   "park-a-lot-2",
+   "peanut",
+   "pearl-diver",
+   "pebble-dash",
+   "pencak-silat",
+   "pengapop",
+   "penguin-arcade",
+   "penguin-push",
+   "penguin-rush",
+   "pest-control",
+   "petz-dogz-trickz",
+   "petz-nursery",
+   "petz-splashdown",
+   "phantom-mansion",
+   "pharaohs-tomb",
+   "ping-pong",
+   "pipsoh",
+   "piranhas",
+   "pirate-chains",
+   "pirate-golf",
+   "pixel-cricket",
+   "pizza-hot",
+   "planet-cruncher",
+   "plant-pong",
+   "platypus",
+   "plunger",
+   "pod-panic",
+   "polar-dash",
+   "polar-hockey",
+   "polar-jump",
+   "polar-rescue",
+   "police-chopper",
+   "police-pursuit",
+   "pop-pirates",
+   "power-boat",
+   "power-soccer",
+   "president-knockout",
+   "presidential-paintball",
+   "presidential-pound",
+   "pressure-shot",
+   "pro-football",
+   "pro-kick-revolution",
+   "protect-the-city",
+   "pumpkin-push",
+   "puzzle-pirates",
+   "puzzled-sheep",
+   "quadrow",
+   "quesadilla-breaks",
+   "quick-fire-pool",
+   "quickhit-nfl",
+   "raceway-500",
+   "rack-runners",
+   "radical-aces",
+   "raft-wars",
+   "railroad-rampage",
+   "rails-of-war",
+   "rally-championship",
+   "rango",
+   "rapid-wars",
+   "rc-time-trial",
+   "real-space-2",
+   "red-beard",
+   "red-bugs-puzzle",
+   "red-code-3",
+   "red-cross-eru",
+   "red-riot",
+   "reel-gold",
+   "retroshoot-360",
+   "reversi",
+   "rich-racer",
+   "ricochet",
+   "rifleman",
+   "rift",
+   "rigelian-hotshots",
+   "ringshot",
+   "rival-rage",
+   "robo-pop",
+   "robot-rage",
+   "rocketman",
+   "rockitty",
+   "rockstarter",
+   "rollercoaster",
+   "rolley",
+   "rollo-and-flex",
+   "rollon",
+   "roly-poly",
+   "rooftop-hop",
+   "route-rageous",
+   "royal-rampage",
+   "royal-wedding",
+   "rubble-trouble",
+   "rubble-trouble-moscow",
+   "rugby-challenge",
+   "rule-the-beach",
+   "run-n-gun",
+   "run-the-rapids",
+   "runescape",
+   "rural-racer",
+   "saloon-brawl",
+   "samsung-football",
+   "samurai-sam",
+   "samurai-warrior",
+   "sandman",
+   "santas-gift-jump",
+   "save-the-fallen",
+   "save-the-sheriff",
+   "scraper-caper",
+   "scribble",
+   "sewer-run",
+   "shadow-factory",
+   "shanghai-mahjongg",
+   "shark-bait",
+   "sheep-game",
+   "sheepish",
+   "shell-le-mans",
+   "sheriff-tripeaks",
+   "shift-2",
+   "shootin-hoops",
+   "shopping-mall-parking",
+   "short-history-of-the-world",
+   "shove-it",
+   "show-jumping",
+   "shrunken-heads",
+   "silversphere",
+   "simon-says",
+   "simple-soccer",
+   "skateboard-jam",
+   "sketch-star",
+   "sketchman",
+   "ski-run",
+   "skies-of-war",
+   "sky-golf",
+   "skyboard",
+   "skywire",
+   "skywire-2",
+   "slacking",
+   "sleigh-shot",
+   "slime-laboratory",
+   "slime-laboratory-2",
+   "sling",
+   "slingfire",
+   "slingshot",
+   "small-fry",
+   "smashing",
+   "smokin-barrels",
+   "snake",
+   "snake-squad",
+   "snap-n-spooky",
+   "sneeze",
+   "snickers-mr-t-break",
+   "sniper",
+   "snow-day",
+   "snow-drift",
+   "snow-riders",
+   "snowball-warfare",
+   "snowboard-madness",
+   "snowboarder-xs",
+   "snowfight",
+   "snowmen-invaders",
+   "snowmen-parade",
+   "soap-bubble",
+   "soap-bubble-2",
+   "soccer-five",
+   "soccer-pro",
+   "soccer-stars",
+   "space-escape",
+   "space-fighter",
+   "space-hopper",
+   "spec-ops",
+   "spectral-wizard",
+   "spider-game",
+   "spineworld",
+   "sportbike-sprint",
+   "sqrl-golf",
+   "sqrl-golf-2",
+   "square-meal",
+   "squid",
+   "squiggle",
+   "stackopolis",
+   "stan-skates",
+   "starship-eleven",
+   "starship-gunner",
+   "starship-seven",
+   "stay-the-distance",
+   "storybook",
+   "street-fight",
+   "street-luge",
+   "stunt-dive",
+   "stunt-driver",
+   "stunt-pilot",
+   "stunt-pilot-2",
+   "stuntman",
+   "style-lab-makeover",
+   "sub-commander",
+   "sudoku",
+   "summer-athletics",
+   "super-robot-war",
+   "super-stocktake",
+   "super-trucks",
+   "superbike-gp",
+   "superhero-pizza",
+   "superstar-racing",
+   "surfmania",
+   "surfs-up",
+   "sushi-go-round",
+   "sveerz",
+   "table-tennis",
+   "tabletop-cricket",
+   "tank-attack",
+   "tanked-up",
+   "tarnation",
+   "tennis-ace",
+   "tennis-doubles",
+   "tennis-game",
+   "tennis-grand-slam",
+   "tennis-titans",
+   "tetris",
+   "tgmotocross-3",
+   "the-ashes",
+   "the-godfather",
+   "the-old-west",
+   "the-old-west-2",
+   "the-professionals",
+   "the-scruffs",
+   "thin-ice",
+   "thunder-devil",
+   "thunder-plunder",
+   "tiger-golf",
+   "tiny-castle",
+   "tmnt-double-damage",
+   "toboggan-run",
+   "tooth-n-claw",
+   "top-cop",
+   "top-figures",
+   "topsy-turvy",
+   "traps-mines-sheep",
+   "trapshoot",
+   "trech",
+   "trech-2",
+   "trial-bike",
+   "trial-bike-bundle",
+   "trial-bike-pro",
+   "trials-2",
+   "trials-construction-yard",
+   "trials-dynamite-tumble",
+   "trials-mountain",
+   "tribe",
+   "tripeaks-solitaire",
+   "trivia-machine",
+   "tropi-golf",
+   "troy",
+   "tumblestump-2",
+   "turbo-spirit",
+   "turbo-spirit-xt",
+   "turkey-run",
+   "twiddlestix",
+   "twisted-city",
+   "ufo-joe",
+   "under-arms",
+   "united-we-dance",
+   "up-beat",
+   "uphill-rush",
+   "urban-basketball",
+   "urban-rivals",
+   "urban-specialist",
+   "vector-rush",
+   "vectoroids",
+   "verti-golf",
+   "verti-golf-2",
+   "viking-defense",
+   "viper",
+   "virtual-knee-surgery",
+   "volcanic-airways",
+   "volcano",
+   "wacky-ballz",
+   "waffle-mania",
+   "wait-4-me",
+   "wakeboard-pro",
+   "wakeboarding",
+   "wakeboarding-xs",
+   "war-bears",
+   "war-on-terrorism",
+   "waterslide",
+   "waterslide-slalom",
+   "wave-jumper",
+   "way-of-the-exploding-stick",
+   "weirdville",
+   "whack-a-ground-hog",
+   "wheels-of-salvation",
+   "white-water-rafting",
+   "wild-wild-west",
+   "winter-bow-master",
+   "winter-games",
+   "winter-workout",
+   "wonderputt",
+   "wood-runner",
+   "word-sailing",
+   "word-vine",
+   "wordo",
+   "world-cricket-2011",
+   "world-domination-2",
+   "world-golf-tour",
+   "world-rugby-2011",
+   "world-soccer",
+   "wormcraft",
+   "wrap-attack",
+   "xbox-party-mansion",
+   "xraye",
+   "yeti-sports",
+   "yo-gos-rollers",
+   "yome-creator",
+   "youda-camper",
+   "youda-legend",
+   "youda-marina",
+   "youda-sushi-chef",
+   "zed",
+   "zoikz",
+   "zombie-crypt",
+   "zombie-stalker",
+   "zubo-zurfing"
+  ]
+ }
+}

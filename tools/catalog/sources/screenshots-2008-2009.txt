@@ -1,0 +1,176 @@
+# name: Miniclip homepage screenshots (2008-2009)
+# type: screenshot
+# about: The four screenshots of the 2008-2009 Miniclip homepage this site was
+#   rebuilt from. Titles are transcribed from what is legible: the Latest
+#   Games, Hot Games and Top Ten panels, the six category boxes and the parts
+#   of the Full Games List that are visible (the list is cut off in the
+#   screenshots, so most titles are NOT visible - absence here means nothing).
+#   Spellings are exactly as shown.
+
+# Latest Games / Hot Games / Top Ten
+Plant Pong
+Spineworld
+Storybook
+Club Penguin
+8 Ball Pool | note=Shown with the "Quick Fire Pool 8 Ball" thumbnail.
+Heli Attack 3
+Sneeze
+Karate King
+Monster Trucks Nitro
+Commando 2
+9 Ball Pool
+OurWorld
+Final Ninja Zero
+Free Realms
+
+# Category boxes (Action, Multiplayer, Sports, Puzzle, Shoot 'Em Up, Racing)
+Stunt Pilot
+Hard Boiled
+Bomba
+Puzzle Pirates
+Superstar Racing
+Baseball
+Mountain Bike
+Trials 2
+Ski Run
+Jet Ski
+Bloxorz
+Adventures in Italy
+The Scruffs
+Doeo
+Sandman
+Canyon Shooter
+Final Fortress
+Overkill Apache
+Light Heroes
+Alien Disorder
+Motocross Urban
+Miniclip Rally
+Tanked Up
+
+# Full Games List - visible parts
+3 Foot Ninja
+3 Foot Ninja II
+Acid Factory
+Acno's Energizer
+Adventure Elf
+Age Of Speed
+Age of Speed 2
+Air Barons
+Alex in Danger
+Alien Abduction
+Alien Attack
+Alien Clones
+Alien Hive
+Aliens Must Die
+All Out
+Alphattack
+Caravan Racers
+Carnival Jackpot
+Castle Conquest
+Cave of Despair
+Caveman
+Cell Out
+Challenge Churchil | id=challenge-churchill | note=Spelled "Challenge Churchil" in the Full Games List.
+Championship Rally
+Chasm
+Cheese Dreams
+Cherie 'Disco' Blair
+Chick Flick
+China 2008
+Chronotron
+Clash N Slash
+Classroom Pilot
+Click & Slide
+Clowning Around
+Field Goal
+Fighter Pilot
+Final Ninja
+Fire Storm
+Fireworks
+Flatbread Express
+Flea World
+Flingo
+Flip Words
+Formula G1
+Formula Racing
+Fowl Words
+Fowl Words 2
+Frantic
+Free Kick Challenge
+Free Wheels
+Frendz
+King of the Hill
+KingPin Bowling
+Kung Fu Statesmen
+Lamb Chop Drop
+Last Christmas 2
+Leo Steel
+Letter Lasso
+Letter Rip
+Love's Arrow
+Lunar Command
+Magic Balls
+Magic Pen
+Mahjong Daily
+Mallet Mania
+Mars Patrol
+Masters of Wrestling
+McCain Vs Obama
+Penguin Arcade
+Penguin Push
+Penguin Rush
+Pest Control
+Phantom Mansion
+Pharaoh's Tomb
+Ping Pong
+Pipsoh!
+Piranhas
+Pizza Hot
+Platypus
+Pod Panic
+Polar Dash
+Polar Hockey
+Polar Jump
+Polar Rescue
+Police Chopper
+Police Pursuit
+Pop Pirates
+Shove It
+Show Jumping
+Shrunken Heads
+Silversphere
+Simon Says
+Skateboard Jam
+Sketch Star
+Skies of War
+Sky Golf
+Skyboard
+Skywire
+Skywire 2
+Slacking
+Sleigh Shot
+Sling
+Slingfire
+Slingshot
+Small Fry
+Smashing
+Tarnation
+Tennis Ace
+Tennis Doubles
+Tennis Grand Slam
+Tennis Titans
+The Ashes
+The Old West
+The Old West 2
+Thin Ice
+Thunder Plunder
+Tiger Golf
+Toboggan Run
+Top Cop
+Topsy Turvy
+Traps, Mines, Sheep
+Trapshoot
+Trech
+Trech 2
+Trial Bike

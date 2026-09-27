@@ -2,8 +2,9 @@
 // and offers the queries the pages need (latest, hot, top, categories, related).
 //
 // games.json records follow the catalogue schema documented in README.md:
-//   id, slug, title, aliases, category, secondaryCategories, year, developer,
-//   publisher, description, instructions, thumbnail, image, type, gameFile,
+//   id, slug, title, aliases, series, seriesOrder, category, secondaryCategories,
+//   year, developer, publisher, relationship, historicalType, verificationStatus,
+//   sources, description, instructions, thumbnail, image, type, gameFile,
 //   installed, featured, popular, new, nostalgiaPriority, rating, plays ...
 // Older records that use "file" / "tags" / "added" still work.
 import { plays, ratings } from './store.js';
@@ -37,6 +38,10 @@ export function hash(s) {
   for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
   return h >>> 0;
 }
+
+// Eras used by the A-Z filters (the archive covers 2001-2012)
+export const ERAS = [['2001-2003', 2001, 2003], ['2004-2006', 2004, 2006], ['2007-2009', 2007, 2009], ['2010-2012', 2010, 2012]];
+export const eraOf = (year) => { const e = year && ERAS.find(([, a, b]) => year >= a && year <= b); return e ? e[0] : ''; };
 
 const TYPE_ALIASES = { swf: 'flash', ruffle: 'flash', html: 'html5', web: 'html5', external: 'iframe', embed: 'iframe', local: 'local-web', localweb: 'local-web' };
 export const TYPES = ['flash', 'html5', 'iframe', 'local-web'];
@@ -89,7 +94,17 @@ function normalise(raw, catIndex) {
   g.instructions = str(raw.instructions);
   g.historicalNotes = str(raw.historicalNotes);
   g.historicalType = str(raw.historicalType) || 'standard';
-  g.verificationStatus = str(raw.verificationStatus) || 'likely';
+  g.verificationStatus = str(raw.verificationStatus) || 'single-source';
+  g.relationship = str(raw.relationship) || 'unknown';
+  g.sources = (Array.isArray(raw.sources) ? raw.sources : [])
+    .filter((x) => x && x.name).map((x) => ({ type: str(x.type), name: str(x.name) }));
+  g.seriesName = str(raw.series);
+  g.seriesOrder = Number.isInteger(+raw.seriesOrder) && +raw.seriesOrder > 0 && raw.seriesOrder !== null ? +raw.seriesOrder : null;
+  g.era = eraOf(g.year);
+  // an installed Flash game whose file is on another server (Miniclip's own archive)
+  g.streamed = g.installed && /^https:\/\//i.test(g.file);
+  g.host = '';
+  if (g.streamed) { try { g.host = new URL(g.file).hostname; } catch (e) { g.streamed = false; } }
   g.challenge = !!raw.challenge;
   g.sortKey = sortKey(g.title);
   g.letter = letterOf(g.title);
@@ -133,6 +148,8 @@ function seriesKey(title) {
   for (let i = 0; i < 3; i++) k = k.replace(SERIES_TAIL, '');
   return k;
 }
+// the catalogue's own series name wins ("Commando Assault" is in the Commando series)
+const seriesOf = (g) => (g.seriesName ? 'series:' + g.seriesName.toLowerCase() : seriesKey(g.title));
 
 export class Library {
   constructor(games, cats, site, catIndex) {
@@ -149,13 +166,13 @@ export class Library {
     this.cats = cats.filter((c) => c.virtual || counts.get(c.id));
     const top = Array.isArray(this.site.topGames) ? this.site.topGames : [];
     this.editorial = new Map(top.map((id, i) => [id, top.length - i]));
-    for (const g of games) g.series = seriesKey(g.title);
+    for (const g of games) g.seriesKey = seriesOf(g);
   }
 
   // turns a raw record that is not in the catalogue (SketchPad, player test games) into a game object
   wrap(raw) {
     const g = normalise(raw, this.catIndex);
-    g.series = seriesKey(g.title);
+    g.seriesKey = seriesOf(g);
     return g;
   }
 
@@ -171,7 +188,7 @@ export class Library {
     const mine = ratings.get(g.id);
     return g.priority * 100
       + (this.editorial.get(g.id) || 0) * 3
-      + (g.installed ? 30 : 0)
+      + (g.installed && !this.editorial.has(g.id) ? 30 : 0) // playable games rise, the editorial order stays
       + Math.min(60, plays.get(g.id) * 12)
       + (mine ? (mine - 3) * 8 : 0)
       + Math.min(40, Math.log10(1 + g.plays) * 10)
@@ -240,22 +257,35 @@ export class Library {
     return c && c.virtual ? this.inCat(id).length : (this.catCounts.get(id) || 0);
   }
 
-  // Related games: the same series first ("Commando 2" -> "Commando", "Commando 3"),
-  // then games sharing categories, preferring the well-known classics.
+  // every game of a series, in series order ("Commando", "Commando 2", ...)
+  series(g) {
+    if (!g.seriesName) return [];
+    const list = this.games.filter((o) => o.seriesKey === g.seriesKey);
+    return list.sort((a, b) => (a.seriesOrder || 99) - (b.seriesOrder || 99) || byTitle(a, b));
+  }
+
+  // Related games, weighted: the same series or franchise first ("Commando 2"
+  // -> "Commando", "Commando 3"), then the same developer, category, kind of
+  // game (seasonal, parody, sponsored...), era and year, preferring the
+  // well-known classics and the games that can be played.
   related(g, n = 6) {
-    const words = g.series.split(' ');
+    const words = g.seriesKey.split(' ');
     const scored = [];
     for (const o of this.games) {
       if (o.id === g.id) continue;
       let s = 0;
-      if (o.series === g.series) s += 60;
+      if (o.seriesKey === g.seriesKey) s += 60;
       else {
-        const ow = o.series.split(' ');
+        const ow = o.seriesKey.split(' ');
         if (words.length > 1 && ow.length > 1 && words[0] === ow[0] && words[1] === ow[1]) s += 30;
       }
+      if (g.developer && o.developer === g.developer) s += 10;
       if (o.category === g.category) s += 12;
       for (const c of o.cats) if (g.cats.includes(c) && c !== 'other') s += 5;
+      if (g.historicalType !== 'standard' && o.historicalType === g.historicalType) s += 10;
       if (s < 12 || (g.category === 'other' && s < 30)) continue;
+      if (g.era && o.era === g.era) s += 4;
+      if (g.year && o.year && Math.abs(g.year - o.year) <= 1) s += 3;
       scored.push({ o, s: s + o.priority * 5 + (o.installed ? 6 : 0) + o.jitter });
     }
     return scored.sort((a, b) => b.s - a.s).slice(0, n).map((x) => x.o);

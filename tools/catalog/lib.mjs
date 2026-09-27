@@ -9,21 +9,33 @@ export const GAMES_JSON = path.join(ROOT, 'data/games.json');
 export const CATS_JSON = path.join(ROOT, 'data/categories.json');
 export const MASTER = path.join(ROOT, 'tools/catalog/master-list.txt');
 
+export const SOURCES_DIR = path.join(ROOT, 'tools/catalog/sources');
+export const AUDIT_JSON = path.join(ROOT, 'data/audit-report.json');
+
 export const TYPES = ['flash', 'html5', 'iframe', 'local-web'];
-export const HISTORICAL_TYPES = ['standard', 'sponsored', 'licensed', 'promotional', 'multiplayer-service', 'external-service'];
-export const VERIFICATION = ['verified', 'likely', 'needs-review'];
+export const HISTORICAL_TYPES = ['standard', 'multiplayer', 'promotional', 'licensed', 'sponsored', 'seasonal', 'political-parody', 'external-service'];
+// verified        direct evidence: Miniclip's own archive / CD / downloads or the 2008-2009 screenshots
+// cross-verified  two or more independent sources
+// single-source   one source only
+// needs-review    doubtful (possibly shortened, duplicated or not a normal game)
+export const VERIFICATION = ['verified', 'cross-verified', 'single-source', 'needs-review'];
+export const RELATIONSHIPS = ['developed', 'published', 'hosted', 'licensed', 'sponsored', 'external-service', 'unknown'];
+// Source types (tools/catalog/sources/*.txt). "official" and "screenshot" are direct evidence.
+export const SOURCE_TYPES = ['official', 'screenshot', 'archive', 'reference', 'web', 'maintainer'];
+export const DIRECT_EVIDENCE = ['official', 'screenshot'];
 export const IMAGE_EXT = ['.png', '.jpg', '.jpeg', '.gif', '.webp'];
 
 // Field order used when writing data/games.json
 export const FIELD_ORDER = [
-  'id', 'slug', 'title', 'aliases', 'category', 'secondaryCategories', 'era', 'year',
-  'developer', 'publisher', 'hostedByMiniclip', 'historicalType', 'verificationStatus',
+  'id', 'slug', 'title', 'aliases', 'series', 'seriesOrder', 'category', 'secondaryCategories', 'era', 'year',
+  'developer', 'publisher', 'hostedByMiniclip', 'relationship', 'historicalType', 'verificationStatus', 'sources',
   'historicalNotes', 'description', 'instructions', 'thumbnail', 'image', 'type', 'gameFile',
   'installed', 'width', 'height', 'featured', 'popular', 'new', 'challenge', 'nostalgiaPriority', 'rating', 'plays',
 ];
 
 // Fields that describe an installed copy of a game. The catalogue tools never
-// overwrite these once they have a value.
+// overwrite these once they have a value (an official stream only fills them
+// while no local copy is installed).
 export const INSTALL_FIELDS = ['installed', 'gameFile', 'type', 'width', 'height', 'thumbnail', 'image'];
 
 // ---------------------------------------------------------------- strings
@@ -145,13 +157,15 @@ function findImage(dir, id) {
 // folders and switches the matching records on. Only ever ADDS information:
 //   games/<id>/<id>.swf, games/<id>/*.swf  -> type flash
 //   games/<id>/index.html                  -> type html5 (or local-web)
+// A local copy always wins over an official remote stream.
 //   assets/games/<id>.png|jpg|gif|webp     -> thumbnail
 //   assets/games/large/<id>.png|jpg|...    -> image
 export function syncFiles(games, { log = () => {} } = {}) {
   let changed = 0;
   for (const g of games) {
     const dir = path.join(ROOT, 'games', g.id);
-    if (!g.installed && fs.existsSync(dir) && fs.statSync(dir).isDirectory()) {
+    const streamed = g.installed && isRemote(g.gameFile);
+    if ((!g.installed || streamed) && fs.existsSync(dir) && fs.statSync(dir).isDirectory()) {
       const files = fs.readdirSync(dir);
       const swfs = files.filter((f) => f.toLowerCase().endsWith('.swf'));
       const swf = swfs.find((f) => f.toLowerCase() === g.id + '.swf') || (swfs.length === 1 ? swfs[0] : null);
@@ -165,7 +179,7 @@ export function syncFiles(games, { log = () => {} } = {}) {
         g.type = type;
         g.installed = true;
         changed++;
-        log(`installed  ${g.id}  ->  ${g.gameFile} (${type})`);
+        log(`installed  ${g.id}  ->  ${g.gameFile} (${type})${streamed ? ' - replaces the remote stream' : ''}`);
       } else if (swfs.length > 1) {
         log(`skipped    ${g.id}: several .swf files in games/${g.id}/ - name the main one ${g.id}.swf`);
       }

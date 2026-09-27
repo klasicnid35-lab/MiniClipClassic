@@ -1,0 +1,54 @@
+# name: Game databases and wikis
+# type: reference
+# about: Facts (mostly release years and developers) found in game databases,
+#   encyclopedias and fan wikis through web searches during the 2026 audit.
+#   ref= names where the fact came from; each ref counts as its own source.
+#   Only facts that were stated plainly are used - where two sources disagree
+#   the year stays empty (see conflicts at the bottom).
+8 Ball Pool | ref=Wikipedia | year=2008 | note=Wikipedia: first released on miniclip.com in 2008 as the Flash game "8 Ball Quick Fire Pool"; the online multiplayer 8 Ball Pool followed in 2010.
+8 Ball Pool Multiplayer | ref=Wikipedia | year=2010 | dev=Miniclip | pub=Miniclip
+8 Ball Pool Multiplayer | ref=Miniclip Wiki | note=Miniclip's most played game of 2010 and 2012.
+9 Ball Pool | ref=Backloggd / IGDB | year=2009 | aka=9 Ball Quick Fire Pool
+Age of Speed 2 | ref=Backloggd / IGDB | year=2009
+Aqua Energizer | ref=Internet Archive | year=2002 | dev=Uselab
+Candy and Clyde | ref=Backloggd / IGDB | year=2007
+Canyon Defense | ref=Backloggd / IGDB | year=2008
+Caveman | ref=Backloggd / IGDB | year=2007
+Club Penguin | ref=Miniclip Wiki | note=Miniclip's most played game of 2007.
+Commando 2 | ref=Miniclip Wiki | note=Miniclip's most played game of 2008.
+Dancing Bush | ref=Miniclip Wiki | year=2001 | dev=Miniclip | note=Miniclip's first game (2001).
+Disc Golf | ref=Backloggd / IGDB | year=2008
+Dune Buggy | ref=Backloggd / IGDB | year=2007
+Goldenballs | ref=Internet Archive | year=2003 | note=A parody of David Beckham ("Golden Balls"), January 2003.
+Gravity Guy | ref=Backloggd / IGDB | year=2010
+Heli Attack 2 | ref=MobyGames | year=2003 | dev=Squarecircleco | note=Miniclip's game of the year 2003.
+iStunt 2 | ref=Backloggd / IGDB | year=2011
+London 2012 Olympic Games | ref=Web search | year=2012 | note=The official London 2012 web game: 110m hurdles, swimming, long jump, archery, table tennis and skeet shooting.
+Mahjong Medley | ref=Web search
+Monkey Kick Off | ref=Internet Archive | year=2006 | dev=Totebo
+Monkey Lander | ref=Internet Archive | year=2002 | dev=Totebo
+Obama Alien Defense | ref=Backloggd / IGDB | year=2009
+Online Soccer Manager | ref=Web search | year=2010
+Police Pursuit | ref=Backloggd / IGDB | year=2008
+Presidential Paintball | ref=Web search | note=Made for the 2008 US presidential election.
+Raft Wars | ref=Internet Archive | year=2007
+Secret of Maya | ref=Web search | note=Mentioned in a 2007 list of Miniclip games.
+Shove It | ref=Internet Archive | dev=matmi
+Skateboard Jam | ref=Backloggd / IGDB | year=2007
+Sketch Star | ref=Miniclip Wiki | note=Miniclip's most played game of 2009.
+Sling | ref=Internet Archive | dev=ezone
+Smashing | ref=Internet Archive | year=2002
+Snow Line | ref=Backloggd / IGDB | year=2008
+SQRL Golf | ref=Internet Archive | dev=TechRadium
+SQRL Golf 2 | ref=Internet Archive | dev=TechRadium
+Trials 2 | ref=Internet Archive | year=2007 | dev=RedLynx
+World Game Audition | ref=Web search | note=Mentioned in a 2007 list of Miniclip games.
+You Make the Game | ref=Web search | year=2010 | note=A 2010 Miniclip game-making competition; unclear whether it was a game of its own.
+Zed | ref=Internet Archive | year=2001
+
+# Conflicts - sources disagree, so these years stay empty:
+#   Commando 2, Monster Trucks Nitro, Ping Pong, Monster Island, Fragger,
+#   Bush Shoot-Out, Avalanche, Heli Attack (2001 or 2002), Surf's Up.
+
+# Second research pass
+A Short History of the World | ref=Miniclip Wiki | note=History-themed quick-fire mini-games, originally on Miniclip.

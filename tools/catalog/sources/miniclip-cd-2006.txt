@@ -1,0 +1,51 @@
+# name: Miniclip CD "Ultimate Game Pack" (Christmas 2006)
+# type: official
+# url: https://archive.org/details/miniclip-cd
+# about: Miniclip's own offline games CD. Titles are taken from the CD's menu
+#   (index.htm) and its game pages; where the menu and the game page spell a
+#   title differently both spellings are kept (aka=). Only the file LISTING of
+#   the CD was read - no game files were downloaded.
+3 Foot Ninja
+3 Foot Ninja II | aka=3 Foot Ninja 2
+Aqua Energizer
+Atom Drop
+Blooming Gardens | id=bloomin-gardens
+BMX Freestyle
+Bush Shootout | id=bush-shoot-out
+Canyon Glider
+Crimson Viper
+Cube Buster
+Dance 2 The Beat | aka=Dance to the Beat
+Dr. Carter and the Wheels of Salvation | id=wheels-of-salvation
+Egg Run
+Gyroball
+Heli Attack 3 | note=The CD calls it "the sequel to the best game of 2003" (Heli Attack 2).
+Hostile Skies
+King of the Hill
+Miniclip Rally
+Monkey Lander
+Nordic Chill
+Pharaohs Tomb | id=pharaohs-tomb
+Piranhas
+Police Chopper
+RC Time Trial
+Red Beard
+Reel Gold
+Rollo and Flex
+Ruff Riders | aka=Ruff Rider
+Run the Rapids
+Scraper Caper
+Ski Run
+Skidoo TT
+Smashing
+Street Luge
+Sub Commander
+Sudoku
+Superbike GP
+Surf's Up
+Thunder Plunder
+Trech
+UFO Joe
+Wakeboarding XS | aka=Wake Boarding XS
+XraYe
+Zed

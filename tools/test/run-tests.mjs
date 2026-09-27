@@ -4,10 +4,15 @@
 // GitHub Pages project site, with 404.html returned for missing files.
 // Installed games are tested by temporarily serving a modified games.json
 // that points catalogue records at the original test games in games/_extras/.
+// Games streamed from Miniclip's official archive (classic.miniclip.com) are
+// answered with the local test .swf, so no network is needed; with --live the
+// real files are fetched (through curl, which uses this machine's proxy
+// settings) and every official stream is checked in Ruffle.
 //
-// usage: node tools/test/run-tests.mjs [--quick]
+// usage: node tools/test/run-tests.mjs [--quick] [--live]
 import http from 'http';
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import { execFileSync } from 'child_process';
 import { createRequire } from 'module';
@@ -20,6 +25,7 @@ try { pw = require('playwright'); } catch { pw = require('/opt/node22/lib/node_m
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const PREFIX = '/MiniClipClassic/';
 const QUICK = process.argv.includes('--quick');
+const LIVE = process.argv.includes('--live');
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.gif': 'image/gif', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.wasm': 'application/wasm', '.swf': 'application/x-shockwave-flash', '.xml': 'application/xml', '.txt': 'text/plain', '.md': 'text/markdown' };
 
 // ---------------------------------------------------------------- server
@@ -103,6 +109,26 @@ const collator = new Intl.Collator('en', { numeric: true, sensitivity: 'base' })
 const sortKey = (t) => String(t).normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/&/g, ' and ').replace(/['’!.:,?"]/g, '').replace(/[-/]/g, ' ').replace(/\s+/g, ' ').trim();
 const naturallySorted = (list) => list.every((t, i) => i === 0 || collator.compare(sortKey(list[i - 1]), sortKey(t)) <= 0);
 
+const html5Test = extras.find((x) => x.id === 'brick-buster');
+const swfTest = extras.find((x) => x.type === 'flash');
+const OFFICIAL = 'https://classic.miniclip.com/';
+const streamed = games.filter((g) => g.installed && g.gameFile.startsWith('https://'));
+const officialRequests = [];
+async function officialHost(ctx) {
+  await ctx.route(OFFICIAL + '**', async (route) => {
+    const url = route.request().url();
+    officialRequests.push(url);
+    const headers = { 'access-control-allow-origin': '*' };
+    if (!LIVE) return route.fulfill({ status: 200, headers: { ...headers, 'content-type': 'application/x-shockwave-flash' }, body: fs.readFileSync(path.join(ROOT, swfTest.gameFile)) });
+    const tmp = path.join(os.tmpdir(), `mcc-live-${process.pid}-${officialRequests.length}`);
+    try {
+      const [code, type] = execFileSync('curl', ['-sS', '-L', '--max-time', '90', '-o', tmp, '-w', '%{http_code}\n%{content_type}', url], { encoding: 'utf8' }).split('\n');
+      await route.fulfill({ status: +code, headers: { ...headers, 'content-type': type || 'application/octet-stream' }, body: fs.readFileSync(tmp) });
+    } catch (e) { await route.abort(); } finally { fs.rmSync(tmp, { force: true }); }
+  });
+}
+await officialHost(context);
+
 // a copy of the catalogue with some records switched on, pointing at the test games
 function catalogWith(changes) {
   return games.map((g) => (changes[g.id] ? { ...g, ...changes[g.id] } : g));
@@ -128,19 +154,38 @@ await section('catalogue contents', async () => {
   const invented = extras.map((x) => x.id).filter((id) => byId.has(id) && byId.get(id).installed);
   ok(invented.length === 0, 'no invented test games in the catalogue', invented.join(', '));
   for (const t of ['Heli Attack 3', 'Commando', 'Bloxorz', 'MotherLoad', 'Club Penguin', 'RuneScape', 'Fancy Pants Adventure 2', 'Dirk Valentine and the Fortress of Steam', 'Zubo Zurfing', '3 Foot Ninja']) ok(games.some((g) => g.title === t), 'catalogue has ' + t);
-  ok(games.every((g) => g.installed === false), 'nothing claims to be installed without a file');
-  ok(games.every((g) => g.year === null || (g.year > 1995 && g.year < 2013)), 'years are unknown or classic era');
+  ok(games.every((g) => !g.installed || (g.gameFile.startsWith(OFFICIAL) ? g.type === 'flash' : fs.existsSync(path.join(ROOT, g.gameFile)))), 'installed games have a local file or an official stream');
+  ok(streamed.length === 16 && streamed.every((g) => g.gameFile.startsWith(OFFICIAL) && g.width && g.height), 'the 16 games of Miniclip\'s own archive are streamed', String(streamed.length));
+  ok(games.every((g) => g.sources.length > 0), 'every game is backed by a source');
+  ok(games.every((g) => g.verificationStatus !== 'verified' || g.sources.some((x) => x.type === 'official' || x.type === 'screenshot')), 'verified means direct evidence');
+  const t = (x) => byId.get(x);
+  ok(t('3-foot-ninja') && t('3-foot-ninja-ii') && t('3-foot-ninja').series === '3 Foot Ninja' && t('3-foot-ninja-ii').seriesOrder === 2, 'sequels are separate records in one series');
+  ok(t('commando-2').aliases.includes('Commando II') || t('commando-2').title === 'Commando 2', 'Commando 2 keeps its spellings');
+  for (const x of ['Battle Pong', 'Mancala Bugs', 'Zen Puzzle Garden', 'Skidoo TT', 'Mad Skills Motocross', 'Raft Wars 2', 'Trick or Treat Smash', '8 Ball Pool Multiplayer']) ok(games.some((g) => g.title === x), 'audit added ' + x);
+  ok(byId.get('8-ball-pool').year === 2008 && byId.get('8-ball-pool-multiplayer').year === 2010, '8 Ball Pool (2008) and 8 Ball Pool Multiplayer (2010) are separate');
+  ok(games.every((g) => g.year === null || (g.year >= 2001 && g.year <= 2012)), 'years are unknown or 2001-2012');
   const hc = games.filter((g) => g.nostalgiaPriority === 3);
   ok(hc.length >= 40 && hc.length <= 80, 'a sensible number of iconic classics', String(hc.length));
   ok(naturallySorted(games.map((g) => g.title)), 'games.json is in natural A-Z order');
   for (const k of ['homeFeatured', 'homeLatestThumbs', 'hotGames', 'topTen', 'topGames']) ok((site[k] || []).every((id) => byId.has(id)), `site.json ${k} ids exist`);
 });
 
+await section('historical audit', async () => {
+  let out = '';
+  let code = 0;
+  try { out = execFileSync('node', [path.join(ROOT, 'tools/catalog/audit-games.mjs'), '--no-write'], { encoding: 'utf8' }); } catch (e) { code = e.status; out = e.stdout; }
+  ok(code === 0 && /no problems/.test(out), 'tools/catalog/audit-games.mjs finds no duplicates or collisions', out.split('\n').filter((l) => /PROBLEM/.test(l)).join(' | '));
+  const report = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/audit-report.json'), 'utf8'));
+  ok(report.summary.totalGames === games.length, 'data/audit-report.json matches games.json', String(report.summary.totalGames));
+  ok(report.checks.duplicateIds.length === 0 && report.checks.aliasCollisions.length === 0 && report.checks.sequelCollisions.length === 0, 'audit report: no duplicate ids, alias or sequel collisions');
+});
+
 // ---------------------------------------------------------------- every page renders cleanly
 const PAGES = ['index.html', 'games.html', 'games.html?cat=action', 'games.html?cat=hot', 'games.html?cat=new', 'games.html?cat=top', 'games.html?cat=other',
   'games.html?cat=promotional', 'games.html?sort=az&page=3', 'allgames.html', 'allgames.html?letter=C', 'allgames.html?letter=0', 'allgames.html?cat=winter&show=challenge',
   'search.html?q=commando', 'search.html?q=zzzzqqq', 'search.html', 'mygames.html', 'players.html', 'sketch.html', 'playertest.html', 'categories.html', 'info.html', '404.html',
-  'game.html?id=heli-attack-3', 'game.html?game=bloxorz', 'game.html?id=club-penguin', 'game.html?id=nope'];
+  'game.html?id=heli-attack-3', 'game.html?id=heli-attack-2', 'game.html?game=bloxorz', 'game.html?id=club-penguin', 'game.html?id=nope',
+  'allgames.html?kind=seasonal', 'allgames.html?era=2007-2009&show=playable'];
 const links = new Set();
 await section('pages load without errors or broken images', async () => {
   for (const url of PAGES) {
@@ -181,10 +226,10 @@ await section('every game has a working page', async () => {
     await page.goto(BASE + 'game.html?id=' + g.id, { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('.gamewrap h1', { timeout: 8000 });
     const h1 = await page.textContent('.gamewrap h1');
-    const notice = await page.$('.unavail .uhead');
+    const notice = await page.$(g.installed ? '#player' : '.unavail .uhead');
     if (h1 !== g.title || !notice) { bad++; ok(false, 'game page for ' + g.id, h1); }
   }
-  ok(bad === 0, `${list.length} game pages show the title and the unavailable notice`);
+  ok(bad === 0, `${list.length} game pages show the title and the player or the unavailable notice`);
   ok(problems.length === 0, 'no errors on game pages', problems.slice(0, 3).join(' | '));
   await page.close();
 });
@@ -276,12 +321,29 @@ await section('search', async () => {
     'bears and bees': ['Bears & Bees'],
     'mother load': ['MotherLoad'],
     'rift': ['R.I.F.T.'],
+    'commando ii': ['Commando 2'],
+    snow: ['Snow Drift', 'Snow Line', 'Snowman Stacker'],
+    santa: ['Santa Ski Jump', "Santa's Factory", 'Santa Balls 2'],
+    racing: ['Turbo Racing', 'Turbo Racing 2', 'Miniclip Rally'],
+    football: ['American Football', 'Keepy Ups', 'World Cup Goal'],
+    2008: ['8 Ball Pool', 'Canyon Defense', 'Snow Line'],
+    'bush shootout': ['Bush Shoot-Out'],
+    'squarecircleco': ['Heli Attack 2', 'Heli Attack 3'],
+    'political parody': ['Dancing Bush', 'Hip-Hop Debate'],
   };
   for (const [q, want] of Object.entries(expect)) {
     await page.goto(BASE + 'search.html?q=' + encodeURIComponent(q), { waitUntil: 'networkidle' });
-    const got = await titles();
+    const got = [];
+    for (;;) { // every result page
+      got.push(...await titles());
+      const next = await page.$('.ipager a.next');
+      if (!next || got.length > 200) break;
+      await Promise.all([page.waitForNavigation(), next.click()]);
+    }
     ok(want.every((t) => got.includes(t)), `search "${q}" finds ${want.join(', ')}`, got.slice(0, 8).join(', '));
   }
+  await page.goto(BASE + 'search.html?q=' + encodeURIComponent('commando ii'), { waitUntil: 'networkidle' });
+  ok((await titles())[0] === 'Commando 2', '"commando ii" puts Commando 2 first', (await titles()).slice(0, 3).join(', '));
   await page.goto(BASE + 'search.html?q=zzzzqqq', { waitUntil: 'networkidle' });
   ok((await page.$('.nores')) !== null, 'no-result message');
   await page.goto(BASE + 'index.html', { waitUntil: 'networkidle' });
@@ -300,6 +362,10 @@ await section('search', async () => {
 await section('A-Z directory', async () => {
   const { page, problems } = await open('allgames.html');
   ok((await page.textContent('.azpanel .bhead .right')).trim() === `TOTAL GAMES: ${games.length}`, 'total games calculated from games.json');
+  const stats = (await page.textContent('.azstats')).replace(/\s+/g, ' ');
+  const nv = games.filter((g) => g.verificationStatus === 'verified').length;
+  const np = games.filter((g) => g.installed).length;
+  ok(stats.includes(`TOTAL GAMES: ${games.length}`) && stats.includes(`VERIFIED: ${nv}`) && stats.includes(`PLAYABLE: ${np}`) && stats.includes(`ARCHIVED CATALOG ONLY: ${games.length - np}`), 'A-Z counters calculated from games.json', stats);
   ok(await page.$$eval('#azlist li a', (e) => e.length) === games.length, 'all games listed');
   ok(await page.$$eval('#azbar a, #azbar span', (e) => e.length) === 28, '# A-Z letter bar plus All');
   await page.click('#azbar a[data-l="C"]');
@@ -308,12 +374,29 @@ await section('A-Z directory', async () => {
   ok(shown.length === cgames.length && shown.every((t) => /^c/i.test(t)), 'letter C shows the C games', String(shown.length));
   ok(page.url().includes('letter=C'), 'letter kept in the address');
   const cmd = shown.filter((t) => t.startsWith('Commando'));
-  ok(JSON.stringify(cmd) === '["Commando","Commando 2","Commando 2 Trailer","Commando 3"]', 'natural sort inside a letter', cmd.join(', '));
+  ok(JSON.stringify(cmd) === '["Commando","Commando 2","Commando 2 Trailer","Commando 3","Commando Assault"]', 'natural sort inside a letter', cmd.join(', '));
   await page.selectOption('#azcat', 'shooting');
   const sh = await page.$$eval('#azlist li > a', (e) => e.map((a) => a.textContent));
   ok(sh.length > 0 && sh.every((t) => /^c/i.test(t)) && sh.includes('Canyon Shooter'), 'category filter narrows the letter', sh.join(', '));
-  await page.selectOption('#azshow', 'playable');
-  ok((await page.textContent('#azlist')).includes('No games match'), 'playable filter (nothing installed yet)');
+  await page.click('#azbar a[data-l=""]');
+  await page.click('#azquick a:text-is("Playable")');
+  const pl = await page.$$eval('#azlist li > a', (e) => e.map((a) => a.textContent));
+  ok(pl.length === np && pl.includes('Commando 2'), 'Playable filter shows the playable games', String(pl.length));
+  ok(!page.url().includes('cat=shooting') && page.url().includes('show=playable'), 'quick filters replace each other');
+  await page.click('#azquick a:text-is("Unavailable")');
+  ok(await page.$$eval('#azlist li > a', (e) => e.length) === games.length - np, 'Unavailable filter');
+  await page.click('#azquick a:text-is("Seasonal")');
+  const sea = await page.$$eval('#azlist li > a', (e) => e.map((a) => a.textContent));
+  ok(sea.length === games.filter((g) => g.historicalType === 'seasonal').length && sea.includes('Santa Ski Jump'), 'Seasonal filter', String(sea.length));
+  await page.click('#azquick a:text-is("Promotional")');
+  ok(await page.$$eval('#azlist li > a', (e) => e.length) === games.filter((g) => [g.category, ...g.secondaryCategories].includes('Promotional') || ['promotional', 'sponsored', 'licensed'].includes(g.historicalType)).length, 'Promotional filter');
+  await page.click('#azquick a:text-is("Multiplayer")');
+  ok((await page.$$eval('#azlist li > a', (e) => e.map((a) => a.textContent))).includes('Club Penguin'), 'Multiplayer filter');
+  await page.click('#azquick a:text-is("All")');
+  await page.click('#azera a[data-era="2007-2009"]');
+  const era = await page.$$eval('#azlist li > a', (e) => e.length);
+  ok(era === games.filter((g) => g.year >= 2007 && g.year <= 2009).length && page.url().includes('era=2007-2009'), 'era filter 2007-2009', String(era));
+  await page.click('#azera a[data-era=""]');
   await page.goto(BASE + 'allgames.html?letter=0', { waitUntil: 'networkidle' });
   ok(JSON.stringify(await page.$$eval('#azlist li > a', (e) => e.map((a) => a.textContent))) === JSON.stringify(games.filter((g) => /^\d/.test(g.title)).map((g) => g.title)), '# shows the number games');
   ok(problems.length === 0, 'no errors on the A-Z page', problems.join(' | '));
@@ -337,8 +420,10 @@ await section('categories, sorting and pagination', async () => {
   await page.goto(BASE + 'games.html?cat=new', { waitUntil: 'networkidle' });
   const fresh = await page.$$eval('.gcard .gt', (e) => e.map((x) => x.textContent));
   ok(fresh.length === games.filter((g) => g.new).length && fresh.every((x) => games.find((g) => g.title === x).new), 'Latest category lists the new games');
+  // earlier sections played some games, which moves them up - start from a clean history
+  await page.evaluate(() => localStorage.removeItem('mcc.plays'));
   await page.goto(BASE + 'games.html?cat=top', { waitUntil: 'networkidle' });
-  ok((await page.textContent('.gcard .gt')) === byId.get(site.topGames[0]).title, 'Top 100 starts with the number one game');
+  ok((await page.textContent('.gcard .gt')) === byId.get(site.topGames[0]).title, 'Top 100 starts with the number one game', await page.textContent('.gcard .gt'));
   await page.goto(BASE + 'games.html?cat=promotional', { waitUntil: 'networkidle' });
   ok((await page.textContent('.bhead h1')).includes('(' + inCat('promotional').length + ' games)'), 'promotional games have their own category');
   await page.goto(BASE + 'games.html?cat=doesnotexist', { waitUntil: 'networkidle' });
@@ -351,21 +436,23 @@ await section('categories, sorting and pagination', async () => {
 
 // ---------------------------------------------------------------- unavailable games
 await section('unavailable game pages', async () => {
-  const { page, problems } = await open('game.html?id=heli-attack-3', { wait: 300 });
+  const { page, problems } = await open('game.html?id=heli-attack-2', { wait: 300 });
   ok((await page.textContent('.unavail .uhead')).toLowerCase() === 'game currently unavailable', 'GAME CURRENTLY UNAVAILABLE notice');
-  ok((await page.textContent('.unavail .usub')) === 'This game has not been added yet.', 'not added yet text');
+  ok((await page.textContent('.unavail .usub')) === 'This game is part of the historical catalog but no playable local file has been added yet.', 'unavailable message text');
   ok(await page.$('#player, iframe, ruffle-player') === null, 'no fake player for a game without files');
   ok(await page.$('#fsbtn') === null && await page.$('#rsbtn') === null, 'no Full Screen / Restart without a game');
   const info = await page.$$eval('.infobox table tr', (e) => Object.fromEntries(e.map((r) => [r.cells[0].textContent, r.cells[1].textContent])));
-  ok(info.Released === '2005' && info.Developer === 'Squarecircleco', 'release information shown', JSON.stringify(info));
+  ok(info.Released === '2003' && info.Developer === 'Squarecircleco', 'release information shown', JSON.stringify(info));
   ok(/Not added yet/i.test(info.Format), 'format row says not added yet', info.Format);
+  ok(info.Series === 'Heli Attack · Heli Attack 2 · Heli Attack 3', 'series shown in order', info.Series);
+  ok(/Cross-verified/.test(info.Archive) && /MobyGames/.test(info.Sources) && !/https?:/.test(info.Sources), 'verification and sources shown as plain names', info.Archive + ' / ' + info.Sources);
   const rel = await page.$$eval('.infobox:nth-of-type(4) .ct a', (e) => e.map((a) => a.textContent.trim()));
-  ok(rel[0] === 'Heli Attack 2', 'related games start with the same series', rel.join(', '));
+  ok(rel.slice(0, 2).sort().join() === 'Heli Attack,Heli Attack 3', 'related games start with the same series', rel.join(', '));
   const bigsrc = await page.$eval('.unavail .upic', (i) => [i.src.slice(0, 22), i.naturalWidth]);
   ok(bigsrc[0] === 'data:image/png;base64,' && bigsrc[1] === 548, 'unavailable page shows the generated picture');
   await page.click('#favbtn');
-  ok((await page.textContent('#mygames')).includes('Heli Attack 3'), 'unavailable games can be added to My Games');
-  ok((await page.textContent('#played')).includes('Heli Attack 3'), 'visit shows in Latest Games Played');
+  ok((await page.textContent('#mygames')).includes('Heli Attack 2'), 'unavailable games can be added to My Games');
+  ok(!(await page.textContent('#played')).includes('Heli Attack 2'), 'opening an unavailable game does not count as playing it');
   await page.click('#rstars button[data-n="5"]');
   ok((await page.textContent('#ratingcell')).includes('your rating: 5'), 'unavailable games can be rated');
   ok((await page.textContent('#gstats')).includes('Not playable yet'), 'no fake play count');
@@ -373,24 +460,30 @@ await section('unavailable game pages', async () => {
   ok((await page.textContent('.infobox table')).includes('Fancy Pants 1'), 'aliases shown on the game page');
   await page.goto(BASE + 'game.html?id=nope-not-a-game', { waitUntil: 'networkidle' });
   ok((await page.textContent('.notfound')).includes("couldn't find"), 'unknown game message');
-  await page.goto(BASE + 'game.html?id=heli-attack', { waitUntil: 'networkidle' });
+  await page.goto(BASE + 'game.html?id=heli-attack-3-game', { waitUntil: 'networkidle' });
   ok((await page.textContent('.notfound')).includes('Heli Attack 3'), 'unknown game suggests close titles');
+  await page.goto(BASE + 'game.html?id=snow-line', { waitUntil: 'networkidle' });
+  const sl = await page.$$eval('.infobox table tr', (e) => Object.fromEntries(e.map((r) => [r.cells[0].textContent, r.cells[1].textContent])));
+  ok(sl['Game type'] === 'Seasonal / holiday game' && sl.Released === '2008', 'seasonal game page', JSON.stringify(sl));
   ok(problems.length === 0, 'no errors on unavailable pages', problems.join(' | '));
   await page.close();
 });
 
 // ---------------------------------------------------------------- installed games (player architecture)
-const html5Test = extras.find((x) => x.id === 'brick-buster');
-const swfTest = extras.find((x) => x.type === 'flash');
 await section('installed HTML5 game plays automatically', async () => {
   const catalog = catalogWith({ 'heli-attack-3': { installed: true, type: 'html5', gameFile: html5Test.gameFile, width: 640, height: 480 } });
-  const { page, problems } = await open('game.html?id=heli-attack-3', { catalog });
+  const { page, problems } = await open('index.html', { catalog });
+  const playsOf = () => page.evaluate(() => { try { return JSON.parse(localStorage.getItem('mcc.plays') || '{}')['heli-attack-3'] || 0; } catch (e) { return -1; } });
+  const n0 = await playsOf();
+  await page.goto(BASE + 'game.html?id=heli-attack-3', { waitUntil: 'networkidle' });
   await page.waitForSelector('#loader', { state: 'detached', timeout: 10000 });
   const frame = page.frames().find((f) => f.url().includes(html5Test.gameFile));
   ok(!!frame, 'html5 game runs in an iframe');
   ok(frame && await frame.waitForSelector('canvas', { timeout: 5000 }).then(() => true).catch(() => false), 'html5 game draws on a canvas');
   ok(await page.$('.unavail') === null, 'no unavailable notice for an installed game');
-  ok((await page.textContent('#gstats')).includes('Played 1 time'), 'plays are counted for installed games');
+  await page.waitForFunction((n) => document.querySelector('#gstats').textContent.includes(`Played ${n} time`), n0 + 1, { timeout: 5000 }).catch(() => {});
+  ok(await playsOf() === n0 + 1 && (await page.textContent('#gstats')).includes(`Played ${n0 + 1} time`), 'plays are counted when the game starts', `${n0} -> ${await playsOf()}`);
+  ok((await page.textContent('#played')).includes('Heli Attack 3'), 'a launched game shows in Latest Games Played');
   const src0 = await page.$eval('#player iframe', (f) => f.src);
   await page.click('#rsbtn');
   await page.waitForTimeout(400);
@@ -421,6 +514,27 @@ await section('installed Flash game plays with Ruffle automatically', async () =
   ok(await page.$('.loader.err') === null, 'Ruffle loaded the .swf without error');
   ok(problems.length === 0, 'no errors for an installed flash game', problems.join(' | '));
   await page.close();
+});
+
+await section(LIVE ? 'official Miniclip streams (live from classic.miniclip.com)' : 'official Miniclip streams (answered locally)', async () => {
+  const list = LIVE ? streamed : streamed.filter((g) => g.id === 'commando-2');
+  for (const g of list) {
+    const before = officialRequests.length;
+    const { page, problems } = await open('game.html?id=' + g.id);
+    await page.waitForSelector('#loader', { state: 'detached', timeout: 60000 }).catch(() => {});
+    const played = await page.waitForFunction(() => /Played [1-9]\d* time/.test(document.querySelector('#gstats').textContent), null, { timeout: LIVE ? 90000 : 15000 }).then(() => true).catch(() => false);
+    ok(officialRequests.slice(before).includes(g.gameFile), 'the SWF is requested from its official address: ' + g.id);
+    ok(await page.$('#player ruffle-player, #player ruffle-object') !== null && await page.$('.loader.err') === null, 'Ruffle runs the official stream: ' + g.id);
+    ok(played, 'the stream starts and counts as played: ' + g.id);
+    const info = await page.$$eval('.infobox table tr', (e) => Object.fromEntries(e.map((r) => [r.cells[0].textContent, r.cells[1].textContent])));
+    ok(/Streamed from classic\.miniclip\.com/.test(info['Game file'] || ''), 'the page says where the game is streamed from: ' + g.id, info['Game file']);
+    if (LIVE && process.env.SHOTS) { await page.waitForTimeout(4000); await page.screenshot({ path: path.join(process.env.SHOTS, g.id + '.png') }); }
+    // Old Miniclip SWFs still ask for retired extras (component.txt, avatarloader.txt,
+    // 2000s stats counters); they fail on Miniclip's own archive too and do not stop the game.
+    const retired = (p) => /classic\.miniclip\.com\/.*\.txt\b|status of 403|stats\/SWFcounters|blocked by CORS policy.*http:\/\/\d/.test(p);
+    ok(problems.filter((p) => !retired(p)).length === 0, 'no errors for the official stream: ' + g.id, problems.join(' | '));
+    await page.close();
+  }
 });
 
 await section('installed game with a missing file', async () => {
@@ -455,8 +569,9 @@ await section('favourites, recently played and profile', async () => {
   await page.click('.gcard [data-fav="8-ball-pool"]');
   await page.goto(BASE + 'mygames.html', { waitUntil: 'networkidle' });
   ok((await page.textContent('#favlist')).includes('8 Ball Pool'), '+ My Games link on cards');
-  ok((await page.textContent('#favlist')).includes('Heli Attack 3'), 'My Games page lists favourites');
+  ok((await page.textContent('#favlist')).includes('Heli Attack 2'), 'My Games page lists favourites (catalog-only games too)');
   ok((await page.textContent('#reclist')).includes('Heli Attack 3'), 'My Games page lists recently played');
+  ok(!(await page.textContent('#reclist')).includes('Heli Attack 2'), 'only launched games are in the play history');
   await page.click('#favlist [data-fav="8-ball-pool"]');
   await page.waitForTimeout(400);
   ok(!(await page.textContent('#favlist')).includes('8 Ball Pool'), 'removing from My Games');
@@ -469,7 +584,7 @@ await section('favourites, recently played and profile', async () => {
   await page.fill('#nick', 'Tester');
   await page.click('#savenick');
   ok((await page.textContent('.bhead h1')).includes("Tester's Profile"), 'player name saved');
-  ok((await page.textContent('#scores')).includes('high score challenge games'), 'high score section explains that none are installed yet');
+  ok((await page.textContent('#scores')).includes('high score challenge games'), 'high score section explains that streamed games keep their own scores');
   await page.goto(BASE + 'index.html', { waitUntil: 'networkidle' });
   ok((await page.textContent('#mygames')).includes('Heli Attack 3'), 'homepage My Games panel');
   ok(problems.length === 0, 'no errors while using favourites', problems.join(' | '));
@@ -512,6 +627,7 @@ await section('desktop layout matches the reference grid', async () => {
 
 await section('mobile layout has no sideways scrolling', async () => {
   const mctx = await browser.newContext({ viewport: { width: 390, height: 844 }, locale: 'en-US', isMobile: true, hasTouch: true });
+  await officialHost(mctx);
   for (const url of ['index.html', 'games.html?cat=action', 'game.html?id=heli-attack-3', 'allgames.html', 'allgames.html?letter=S', 'search.html?q=ball', 'players.html', 'info.html', 'playertest.html']) {
     const { page, problems } = await open(url, { ctx: mctx, wait: 300 });
     const w = await page.evaluate(() => [document.documentElement.scrollWidth, innerWidth]);

@@ -1,0 +1,112 @@
+# name: Web search - miniclip.com game pages
+# type: web
+# about: Titles checked with a web search during the 2026 catalogue audit.
+#   Each one turned up an old miniclip.com game page address
+#   (www.miniclip.com/games/<slug>/<lang>/, or the same address on Miniclip's
+#   site., sapo., fungames. and sandbox. mirrors) in the search results, which shows
+#   the game was hosted on Miniclip. The pages themselves could not be opened
+#   (the Wayback Machine and most sites were unreachable from the audit
+#   machine), so this counts as one independent source, not as direct proof.
+#   page= is the slug that was found; year=/dev= only where the result said so.
+Battle Pong | page=battle-pong
+Best Friends | page=best-friends
+Cactus McCoy | page=cactus-mccoy | dev=Flipline Studios
+Cactus McCoy 2 | page=cactus-mccoy-2 | dev=Flipline Studios
+Commando Assault | page=commando-assault | year=2010 | dev=Miniclip | note=Released on 12 November 2010.
+Cricket Defend the Wicket | page=cricket-defend-the-wicket | year=2009
+Delta Force: Operation Fire Shield | page=delta-force
+Drift Trike | page=drift-trike
+Empty Santa's Sack | page=empty-santas-sack
+Epic Coaster | page=epic-coaster | year=2010
+Ice Breakout | page=ice-breakout
+Jousting | page=jousting
+Karaoke | page=karaoke
+Keepy Ups | page=keepy-ups
+Mahjong Classic | page=mahjong-classic
+Mancala Bugs | page=mancala-bugs
+Masterkick | page=masterkick
+Merry Christmas | page=merry-christmas
+Mystic Mermaid Pinball | page=mystic-mermaid-pinball | aka=Mystic Mermaid Pin
+Present Panic | page=present-panic
+Rubble Trouble Tokyo | page=rubble-trouble-tokyo | year=2011 | dev=Nitrome
+Rubble Trouble New York | id=rubble-trouble | page=rubble-trouble | year=2010 | dev=Nitrome
+Santa's Factory | page=santas-factory
+Shroomz | page=shroomz
+Snooker | page=snooker
+Snowman Stacker | page=snowman-stacker
+Spades | page=spades
+Sub Hunt | page=sub-hunt
+Super Gerball | page=super-gerball
+Super Web Soccer | page=super-web-soccer | note=A Java game.
+Turbo Racing 3 | page=turbo-racing-3
+War Copter | page=war-copter | note=December 2012.
+Wild Wild Words | page=wild-wild-words
+World Cup Glory | page=world-cup-glory
+World Cup Goal | page=world-cup-goal
+World Cup Soccer | page=world-cup-soccer
+World Game Star | page=world-game-star
+Zen Puzzle Garden | page=zen-puzzle-garden | dev=Lexaloffle
+
+# Second research pass (2026 audit) - major titles that had only one source
+8 Ball Quick Fire Pool | id=8-ball-pool | page=8-ball-quick-fire-pool | noalias
+8 Ball Pool Multiplayer | page=8-ball-pool-multiplayer | note=Page title "8 Ball Pool: The world's #1 Pool game".
+Bang! Howdy | page=bang-howdy
+Base Jumper | page=base-jumper
+Base Jumping | page=base-jumping
+Black Knight | page=black-knight
+Bow Master | page=bow-master
+Bow Master Japan | page=bow-master-japan | note=The Miniclip blog wrote about it in May 2013.
+Bubble Town | page=bubble-town
+Bubble Trouble | page=bubble-trouble
+Cab Driver | page=cab-driver
+Canyon Defense | page=canyon-defense
+Canyon Defense 2 | page=canyon-defense-2
+Canyon Shooter | page=canyon-shooter
+Canyon Shooter 2 | page=canyon-shooter-2
+Civilization Wars | page=civilization-wars
+Commando | page=commando
+Commando 2 | page=commando-2
+Commando 2 Trailer | page=commando-2-trailer
+Crush the Castle 2 | page=crush-the-castle-2
+Deluxe Pool | page=deluxe-pool
+Dino Run | page=dino-run
+Dirk Valentine | id=dirk-valentine-and-the-fortress-of-steam | page=dirk-valentine
+Dofus | page=dofus
+Extreme Pamplona | page=extreme-pamplona
+Fancy Pants Adventure | page=fancy-pants-adventure-1
+Fancy Pants Adventure 2 | page=fancy-pants-adventure-2
+Fowl Words | page=fowl-words
+Fragger | page=fragger
+Fragger Lost City | page=fragger-lost-city
+Frost Bite | page=frost-bite
+Gamma Bros | page=gamma-bros
+Get Rooney Fit | page=get-rooney-fit | year=2006 | note=Described as helping Wayne Rooney get fit for the 2006 World Cup.
+Governor of Poker | page=governor-of-poker
+Governor of Poker 2 | page=governor-of-poker-2 | dev=Youda Games
+Hangaroo | page=hangaroo
+Hangaroo 2 | page=hangaroo-2
+Heli Attack 2 | page=heli-attack-2
+Heli Attack 3 | page=heli-attack-3
+iStunt 2 | page=istunt-2
+Little Wheel | page=little-wheel
+Monster Trucks | page=monster-trucks
+Monster Trucks Nitro 2 | id=monster-trucks-nitro-ii | page=monster-trucks-nitro-2
+Motocross Fever | page=motocross-fever
+Mountain Bike | page=mountain-bike
+Need for Madness | page=need-for-madness
+NFL Lateral Collateral | page=nfl-lateral-collateral
+Off The Rails | page=off-the-rails
+On The Run | page=on-the-run
+On The Run 2 | page=on-the-run-2
+On The Run Vegas | page=on-the-run-vegas
+Papa Louie | page=papa-louie
+Power Soccer | page=power-soccer | year=2005 | note=Miniclip's online football game ran from 2005 until 16 May 2016.
+Quesadilla Breaks | page=quesadilla-breaks
+RuneScape | page=runescape
+Shift 2 | page=shift-2
+Snow Drift | page=snow-drift
+Street Fight | page=street-fight
+Sushi Go Round | page=sushi-go-round
+Trial Bike | page=trial-bike
+Trial Bike Pro | page=trial-bike-pro
+Winter Bow Master | page=winter-bow-master

@@ -1,0 +1,78 @@
+# name: Miniclip offline game downloads (early 2000s)
+# type: official
+# url: https://archive.org/details/Miniclip
+# about: Miniclip offered many early games as self-contained Windows
+#   downloads named "Miniclip Game <title>.exe". The Internet Archive item
+#   "66 Offline EXE Old Miniclip games" preserves them; only its file LISTING
+#   was read. Files in that collection WITHOUT the "Miniclip Game" prefix
+#   (Elf Bowling, Pacman, Desktop Destroyer...) are other companies' games and
+#   are NOT used as evidence. "abduction.exe" is the same download as
+#   "Miniclip Game Alien Abduction.exe" and "paintball.exe" the same as
+#   "Miniclip Game Stress Relief Paintball.exe".
+3 Foot Ninja
+3 Foot Ninja II
+A Day of Slacking
+Alien Abduction | aka=Abduction
+Alien Attack
+Alien Clones
+Alphattack
+Blair The Motivator
+Blox Forever
+Bug on A Wire
+Bush Aerobics
+Bush Royal Rampage | id=royal-rampage | note=The download is called "Bush Royal Rampage"; the game lists call it "Royal Rampage".
+Bush Shoot-Out
+Cable Capers 2
+Cannon Blast
+Canyon Glider
+Cherie Disco Blair
+Clash n Slash
+Crypt Raider
+Cyber Mice Party
+Dancing Blair
+Dancing Bush
+Dancing Hillary
+Falafel King
+Fruit Smash
+Galactic Warrior
+Gyroball
+Hexxagon
+Hip-Hop Debate
+Kerry Workout
+King of The Hill
+Lunar Command
+Magic Balls
+Mini Golf
+Mission Mars
+Monkey Lander
+Nordic Chill
+Panik in Chocoland
+Penguin Push
+Red Beard
+Rigelian Hotshots
+Rocketman
+Rollon
+Rural Racer
+Samurai Warrior
+Santa Ski Jump | aka=Santa's Jump
+Save The Sheriff
+Sheepish
+Shove It
+Smashing
+Snake
+Space Escape
+Space Fighter Rebellion | id=space-fighter
+Stan Skates
+Starship Eleven
+Stress Relief Paintball | id=paintball
+Sub Commander
+Surf's Up
+Trick or Treat Smash
+Trivia Machine
+Twiddlestix
+UFO Joe
+United We Dance
+Verti Golf 2
+Wakeboarding XS
+Xraye
+Zed

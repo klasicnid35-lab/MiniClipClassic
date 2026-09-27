@@ -1,0 +1,23 @@
+# name: Uncertain variants - decisions
+# type: uncertain
+# about: Spellings that COULD be the same game as a catalogue record (or not),
+#   and what the audit decided. merged = kept as an alias of the record;
+#   separate = kept as its own record; not-added = left out until better
+#   evidence turns up. Not evidence - notes for the next audit.
+Quick Fire Pool | with=8 Ball Pool | decision=separate | note=Miniclip's archive calls the 2008 game "8 Ball Quick Fire Pool", and Miniclip also had a "Quick Fire Pool Instant" page, so it is not certain which game the maintainer list's "Quick Fire Pool" is - both records stay.
+Slacking | with=A Day of Slacking | decision=separate | note="Slacking" is in the 2008-2009 Full Games List and "A Day of Slacking" was an official download; they may be the same game.
+Royal Rampage | with=Bush Royal Rampage | decision=merged | note=Miniclip's own download is called "Bush Royal Rampage".
+Paintball | with=Stress Relief Paintball | decision=merged | note=The same download file under two names.
+Battleships | with=Battleships - General Quarters II | decision=merged | note=The name of the preserved Miniclip copy; the game lists just say "Battleships".
+Boom Volleyball | with=Boom Boom Volleyball | decision=merged | note=Miniclip's archive calls it "Boom Boom Volleyball" (boomboom.swf).
+Tetris | with=Miniclip Tetris | decision=merged | note=Miniclip's archive calls it "Miniclip Tetris".
+Bubble Trouble | with=Bubble Struggle | decision=merged | note=The same game by Kresimir Cvitanovic; "Bubble Struggle" is its later name.
+Alien Abduction | with=Abduction | decision=merged | note=The same official download under two names.
+Mahjongg | with=Mahjong Classic | decision=not-added | note=An Internet Archive item "Mahjongg" is credited to Miniclip; it may be Mahjong Classic or another mahjong game.
+Helicopter Gunship | with=Operation Flashpoint | decision=not-added | note=The Miniclip Shockwave collection has "Operation Flashpoint Cold War Crisis - Helicopter Gunship"; unclear whether it was a Miniclip game or a promotional download.
+Texas Hold'em | decision=not-added | note=An Internet Archive item "minicliptexasholdem" (2008) has no title or description.
+Cable Capers | with=Cable Capers 2 | decision=not-added | note=Only the sequel turned up in the sources - the first game is not added without evidence.
+Rubble Trouble Moscow | with=Rubble Trouble | decision=separate | note=Part of the Rubble Trouble series; its release order is not confirmed, so it has no series number.
+Michael Jackson | with=Michael Jackson Tribute | decision=separate | note=The Miniclip Wiki describes a "Michael Jackson Tribute"; probably the same entry, not merged until confirmed.
+Thunder Devil | with=Thunder Plunder | decision=separate | note=No trace of "Thunder Devil" was found; kept as needs-review.
+Papa Louie 2 | with=Papa Louie | decision=not-added | note=Miniclip hosted it, but from 2013 on - outside the 2001-2012 archive.

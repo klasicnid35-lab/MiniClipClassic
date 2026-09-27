@@ -1,0 +1,54 @@
+# name: Maintainer's audit checklist (2026)
+# type: maintainer
+# about: Titles the project maintainer asked the 2026 audit to check and to
+#   add when missing. Spellings as supplied; "T. or Treat Smash" is the
+#   shortened "Trick or Treat Smash" and "Mystic Mermaid Pin" the shortened
+#   "Mystic Mermaid Pinball".
+Battle Pong
+Best Friends
+Board
+Empty Santa's Sack
+Chess
+Cherie 'Disco' Blair
+Hip-Hop Debate
+Ice Breakout
+Karaoke
+Keepy Ups
+Mahjong Classic
+Mahjong Medley
+Mancala Bugs
+Masterkick
+Merry Christmas
+Mystic Mermaid Pin | id=mystic-mermaid-pinball
+Present Panic
+Santa Balls 2
+Santa Ski Jump
+Santa's Factory
+Secret of Maya
+Shroomz
+Skidoo TT
+Snooker
+Snow Line
+Snowman Stacker
+Space Invaders
+Spades
+Sub Hunt
+Super Gerball
+Super Web Soccer
+T. or Treat Smash | id=trick-or-treat-smash
+The Old West
+The Old West 2
+Thunder Plunder
+Western
+Wild Wild Words
+World Cup Glory
+World Cup Goal
+World Cup Soccer
+World Game Audition
+World Game Star
+Zen Puzzle Garden
+Mad Skills Motocross
+Miniclip Tetris | id=tetris
+Moto Jumping
+Raft Wars 2
+Epic Coaster

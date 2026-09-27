@@ -1,0 +1,22 @@
+[
+  { "id": "quick",       "name": "5 Minute (In a hurry)", "title": "5 Minute Games",     "description": "Short games for when you only have a few minutes." },
+  { "id": "action",      "name": "Action",                "title": "Action Games",       "description": "Fast reflexes required! Dodge, fly, jump and blast your way through these action games.", "nav": true, "home": true },
+  { "id": "adventure",   "name": "Adventure",             "title": "Adventure Games",    "description": "Explore dungeons, caves and the deep sea in these adventure games." },
+  { "id": "arcade",      "name": "Arcade",                "title": "Arcade Games",       "description": "Classic coin-op style arcade games. Chase that high score!" },
+  { "id": "brain",       "name": "Brain Training",        "title": "Brain Training Games", "description": "Give your brain a workout with memory, logic and number games." },
+  { "id": "flash",       "name": "Flash Games",           "title": "Flash Games",        "description": "Classic .swf Flash games, played through the Ruffle Flash emulator." },
+  { "id": "funny",       "name": "Funny",                 "title": "Funny Games",        "description": "Silly games that are guaranteed to make you smile." },
+  { "id": "hot",         "name": "Hot",                   "title": "Hot Games",          "description": "The games everyone is playing right now.", "virtual": "hot" },
+  { "id": "kids",        "name": "Kids",                  "title": "Kids Games",         "description": "Fun and easy games for younger players." },
+  { "id": "new",         "name": "Latest",                "title": "Latest Games",       "description": "The newest games added to the site.", "virtual": "new" },
+  { "id": "multiplayer", "name": "Multiplayer",           "title": "Multiplayer Games",  "description": "Play against a friend on the same keyboard, or take on the computer.", "nav": true, "home": true },
+  { "id": "platform",    "name": "Platform",              "title": "Platform Games",     "description": "Run, jump and collect in these platform games." },
+  { "id": "puzzle",      "name": "Puzzle",                "title": "Puzzle Games",       "description": "Tile matching, number puzzles, block dropping and more brain-teasing puzzles.", "nav": true, "home": true },
+  { "id": "racing",      "name": "Racing",                "title": "Racing Games",       "description": "Put your foot down! Cars, bikes, skis and light cycles.", "home": true },
+  { "id": "retro",       "name": "Retro",                 "title": "Retro Games",        "description": "Old school games inspired by the golden age of arcades." },
+  { "id": "shooting",    "name": "Shoot 'Em Up",          "title": "Shoot 'Em Up Games", "description": "Blast aliens, asteroids and incoming missiles.", "home": true },
+  { "id": "sports",      "name": "Sports",                "title": "Sports Games",       "description": "Basketball, golf, soccer, air hockey and more sports games.", "nav": true, "home": true },
+  { "id": "strategy",    "name": "Strategy",              "title": "Strategy Games",     "description": "Think ahead! Board games, tower defence and turn-based battles." },
+  { "id": "top",         "name": "Top 100",               "title": "Top 100 Games",      "description": "The most played games on the site.", "virtual": "top" },
+  { "id": "webtoys",     "name": "Web Toys",              "title": "Web Toys",           "description": "Not quite games - fun toys to play with in your browser." }
+]

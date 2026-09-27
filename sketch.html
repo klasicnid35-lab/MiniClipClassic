@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SketchPad - MiniClip Classic</title>
+<meta name="description" content="Draw and paint pictures in your browser with SketchPad.">
+<link rel="icon" href="assets/icons/favicon.png">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="sketch" data-tab="sketch" data-nav="">
+<div id="page">
+  <div id="hdr"></div>
+  <div id="content"></div>
+</div>
+<div id="ftr"></div>
+<script type="module">
+import { boot } from './assets/js/core/boot.js';
+import { renderGamePage } from './components/gamepage.js';
+const lib = await boot();
+const g = lib.get('sketch-pad');
+if (g) renderGamePage(lib, g);
+document.title = 'SketchPad - MiniClip Classic';
+</script>
+</body>
+</html>

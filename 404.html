@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page Not Found - MiniClip Classic</title>
+<style>html,body{background:#333;margin:0}</style>
+</head>
+<body data-page="404" data-tab="games" data-nav="">
+<div id="page">
+  <div id="hdr"></div>
+  <div id="content" class="cols">
+    <div id="lcol" class="inner"><div id="main">
+      <div class="ipanel"><div class="bhead"><h1>Page Not Found</h1></div>
+        <div class="ibody notfound"><div class="big">404</div>
+          <p><b>Whoops! That page has wandered off.</b></p>
+          <p>The page you asked for doesn't exist - maybe the address was mistyped, or the page moved.</p>
+          <p><a class="btn orange" href="index.html">Back to Games Home</a> &nbsp; <a class="btn" href="categories.html">All Categories</a></p>
+        </div></div>
+    </div></div>
+    <div id="rcol"></div>
+  </div>
+</div>
+<div id="ftr"></div>
+<script>
+  // GitHub Pages serves this page for any missing address, at any depth, so
+  // relative links need a <base>. The site root is either the first folder
+  // (username.github.io/repository/) or "/" (custom domain): check which one
+  // really has data/site.json, then load the stylesheet and scripts.
+  (function () {
+    var seg = location.pathname.split('/')[1];
+    var tryRoots = seg && !/\.[a-z0-9]+$/i.test(seg) ? ['/' + seg + '/', '/'] : ['/'];
+    function use(root) {
+      var b = document.createElement('base'); b.href = root; document.head.insertBefore(b, document.head.firstChild);
+      var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'assets/css/site.css'; document.head.appendChild(l);
+      var i = document.createElement('link'); i.rel = 'icon'; i.href = 'assets/icons/favicon.png'; document.head.appendChild(i);
+      var s = document.createElement('script'); s.type = 'module'; s.src = 'assets/js/pages/notfound.js'; document.body.appendChild(s);
+    }
+    (function next(k) {
+      if (k >= tryRoots.length - 1) return use(tryRoots[tryRoots.length - 1]);
+      fetch(tryRoots[k] + 'data/site.json', { method: 'HEAD' })
+        .then(function (r) { if (r.ok) use(tryRoots[k]); else next(k + 1); })
+        .catch(function () { next(k + 1); });
+    })(0);
+  })();
+</script>
+</body>
+</html>

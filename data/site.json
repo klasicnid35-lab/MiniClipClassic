@@ -1,0 +1,20 @@
+{
+  "name": "MiniClip Classic",
+  "tagline": "Play Free Games",
+  "navCategories": ["action", "multiplayer", "sports", "puzzle"],
+  "homeCategories": ["action", "multiplayer", "sports", "puzzle", "shooting", "racing"],
+  "homePromo": {
+    "game": "critter-cannon",
+    "banner": "assets/banners/promo-wide.png",
+    "bannerSmall": "assets/banners/promo-small.png"
+  },
+  "houseAd": {
+    "game": "castle-guard",
+    "image": "assets/banners/house-ad.png"
+  },
+  "daily": {
+    "left": "sudoku-daily",
+    "right": "mahjong-daily",
+    "image": "assets/banners/daily-puzzles.png"
+  }
+}

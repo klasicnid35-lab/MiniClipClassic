@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: "Titan One"; src: url(fonts/titan-one.woff2); }
+@font-face { font-family: "Lilita One"; src: url(fonts/lilita-one.woff2); }
+@font-face { font-family: "Luckiest Guy"; src: url(fonts/luckiest-guy.woff2); }
+@font-face { font-family: "Bangers"; src: url(fonts/bangers.woff2); }
+@font-face { font-family: "Russo One"; src: url(fonts/russo-one.woff2); }
+@font-face { font-family: "Black Ops One"; src: url(fonts/black-ops-one.woff2); }
+@font-face { font-family: "Press Start 2P"; src: url(fonts/press-start-2p.woff2); }
+@font-face { font-family: "Chewy"; src: url(fonts/chewy.woff2); }
+@font-face { font-family: "Bungee"; src: url(fonts/bungee.woff2); }
+@font-face { font-family: "Passion One"; src: url(fonts/passion-one.woff2); }
+@font-face { font-family: "Carter One"; src: url(fonts/carter-one.woff2); }
+@font-face { font-family: "Baloo 2"; src: url(fonts/baloo-2-800.woff2); font-weight: 800; }
+@font-face { font-family: "Permanent Marker"; src: url(fonts/permanent-marker.woff2); }
+@font-face { font-family: "SiteTahoma"; src: url(../../assets/fonts/dejavu-sans-condensed.woff2); }
+@font-face { font-family: "SiteTahoma"; font-weight: bold; src: url(../../assets/fonts/dejavu-sans-condensed-bold.woff2); }
+html, body { margin: 0; background: transparent; }
+#stage { position: absolute; left: 0; top: 0; overflow: hidden; }
+#stage svg { display: block; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<!-- preload every font so the first render already has them -->
+<div style="position:absolute;left:-999px;top:-999px">
+  <span style="font-family:'Titan One'">a</span><span style="font-family:'Lilita One'">a</span>
+  <span style="font-family:'Luckiest Guy'">a</span><span style="font-family:'Bangers'">a</span>
+  <span style="font-family:'Russo One'">a</span><span style="font-family:'Black Ops One'">a</span>
+  <span style="font-family:'Press Start 2P'">a</span><span style="font-family:'Chewy'">a</span>
+  <span style="font-family:'Bungee'">a</span><span style="font-family:'Passion One'">a</span>
+  <span style="font-family:'Carter One'">a</span><span style="font-family:'Baloo 2';font-weight:800">a</span>
+  <span style="font-family:'Permanent Marker'">a</span><span style="font-family:'SiteTahoma'">a</span>
+  <b style="font-family:'SiteTahoma'">a</b>
+</div>
+</body></html>

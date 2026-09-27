@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MiniClip Classic - Play Free Online Games</title>
+<meta name="description" content="Play free online games: action games, puzzle games, sports games, multiplayer games and classic Flash games.">
+<link rel="icon" href="assets/icons/favicon.png">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="alternate" type="application/rss+xml" title="Games Feed" href="feed.xml">
+</head>
+<body class="home" data-nav="home" data-tab="games">
+<div id="page">
+  <div id="hdr"></div>
+
+  <div id="content" class="cols">
+    <div id="lcol">
+      <!-- Latest Games + Hot Games -->
+      <div class="lwrap top2">
+        <div class="bpanel latest">
+          <div class="bhead"><img class="bico" src="assets/icons/pad-white.png" width="30" height="16" alt=""><a href="games.html?cat=new">Latest Games</a><a class="viewall" href="games.html?cat=new">View All</a></div>
+          <div class="feature">
+            <div class="fbox">
+              <a class="fimg" id="fimg" href="#"><img src="assets/ui/blank.gif" width="274" height="199" alt=""></a>
+              <div class="finfo">
+                <a class="ftitle" id="ftitle" href="#">&nbsp;</a>
+                <p class="fdesc" id="fdesc">&nbsp;</p>
+                <a class="playnow" id="fplay" href="#"><span class="pn-ico"></span>Play Now</a>
+              </div>
+              <div class="pager" id="fpager">
+                <a class="prev" href="#" data-dir="-1"><span class="arr l"></span>Previous</a>
+                <span class="nums"></span>
+                <a class="next" href="#" data-dir="1">Next<span class="arr r"></span></a>
+              </div>
+            </div>
+            <div class="fthumbs" id="fthumbs"></div>
+          </div>
+        </div>
+        <div class="bpanel hot">
+          <div class="bhead"><img class="bico" src="assets/icons/flame.png" width="18" height="24" alt=""><a href="games.html?cat=hot">Hot Games</a><a class="viewall" href="games.html?cat=hot">View All</a></div>
+          <div class="hotgrid" id="hotgrid"></div>
+        </div>
+      </div>
+
+      <!-- wide promo banner -->
+      <div class="lwrap promo">
+        <a class="widebanner" id="widebanner" href="#"><img src="assets/banners/promo-wide.png" width="612" height="77" alt=""></a>
+      </div>
+
+      <!-- category boxes -->
+      <div class="lwrap catboxes" id="catboxes"></div>
+    </div>
+
+    <div id="rcol">
+      <div class="adbox">
+        <div class="adslot"><a id="housead" href="#"><img src="assets/banners/house-ad.png" width="300" height="250" alt="Advertisement"></a></div>
+        <div class="adlabel"><span>Advertisement</span></div>
+      </div>
+
+      <a class="smallbanner" id="smallbanner" href="#"><img src="assets/banners/promo-small.png" width="314" height="66" alt=""></a>
+
+      <div class="opanel topten">
+        <div class="ohead">Top Ten Games</div>
+        <div class="obody">
+          <ol class="tlist" id="tlist"></ol>
+          <div class="tprev" id="tprev"></div>
+        </div>
+      </div>
+
+      <div class="opanel twin">
+        <div class="ohalf played">
+          <div class="ohead">Latest Games Played</div>
+          <div class="obody" id="played"></div>
+        </div>
+        <div class="ohalf mine">
+          <div class="ohead">My Games</div>
+          <div class="obody" id="mygames"></div>
+        </div>
+      </div>
+
+      <div class="dailybox" id="dailybox">
+        <a class="daily-l" href="#"><span class="dname">Sudoku</span><span class="dplay">PLAY DAILY</span></a>
+        <a class="daily-r" href="#"><span class="dname">Mahjong</span><span class="dplay">PLAY DAILY</span></a>
+        <div class="dfoot">New Puzzles every day! <span id="dailydate"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Categories + Full Games List -->
+  <div id="allgames">
+    <div class="hidebar"><a href="#" id="togglelists"><span class="dn"></span>Hide all Games Sections and Full Games List<span class="dn"></span></a></div>
+    <div class="agcols" id="agcols">
+      <div class="side">
+        <div class="shead">All Categories</div>
+        <ul class="catlist" id="catlist"></ul>
+        <div class="shead">Other Sections</div>
+        <ul class="catlist" id="othersections"></ul>
+      </div>
+      <div class="full">
+        <div class="shead">Full Games List</div>
+        <div class="fullbox">
+          <div class="fullcols" id="fullcols"></div>
+          <div class="legend"><b>Legend :</b> <span class="o">Orange Links</span> = <a href="players.html#scores">High score challenge game</a> &nbsp; <span class="b">Blue Links</span> = normal game</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="ftr"></div>
+<script type="module" src="assets/js/pages/home.js"></script>
+</body>
+</html>

@@ -22,6 +22,12 @@ function loadScript(src) {
 // Uses the self-hosted copy in vendor/ruffle when it exists (the GitHub Pages
 // workflow downloads it), otherwise falls back to the public CDN build.
 export function loadRuffle() {
+  // Ruffle builds its context menu with `new Intl.Locale(navigator.language)`,
+  // which throws when the browser reports no language (some embedded or
+  // headless browsers). Fall back to English in that case.
+  try { new Intl.Locale(navigator.language); } catch (e) {
+    try { Object.defineProperty(navigator, 'language', { get: () => 'en-US', configurable: true }); } catch (err) { /* ignore */ }
+  }
   if (window.RufflePlayer && window.RufflePlayer.newest) return Promise.resolve();
   if (!rufflePromise) {
     window.RufflePlayer = window.RufflePlayer || {};

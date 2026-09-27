@@ -10,7 +10,7 @@ const base = location.href.replace(/[^/]*$/, '');
 html('#main', `<div class="ipanel"><div class="bhead"><h1>Information</h1></div><div class="ibody info">
 <h2 id="about">About Us</h2>
 <p><b>MiniClip Classic</b> is a fan-made recreation of what a free online games website looked like around 2008-2009: small thumbnails, glossy blue panels, dense lists of games and a Top Ten chart. It is a personal nostalgia project and is <b>not affiliated with, or endorsed by, Miniclip</b>.</p>
-<p>Every game here (${lib.games.length} and counting) is an original game written for this site in HTML5, plus a small home-made Flash movie that shows off the Ruffle Flash emulator.</p>
+<p>Every game here is an original game written for this site: ${lib.games.filter((g) => g.type === 'html5').length} HTML5 games and ${lib.games.filter((g) => g.type === 'flash').length} small home-made Flash movie that shows off the Ruffle Flash emulator. More can be added at any time - see <a href="#add-games">Add Your Games</a>.</p>
 
 <h2 id="help">Help</h2>
 <ul>

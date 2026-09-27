@@ -36,6 +36,6 @@ export function renderFooter() {
   <div class="langs"><b>Select language :</b> ${langs}</div>
   <div class="fwelcome">Welcome to MiniClip Classic, a fan-made recreation of a 2008-2009 online games site where you can play a large range of free online games including sports games, multiplayer games, action games, puzzle games, and flash games. Players can save their favourite games and high scores, and rate the games they play.</div>
   <div class="flinks">${links}</div>
-  <div class="fcopy">&copy; Copyright 2026 MiniClip Classic. Fan-made tribute site &ndash; not affiliated with or endorsed by Miniclip. All games on this site are original works.</div>
+  <div class="fcopy">&copy; Copyright 2026 MiniClip Classic. Fan-made tribute &ndash; not affiliated with Miniclip. Games belong to their owners; the playable ones are streamed from Miniclip's official archive.</div>
 </div>`;
 }

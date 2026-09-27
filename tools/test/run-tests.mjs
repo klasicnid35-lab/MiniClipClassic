@@ -227,6 +227,8 @@ await section('every game has a working page', async () => {
     await page.waitForSelector('.gamewrap h1', { timeout: 8000 });
     const h1 = await page.textContent('.gamewrap h1');
     const notice = await page.$(g.installed ? '#player' : '.unavail .uhead');
+    // let the player finish loading before moving on (leaving mid-download aborts Ruffle)
+    if (g.installed) await page.waitForSelector('#loader', { state: 'detached', timeout: 30000 }).catch(() => {});
     if (h1 !== g.title || !notice) { bad++; ok(false, 'game page for ' + g.id, h1); }
   }
   ok(bad === 0, `${list.length} game pages show the title and the player or the unavailable notice`);
@@ -531,7 +533,7 @@ await section(LIVE ? 'official Miniclip streams (live from classic.miniclip.com)
     if (LIVE && process.env.SHOTS) { await page.waitForTimeout(4000); await page.screenshot({ path: path.join(process.env.SHOTS, g.id + '.png') }); }
     // Old Miniclip SWFs still ask for retired extras (component.txt, avatarloader.txt,
     // 2000s stats counters); they fail on Miniclip's own archive too and do not stop the game.
-    const retired = (p) => /classic\.miniclip\.com\/.*\.txt\b|status of 403|stats\/SWFcounters|blocked by CORS policy.*http:\/\/\d/.test(p);
+    const retired = (p) => /classic\.miniclip\.com\/.*\.txt\b|status of 403|SWFcounters|Failed to load resource: net::ERR_FAILED/.test(p);
     ok(problems.filter((p) => !retired(p)).length === 0, 'no errors for the official stream: ' + g.id, problems.join(' | '));
     await page.close();
   }

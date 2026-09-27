@@ -121,9 +121,6 @@ export function renderGamePage(lib, g, opts = {}) {
         drawStats();
       },
     });
-  } else {
-    // for whoever looks after the site: where the file should go
-    console.info(`[MiniClip Classic] "${g.title}" is not installed yet. Copy its file to games/${g.id}/ and set "installed": true and "gameFile" in data/games.json (or run: node tools/catalog/install-game.mjs ${g.id} <file>).`);
   }
 
   // favourites

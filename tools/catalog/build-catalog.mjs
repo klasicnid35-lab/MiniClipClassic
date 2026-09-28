@@ -77,6 +77,7 @@ function fromMaster(e) {
   if (o.ht && !HISTORICAL_TYPES.includes(o.ht)) problems.push(`line ${e.line}: unknown historical type ${o.ht}`);
   if (o.type && !TYPES.includes(o.type)) problems.push(`line ${e.line}: unknown type ${o.type}`);
   if (o.rel && !RELATIONSHIPS.includes(o.rel)) problems.push(`line ${e.line}: unknown relationship ${o.rel}`);
+  if (o.site && !/^https:\/\/[^\s]+$/.test(o.site)) problems.push(`line ${e.line}: site= must be an https:// address`);
   if (e.flags.has('v')) problems.push(`line ${e.line}: the "v" flag is gone - verification now comes from tools/catalog/sources/`);
   const p = Math.max(0, Math.min(3, e.priority | 0));
   return {
@@ -94,6 +95,7 @@ function fromMaster(e) {
     historicalNotes: o.note || '',
     description: o.desc || '',
     instructions: o.how || '',
+    officialSite: o.site || null,
     thumbnail: '',
     image: '',
     type: o.type || 'flash',
@@ -110,7 +112,7 @@ function fromMaster(e) {
 }
 
 const EDITORIAL = ['category', 'secondaryCategories', 'era', 'year', 'developer', 'publisher', 'hostedByMiniclip',
-  'historicalType', 'verificationStatus', 'historicalNotes', 'description', 'instructions', 'featured', 'popular',
+  'historicalType', 'verificationStatus', 'historicalNotes', 'description', 'instructions', 'officialSite', 'featured', 'popular',
   'new', 'challenge', 'nostalgiaPriority'];
 const isEmpty = (v) => v === undefined || v === null || v === '' || (Array.isArray(v) && v.length === 0);
 

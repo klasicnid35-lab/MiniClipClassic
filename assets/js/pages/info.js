@@ -26,7 +26,7 @@ html('#main', `<div class="ipanel"><div class="bhead"><h1>Information</h1></div>
 <li>Release years, developers and publishers - and whether Miniclip developed, published or just hosted a game - are only shown when a source says so; otherwise they say <i>Unknown</i>. Games that are not sorted into a category yet are listed under <a href="games.html?cat=other">Other</a>.</li>
 <li>Sponsored, licensed and promotional games (${T('sponsored', 'licensed', 'promotional')}), seasonal games (${T('seasonal')}), political and celebrity parodies (${T('political-parody')}) and online multiplayer games and services (${T('multiplayer', 'external-service')}) are kept because they are part of the history of the classic portals - see <a href="games.html?cat=promotional">Promotional Games</a> and the filters in the <a href="allgames.html">A-Z directory</a>.</li>
 <li>Sequels are always separate games (<i>3 Foot Ninja</i> and <i>3 Foot Ninja II</i>); different spellings of the same game are kept as <i>also known as</i> names, so search finds them all.</li>
-<li><b>Why can't I play every game?</b> Only games that are officially available can be played here. Miniclip's own classic archive offers ${streamed.length || 'a handful of'} Flash games, which this site streams from Miniclip's server. Game files are never downloaded from other websites; the rest of the archive stays a catalogue until a file that may legally be shared is added.</li>
+<li><b>Why can't I play every game?</b> Only games that are officially available can be played for everyone. Miniclip's own classic archive offers ${streamed.length || 'a handful of'} Flash games, which this site streams from Miniclip's server. Game files are never downloaded from other websites. <b>If you have a game's .swf file yourself</b> (from an old Miniclip CD or download, for example), open the game's page and choose <b>Play your own copy</b>: it plays right here, and the file never leaves your computer.</li>
 <li><span style="color:#ff3300;font-weight:bold">Orange links</span> are the high score challenge games of the 2008-2009 site.</li>
 <li>All thumbnails you see are generated placeholders showing the game's title and category, until real artwork is added.</li>
 </ul>
@@ -34,7 +34,8 @@ html('#main', `<div class="ipanel"><div class="bhead"><h1>Information</h1></div>
 <h2 id="help">Help</h2>
 <ul>
 <li><b>Finding games:</b> use the category links, the <a href="allgames.html">A-Z directory</a>, the <b>Find Games Quickly</b> drop-down or the <b>Search for Games</b> box at the top of every page. Search understands alternative titles too.</li>
-<li><b>"Game currently unavailable":</b> the game is in the archive, but its file has not been added yet. You can still rate it and add it to <b>My Games</b>.</li>
+<li><b>"Game currently unavailable":</b> the game is in the archive, but its file has not been added yet. You can still rate it and add it to <b>My Games</b> - and if you have the game's .swf file, play your own copy (tick <i>Remember it in this browser</i> to keep it playable on this computer; <a href="mygames.html">My Games</a> lists your copies).</li>
+<li><b>Still online:</b> a few games from the classic era are still running on their official sites - their pages link there.</li>
 <li><b>Playing:</b> click a game to open it. Most games use the arrow keys or the mouse.</li>
 <li><b>Full screen:</b> press the <b>Full Screen</b> button under a game. Press <b>Esc</b> to go back.</li>
 <li><b>My Games:</b> press <b>Add to My Games</b> under a game to keep it in your list. Your list, history, ratings and high scores are stored in your browser (localStorage), so they stay on this computer.</li>
@@ -107,7 +108,7 @@ html('#main', `<div class="ipanel"><div class="bhead"><h1>Information</h1></div>
 <p>This is a free, non-commercial fan project. The games are provided "as is" for fun. Please be nice and don't try to break things.</p>
 
 <h2 id="privacy">Privacy</h2>
-<p>This site has no accounts, no adverts from other companies, no cookies and no tracking. The only things stored are your player name, My Games list, play history, ratings and high scores - and they are kept in your own browser's local storage. When you play a streamed game, your browser loads it from Miniclip's server. Use <a href="players.html">Reset my profile</a> to delete them.</p>
+<p>This site has no accounts, no adverts from other companies, no cookies and no tracking. The only things stored are your player name, My Games list, play history, ratings and high scores - and they are kept in your own browser's local storage. When you play a streamed game, your browser loads it from Miniclip's server. Game files you play as <i>your own copy</i> are read by your browser only; if you ask it to remember them they are kept in its storage (IndexedDB) on your computer, and you can forget them on the game's page or in My Games. Use <a href="players.html">Reset my profile</a> to delete them.</p>
 </div></div>`);
 renderRightColumn(lib, { daily: false });
 if (location.hash) setTimeout(() => { const el = $(location.hash); if (el) el.scrollIntoView(); }, 50);

@@ -11,7 +11,7 @@
 // data/games.json gets "installed": true, "gameFile" and "type" set.
 import fs from 'fs';
 import path from 'path';
-import { ROOT, GAMES_JSON, readJSON, writeGames, titleKey } from './lib.mjs';
+import { ROOT, GAMES_JSON, readJSON, writeGames, titleKey, swfSize } from './lib.mjs';
 
 const argv = process.argv.slice(2);
 const opt = (name) => { const i = argv.indexOf('--' + name); return i >= 0 ? argv.splice(i, 2)[1] : undefined; };
@@ -43,6 +43,8 @@ if (url) {
     fs.copyFileSync(from, path.join(dir, name));
     g.type = ext === '.swf' ? 'flash' : (ext === '.html' || ext === '.htm') ? 'html5' : g.type;
     g.gameFile = `games/${g.id}/${name}`;
+    const size = ext === '.swf' && !width && !height ? swfSize(from) : null;
+    if (size) Object.assign(g, size);
   }
 }
 g.installed = true;

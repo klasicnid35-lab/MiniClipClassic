@@ -34,6 +34,7 @@
 #               rel=...           relationship with Miniclip, overrides the
 #                                 automatic one: developed published hosted
 #                                 licensed sponsored external-service unknown
+#               site=             official site where the game still runs (https)
 #               note=             historicalNotes
 #               desc=  how=       description / instructions (only when known)
 #
@@ -54,7 +55,7 @@
 5 Min Shoot 'Em Up | shooting arcade | 1
 8 Ball Pool | pool sports | 3 | hs | aka=8 Ball Quick Fire Pool | desc=Single-player 8-ball pool: pot your group of balls, then sink the black to win the frame. | note=Called "8 Ball Quick Fire Pool" in Miniclip's own game archive and listed as "8 Ball Pool" in the 2008-2009 Full Games List. The online multiplayer game that followed in 2010 is listed separately as "8 Ball Pool Multiplayer".
 9 Ball Pool | pool sports | 3 | hs | desc=Pot the balls in numerical order and sink the 9 ball to win.
-8 Ball Pool Multiplayer | pool multiplayer sports | 3 | ht=multiplayer | desc=Play 8-ball pool online against real players from around the world. | note=The online multiplayer game from 2010 - listed separately from the 2008 single-player 8 Ball Pool.
+8 Ball Pool Multiplayer | pool multiplayer sports | 3 | ht=multiplayer | desc=Play 8-ball pool online against real players from around the world. | note=The online multiplayer game from 2010 - listed separately from the 2008 single-player 8 Ball Pool. | site=https://www.miniclip.com/games/8-ball-pool
 
 # ------------------------------------------------------------------ A
 A Day of Slacking | other | 0 | r | note=Possibly the same game as "Slacking" - check before merging.
@@ -264,7 +265,7 @@ Dirk Valentine and the Fortress of Steam | platform action | 3 | aka=Dirk Valent
 Disc Golf | sports skill | 3
 Disc Pool | pool sports | 1
 Doeo | puzzle | 1
-Dofus | multiplayer strategy adventure | 2 | ht=multiplayer | type=iframe | year=2004 | dev=Ankama Games | desc=A tactical, turn-based fantasy MMORPG from Ankama.
+Dofus | multiplayer strategy adventure | 2 | ht=multiplayer | type=iframe | year=2004 | dev=Ankama Games | desc=A tactical, turn-based fantasy MMORPG from Ankama. | site=https://www.dofus.com/en
 Dojo Dodge | skill | 1
 Doodle | other | 1
 Doodle 2 | other | 1
@@ -544,7 +545,7 @@ One Man Band | skill | 1
 Onekey | skill | 1
 OurWorld | multiplayer | 2 | ht=multiplayer | type=iframe
 Apache Overkill
-Online Soccer Manager | football multiplayer | 0 | ht=external-service
+Online Soccer Manager | football multiplayer | 0 | ht=external-service | site=https://www.onlinesoccermanager.com/
 
 # ------------------------------------------------------------------ P
 Paintball | shooting | 1
@@ -598,7 +599,7 @@ Pro Football | football sports | 1
 Pro Kick Revolution | football sports | 1
 Protect the City | shooting | 1
 Pumpkin Push | other | 1 | ht=seasonal
-Puzzle Pirates | multiplayer puzzle | 2 | ht=multiplayer | type=iframe | year=2003 | dev=Three Rings Design | aka=Yohoho! Puzzle Pirates | desc=Swashbuckling online game where sailing, sword fighting and trading are all played as puzzles. | note=Originally a Java game run by Three Rings.
+Puzzle Pirates | multiplayer puzzle | 2 | ht=multiplayer | type=iframe | year=2003 | dev=Three Rings Design | aka=Yohoho! Puzzle Pirates | desc=Swashbuckling online game where sailing, sword fighting and trading are all played as puzzles. | note=Originally a Java game run by Three Rings. | site=https://www.puzzlepirates.com/
 Puzzled Sheep | puzzle | 1
 Pirates of the Caribbean: Dead Man's Chest | promotional action | 0 | ht=licensed | note=Tie-in with the 2006 film.
 Present Panic | other | 1 | ht=seasonal
@@ -656,7 +657,7 @@ Rugby Challenge | sports | 1
 Rule The Beach | other | 1
 Run N Gun | shooting action | 1
 Run The Rapids | sports | 1
-RuneScape | multiplayer adventure | 2 | ht=multiplayer | type=iframe | year=2001 | dev=Jagex | desc=A fantasy MMORPG: train your skills, complete quests and adventure with thousands of other players. | note=Originally a Java-based browser game run by Jagex.
+RuneScape | multiplayer adventure | 2 | ht=multiplayer | type=iframe | year=2001 | dev=Jagex | desc=A fantasy MMORPG: train your skills, complete quests and adventure with thousands of other players. | note=Originally a Java-based browser game run by Jagex. | site=https://www.runescape.com/
 Rural Racer | racing driving | 2
 Raft Wars 2 | shooting strategy | 3
 River Raider | shooting | 0

@@ -31,6 +31,12 @@ visible in those screenshots.
   (Commando 2, Heli Attack 3, Bloxorz, Motherload, Bubble Trouble, 8 Ball
   Pool, Raft Wars 2, Mad Skills Motocross...) stream straight into the
   Ruffle player. A local copy in `games/<id>/` always takes priority.
+- **Play your own copy** – every other Flash game's page lets a visitor pick
+  the game's `.swf` from their own computer (an old Miniclip CD, a download
+  they kept...). It plays in the same player and can be remembered in that
+  browser (IndexedDB, listed under *My Games*); the file is never uploaded.
+- **Official sites** – games that are still running (RuneScape, Dofus, Puzzle
+  Pirates, Online Soccer Manager, 8 Ball Pool) link to their official site.
 - **Homepage** – Latest Games, Hot Games, promo banners, advert box, Top Ten
   with hover previews, Latest Games Played / My Games, daily puzzles, six
   category boxes, All Categories and the Full Games List (every game, as on
@@ -166,6 +172,8 @@ Each record looks like this – unknown facts stay `null` or empty on purpose:
 - `type` – `flash` (a `.swf` played with Ruffle – a local file or an official
   `https://` stream), `html5`, `local-web` (any other local web build) or
   `iframe` (an embed URL). Only used when `installed` is `true`.
+- `officialSite` – `https://` address where the game still runs, or `null`
+  (master list `site=`).
 - `thumbnail` / `image` – empty means "use the generated placeholder".
 - `width` / `height` – optional game size (default 640×480).
 
@@ -232,6 +240,21 @@ shows the right player automatically – no per-game HTML is needed. The GitHub
 Pages workflow also runs the sync before each deploy. See `games/README.md`.
 
 Look up a game's id with `node tools/catalog/validate.mjs --find "heli"`.
+
+A whole folder of `.swf` files you are allowed to publish can be installed in
+one go - each file is matched to its game by name (case, CamelCase, dashes,
+underscores, "Miniclip Game" prefixes and II/2 don't matter; sequels are never
+mixed up):
+
+```sh
+node tools/catalog/import-games.mjs ~/my-miniclip-games            # dry run: what would be installed
+node tools/catalog/import-games.mjs ~/my-miniclip-games --apply    # copy + install
+```
+
+Files whose names don't match are listed; rename them or add
+`file name | game id` lines to a file passed with `--map`. Games already
+playable from their official host are skipped unless `--replace-streams` is
+given.
 
 ## Adding artwork
 

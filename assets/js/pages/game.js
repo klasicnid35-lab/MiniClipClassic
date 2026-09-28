@@ -2,7 +2,8 @@
 import { param, html, catUrl, esc } from '../core/util.js';
 import { getData } from '../core/data.js';
 import { boot } from '../core/boot.js';
-import { renderGamePage } from '../../../components/gamepage.js';
+import { renderGamePage, withOwnCopy } from '../../../components/gamepage.js';
+import { getCopy } from '../../../components/owncopy.js';
 import { searchGames } from '../core/search.js';
 import { ct } from '../../../components/thumbs.js';
 
@@ -13,7 +14,9 @@ const game = pre && pre.get(id);
 if (game) document.body.dataset.nav = game.category;
 
 const lib = await boot();
-if (game) renderGamePage(lib, game);
+// a Flash game the visitor stored their own copy of plays from that copy
+const copy = game && !game.installed && game.type === 'flash' ? await getCopy(game.id) : null;
+if (game) renderGamePage(lib, copy ? withOwnCopy(game, copy) : game);
 else {
   // maybe an old or mistyped link: suggest the closest titles
   const guess = id ? searchGames(lib, id.replace(/[-_]+/g, ' ')).slice(0, 6) : [];

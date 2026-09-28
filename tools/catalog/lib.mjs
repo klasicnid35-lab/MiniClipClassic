@@ -2,6 +2,7 @@
 // validate, install-game). Plain Node, no dependencies.
 import fs from 'fs';
 import path from 'path';
+import zlib from 'zlib';
 import { fileURLToPath } from 'url';
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -29,7 +30,7 @@ export const IMAGE_EXT = ['.png', '.jpg', '.jpeg', '.gif', '.webp'];
 export const FIELD_ORDER = [
   'id', 'slug', 'title', 'aliases', 'series', 'seriesOrder', 'category', 'secondaryCategories', 'era', 'year',
   'developer', 'publisher', 'hostedByMiniclip', 'relationship', 'historicalType', 'verificationStatus', 'sources',
-  'historicalNotes', 'description', 'instructions', 'thumbnail', 'image', 'type', 'gameFile',
+  'historicalNotes', 'description', 'instructions', 'officialSite', 'thumbnail', 'image', 'type', 'gameFile',
   'installed', 'width', 'height', 'featured', 'popular', 'new', 'challenge', 'nostalgiaPriority', 'rating', 'plays',
 ];
 
@@ -120,6 +121,35 @@ export function loadCategories() {
 
 export const isRemote = (p) => /^[a-z][a-z0-9+.-]*:\/\//i.test(p || '');
 export const localPath = (p) => path.join(ROOT, decodeURIComponent(String(p).split(/[?#]/)[0]));
+
+// ---------------------------------------------------------------- SWF files
+
+// Stage size from a .swf header: { width, height } or null (LZMA-packed "ZWS"
+// files and anything unexpected). Reads only the start of the file.
+export function swfSize(file) {
+  try {
+    const fd = fs.openSync(file, 'r');
+    const head = Buffer.alloc(64 * 1024);
+    const n = fs.readSync(fd, head, 0, head.length, 0);
+    fs.closeSync(fd);
+    const sig = head.toString('latin1', 0, 3);
+    let body;
+    if (sig === 'FWS') body = head.subarray(8, n);
+    else if (sig === 'CWS') body = zlib.inflateSync(head.subarray(8, n), { finishFlush: zlib.constants.Z_SYNC_FLUSH });
+    else return null;
+    const nbits = body[0] >> 3;
+    let bits = '';
+    for (let i = 0; i < 17; i++) bits += body[i].toString(2).padStart(8, '0');
+    const v = [0, 1, 2, 3].map((i) => parseInt(bits.slice(5 + i * nbits, 5 + (i + 1) * nbits), 2));
+    const width = Math.round((v[1] - v[0]) / 20), height = Math.round((v[3] - v[2]) / 20);
+    return width > 50 && height > 50 && width < 4000 && height < 4000 ? { width, height } : null;
+  } catch {
+    return null;
+  }
+}
+export const isSwfFile = (file) => {
+  try { const b = Buffer.alloc(3); const fd = fs.openSync(file, 'r'); fs.readSync(fd, b, 0, 3, 0); fs.closeSync(fd); return ['FWS', 'CWS', 'ZWS'].includes(b.toString('latin1')); } catch { return false; }
+};
 
 // ---------------------------------------------------------------- master list
 

@@ -3,8 +3,10 @@
 //   local-web - any other local web build (a folder or .html page), loaded in an iframe
 //   iframe    - an external embed URL, loaded in a sandboxed iframe
 //   flash     - a .swf file, played with the Ruffle Flash emulator; either a
-//               local file or an official stream (an https:// address on the
-//               game's own official host, e.g. Miniclip's classic archive)
+//               local file, an official stream (an https:// address on the
+//               game's own official host, e.g. Miniclip's classic archive) or
+//               the visitor's own copy (game.data, an ArrayBuffer that never
+//               leaves their browser - see owncopy.js)
 // Only games with "installed": true reach the player - see gamepage.js.
 import { esc } from '../assets/js/core/util.js';
 
@@ -100,9 +102,11 @@ export function mountPlayer(host, game, { maxWidth = 920, onStart = null } = {})
   let ruffle = null;
   // A remote SWF loads its extra files (levels, sounds...) relative to its own
   // folder, as it did on its original site.
-  const remote = /^[a-z]+:\/\//i.test(src);
+  const own = game.data instanceof ArrayBuffer;
+  const remote = !own && /^[a-z]+:\/\//i.test(src);
   const swfOptions = () => Object.assign(
-    { url: src, allowScriptAccess: false, backgroundColor: '#000000' },
+    own ? { data: game.data, swfFileName: game.dataName || 'game.swf' } : { url: src },
+    { allowScriptAccess: false, backgroundColor: '#000000' },
     remote ? { base: src.replace(/[?#].*$/, '').replace(/[^/]*$/, '') } : {},
   );
 
@@ -142,7 +146,8 @@ export function mountPlayer(host, game, { maxWidth = 920, onStart = null } = {})
   };
 
   // make sure local game files exist before trying to run them
-  if (!remote) {
+  if (own) start();
+  else if (!remote) {
     fetch(src, { method: 'HEAD', cache: 'no-cache' }).then((r) => {
       if (r.ok) start();
       else fail(`Sorry, this game's file could not be found:<br><code>${esc(src)}</code>`);
@@ -151,6 +156,12 @@ export function mountPlayer(host, game, { maxWidth = 920, onStart = null } = {})
 
   return {
     el: box,
+    // stop the game before its page is replaced (Ruffle's sound keeps running otherwise)
+    destroy() {
+      done = true; clearInterval(tick);
+      if (ruffle) { try { ruffle.pause(); } catch (e) { /* ignore */ } ruffle.remove(); ruffle = null; }
+      if (frame) { frame.remove(); frame = null; }
+    },
     restart() {
       if (frame) { frame.src = src; }
       else if (ruffle) { ruffle.load(swfOptions()); }

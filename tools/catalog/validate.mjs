@@ -106,6 +106,7 @@ games.forEach((g, i) => {
     if (g.verificationStatus === 'verified' && !g.sources.some((x) => x && (x.type === 'official' || x.type === 'screenshot'))) err(`${w}: "verified" needs an official or screenshot source`);
   }
   if (g.series !== undefined && g.series !== null && typeof g.series !== 'string') err(`${w}: series should be text or null`);
+  if (g.officialSite != null && !(typeof g.officialSite === 'string' && /^https:\/\/\S+$/.test(g.officialSite))) err(`${w}: officialSite should be an https:// address or null`);
   if (g.seriesOrder !== undefined && g.seriesOrder !== null && !(Number.isInteger(g.seriesOrder) && g.seriesOrder > 0)) err(`${w}: seriesOrder should be a whole number or null`);
   if (typeof g.nostalgiaPriority === 'number' && ![0, 1, 2, 3].includes(g.nostalgiaPriority)) err(`${w}: nostalgiaPriority must be 0, 1, 2 or 3`);
   if (typeof g.rating === 'number' && (g.rating < 0 || g.rating > 5)) err(`${w}: rating must be between 0 and 5`);

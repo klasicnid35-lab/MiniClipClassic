@@ -99,6 +99,8 @@ function normalise(raw, catIndex) {
   g.sources = (Array.isArray(raw.sources) ? raw.sources : [])
     .filter((x) => x && x.name).map((x) => ({ type: str(x.type), name: str(x.name) }));
   g.seriesName = str(raw.series);
+  // a game that is still running on its official site (RuneScape, Dofus...)
+  g.officialSite = /^https:\/\//.test(str(raw.officialSite)) ? str(raw.officialSite) : '';
   g.seriesOrder = Number.isInteger(+raw.seriesOrder) && +raw.seriesOrder > 0 && raw.seriesOrder !== null ? +raw.seriesOrder : null;
   g.era = eraOf(g.year);
   // an installed Flash game whose file is on another server (Miniclip's own archive)

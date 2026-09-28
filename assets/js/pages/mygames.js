@@ -4,6 +4,7 @@ import { boot } from '../core/boot.js';
 import { favorites, recent } from '../core/store.js';
 import { gameCard, bindFavLinks } from '../../../components/listing.js';
 import { renderRightColumn } from '../../../components/rightcol.js';
+import { listCopies, forgetCopy, fileSize } from '../../../components/owncopy.js';
 
 const lib = await boot();
 setTitle('My Games');
@@ -16,6 +17,8 @@ function ago(t) {
   if (s < 86400) return Math.round(s / 3600) + ' hours ago';
   return Math.round(s / 86400) + ' days ago';
 }
+
+let copies = await listCopies();
 
 function draw() {
   const favs = favorites.list().map((id) => lib.get(id)).filter(Boolean);
@@ -34,7 +37,24 @@ function draw() {
     <div class="ibody">${played.length
       ? `<div class="gcards" id="reclist">${played.map((r) => gameCard(lib, r.g, ` &middot; ${esc(ago(r.t))}`)).join('')}</div>`
       : '<div class="nores">Games you play will show up here.</div>'}</div>
-  </div>`);
+  </div>
+  ${copies.length ? `<div class="ipanel">
+    <div class="bhead"><h1>My Own Copies<span class="cnt">(${copies.length})</span></h1></div>
+    <div class="ibody"><p>Game files you chose on a game's page and asked this browser to remember. They are stored only on this computer and were never uploaded.</p>
+      <table class="hstable" id="copylist"><tr><th>Game</th><th>File</th><th></th></tr>
+      ${copies.map((c) => { const g = lib.get(c.id); return g ? `<tr><td><a href="game.html?id=${encodeURIComponent(g.id)}">${esc(g.title)}</a></td><td>${esc(c.name)} (${fileSize(c.size)})</td><td><button class="linkbtn" data-forget="${esc(g.id)}">Forget</button></td></tr>` : ''; }).join('')}
+      </table></div>
+  </div>` : ''}`);
+  const cl = $('#copylist');
+  if (cl) {
+    cl.addEventListener('click', async (e) => {
+      const b = e.target.closest('[data-forget]');
+      if (!b) return;
+      await forgetCopy(b.dataset.forget).catch(() => {});
+      copies = await listCopies();
+      draw();
+    });
+  }
   const cf = $('#clearfav');
   if (cf) cf.addEventListener('click', () => { if (confirm('Remove all games from My Games?')) { favorites.clear(); draw(); } });
   const cr = $('#clearrec');

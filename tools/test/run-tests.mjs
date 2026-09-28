@@ -539,6 +539,47 @@ await section(LIVE ? 'official Miniclip streams (live from classic.miniclip.com)
   }
 });
 
+await section('play your own copy', async () => {
+  const swf = path.join(ROOT, swfTest.gameFile);
+  const { page, problems } = await open('game.html?id=sushi-go-round');
+  ok(await page.$('#owncopy') !== null && await page.$('#player') === null, 'unavailable Flash games offer "play your own copy"');
+  // not a Flash file
+  const txt = path.join(os.tmpdir(), 'mcc-not-a-game.swf');
+  fs.writeFileSync(txt, 'hello');
+  await page.setInputFiles('#ownfile', txt);
+  await page.waitForFunction(() => /not a Flash/.test(document.querySelector('#ownmsg').textContent), null, { timeout: 5000 }).catch(() => {});
+  ok(/not a Flash/.test(await page.textContent('#ownmsg')), 'a file that is not a .swf is refused');
+  fs.rmSync(txt, { force: true });
+  // the real thing
+  await page.setInputFiles('#ownfile', swf);
+  await page.waitForSelector('#player ruffle-player, #player ruffle-object', { timeout: 30000 }).catch(() => {});
+  ok(await page.$('#player ruffle-player, #player ruffle-object') !== null && await page.$('.unavail') === null, 'the chosen file plays in Ruffle');
+  const played = await page.waitForFunction(() => /Played [1-9]\d* time/.test(document.querySelector('#gstats').textContent), null, { timeout: 15000 }).then(() => true).catch(() => false);
+  ok(played, 'an own copy counts as played once it starts');
+  const info = await page.$$eval('.infobox table tr', (e) => Object.fromEntries(e.map((r) => [r.cells[0].textContent, r.cells[1].textContent])));
+  ok(/Your own copy: flash-bounce\.swf/.test(info['Game file'] || '') && /550 x 400/.test(info.Size || ''), 'the page says it is your own copy and reads its size', JSON.stringify([info['Game file'], info.Size]));
+  ok((await page.textContent('.ownnote')).includes('stored only in this browser'), 'remembered copies are marked as stored in this browser');
+  // remembered after a reload
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForSelector('#player ruffle-player, #player ruffle-object', { timeout: 30000 }).catch(() => {});
+  ok(await page.$('#player ruffle-player, #player ruffle-object') !== null, 'the remembered copy plays again on the next visit');
+  await page.goto(BASE + 'mygames.html', { waitUntil: 'networkidle' });
+  ok((await page.textContent('#copylist')).includes('Sushi Go Round'), 'My Games lists your own copies');
+  await page.goto(BASE + 'game.html?id=sushi-go-round', { waitUntil: 'networkidle' });
+  await page.waitForSelector('#loader', { state: 'detached', timeout: 30000 }).catch(() => {});
+  await page.click('#forgetcopy');
+  await page.waitForSelector('.unavail', { timeout: 5000 }).catch(() => {});
+  ok(await page.$('.unavail') !== null, 'forgetting the copy makes the game unavailable again');
+  await page.reload({ waitUntil: 'networkidle' });
+  ok(await page.$('.unavail') !== null && await page.$('#player') === null, 'a forgotten copy is gone from the browser');
+  await page.goto(BASE + 'game.html?id=club-penguin', { waitUntil: 'networkidle' });
+  ok(await page.$('#owncopy') === null, 'no own-copy picker for online services');
+  await page.goto(BASE + 'game.html?id=runescape', { waitUntil: 'networkidle' });
+  ok((await page.$eval('.ubtns a', (a) => [a.textContent, a.href]))[1] === 'https://www.runescape.com/', 'still-running games link to their official site');
+  ok(problems.length === 0, 'no errors while playing your own copy', problems.join(' | '));
+  await page.close();
+});
+
 await section('installed game with a missing file', async () => {
   const catalog = catalogWith({ 'raft-wars': { installed: true, type: 'flash', gameFile: 'games/raft-wars/this-file-does-not-exist.swf' } });
   const { page } = await open('game.html?id=raft-wars', { catalog, wait: 400 });

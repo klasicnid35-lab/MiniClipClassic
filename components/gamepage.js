@@ -4,6 +4,7 @@
 import { $, esc, catUrl, gameUrl, html, setTitle } from '../assets/js/core/util.js';
 import { favorites, ratings, plays, recent, highScore } from '../assets/js/core/store.js';
 import { mountPlayer } from './player.js';
+import { getCopy, saveCopy, forgetCopy, isSwf, swfSize, fileSize, MAX_SIZE } from './owncopy.js';
 import { ct, stars, bigImg } from './thumbs.js';
 import { renderRightColumn } from './rightcol.js';
 
@@ -29,6 +30,17 @@ function keycaps(text) {
   return esc(text).replace(/\b(SPACE|ENTER|UP|DOWN|LEFT|RIGHT|ESC|BACKSPACE|W A S D|WASD)\b/g, '<span class="keycap">$1</span>');
 }
 
+// A Flash game from the catalogue that the visitor can play from their own .swf file
+const ownCopyOk = (lib, g) => g.type === 'flash' && !!lib.get(g.id);
+
+// the catalogue game, playable from the visitor's own copy (rec from owncopy.js)
+export function withOwnCopy(g, rec) {
+  return Object.assign({}, g, {
+    installed: true, streamed: false, file: '', data: rec.data, dataName: rec.name, ownCopy: rec,
+    width: rec.width || g.width, height: rec.height || g.height,
+  });
+}
+
 // The notice shown instead of the player when a game's files are not in the archive yet.
 function unavailableHTML(lib, g) {
   const cat = lib.cat(g.category);
@@ -45,7 +57,13 @@ function unavailableHTML(lib, g) {
       <div class="usub">This game is part of the historical catalog but no playable local file has been added yet.</div>
       <p>You can still add <b>${esc(g.title)}</b> to <b>My Games</b> and check back later - or try one of the related games below!</p>
       <table class="ufacts">${facts.map(([k, v]) => `<tr><td>${k}:</td><td>${v}</td></tr>`).join('')}</table>
-      <div class="ubtns">${cat ? `<a class="btn orange" href="${catUrl(cat.id)}">More ${esc(cat.title)}</a>` : ''}<a class="btn" href="allgames.html?letter=${encodeURIComponent(g.letter === '#' ? '0' : g.letter)}">Games A-Z</a></div>
+      <div class="ubtns">${g.officialSite ? `<a class="btn orange" href="${esc(g.officialSite)}" target="_blank" rel="noopener">Official site &#8599;</a>` : ''}${cat ? `<a class="btn${g.officialSite ? '' : ' orange'}" href="${catUrl(cat.id)}">More ${esc(cat.title)}</a>` : ''}<a class="btn" href="allgames.html?letter=${encodeURIComponent(g.letter === '#' ? '0' : g.letter)}">Games A-Z</a></div>
+      ${ownCopyOk(lib, g) ? `<div class="owncopy" id="owncopy">
+        <b>Have this game's .swf file?</b> Play your own copy here - the file is read by your browser and never uploaded.
+        <div class="ownrow"><label class="btn" for="ownfile">Choose .swf file...</label><input type="file" id="ownfile" accept=".swf,application/x-shockwave-flash">
+        <label class="ownkeep"><input type="checkbox" id="ownkeep" checked> Remember it in this browser</label></div>
+        <div class="ownmsg" id="ownmsg" role="status"></div>
+      </div>` : ''}
     </div>
   </div>`;
 }
@@ -73,8 +91,10 @@ export function renderGamePage(lib, g, opts = {}) {
     series.length > 1 && ['Series', series.map((o) => (o.id === g.id ? `<b>${esc(o.title)}</b>` : `<a href="${gameUrl(o)}">${esc(o.title)}</a>`)).join(' &middot; ')],
     history && ['Game type', history],
     RELATIONSHIP[g.relationship] && ['Miniclip', RELATIONSHIP[g.relationship]],
-    ['Format', `${esc(TYPE_NAMES[g.type] || g.type)} &middot; ${playable ? '<b class="st on">Playable</b>' : '<b class="st off">Not added yet</b>'}${g.challenge ? ' &middot; <span style="color:#ff3300;font-weight:bold">High score challenge</span>' : ''}`],
+    ['Format', `${esc(TYPE_NAMES[g.type] || g.type)} &middot; ${playable ? `<b class="st on">Playable</b>${g.ownCopy ? ' (your own copy)' : ''}` : '<b class="st off">Not added yet</b>'}${g.challenge ? ' &middot; <span style="color:#ff3300;font-weight:bold">High score challenge</span>' : ''}`],
     g.streamed && ['Game file', `Streamed from ${esc(g.host)}${g.host === 'classic.miniclip.com' ? ", Miniclip's official classic games archive" : " (the game's official host)"} - the game file is not copied to this site.`],
+    g.ownCopy && ['Game file', `Your own copy: ${esc(g.ownCopy.name)} (${fileSize(g.ownCopy.size)}) - ${g.ownCopy.kept ? 'stored only in this browser' : 'for this visit only'}, never uploaded.`],
+    g.officialSite && ['Official site', `<a href="${esc(g.officialSite)}" target="_blank" rel="noopener">${esc(g.officialSite.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, ''))}</a> - the game is still running there`],
     playable && ['Size', `${esc(g.width)} x ${esc(g.height)}`],
     inCatalogue && g.hostedByMiniclip !== false && ['Archive', esc(VERIFIED[g.verificationStatus] || g.verificationStatus)],
     g.sources.length && ['Sources', g.sources.map((x) => esc(x.name)).join('; ')],
@@ -94,6 +114,7 @@ export function renderGamePage(lib, g, opts = {}) {
         <span class="rateme">Rate this game: <span class="rstars" id="rstars">${[1, 2, 3, 4, 5].map((n) => `<button type="button" data-n="${n}" title="${n} star${n > 1 ? 's' : ''}" aria-label="Rate ${n} out of 5"></button>`).join('')}</span></span>
         <span class="gstats" id="gstats"></span>
       </div>
+      ${g.ownCopy ? `<div class="ownnote">You are playing your own copy of this game${g.ownCopy.kept ? ', stored only in this browser' : ''}. <a href="#" id="forgetcopy">${g.ownCopy.kept ? 'Forget my copy' : 'Close my copy'}</a></div>` : ''}
     </div>
   </div>
   <div class="gcols">
@@ -120,6 +141,34 @@ export function renderGamePage(lib, g, opts = {}) {
         if (inCatalogue) recent.push(g.id);
         drawStats();
       },
+    });
+  }
+
+  // "Play your own copy"
+  const file = $('#ownfile');
+  if (file) {
+    const msg = (t) => html('#ownmsg', t);
+    file.addEventListener('change', async () => {
+      const f = file.files && file.files[0];
+      if (!f) return;
+      if (f.size > MAX_SIZE) { msg(`That file is too big (${fileSize(f.size)}).`); return; }
+      msg('Reading the file...');
+      const data = await f.arrayBuffer();
+      if (!isSwf(data)) { msg(`<b>${esc(f.name)}</b> is not a Flash (.swf) file.`); file.value = ''; return; }
+      const rec = { id: g.id, name: f.name, size: f.size, added: Date.now(), data, kept: $('#ownkeep').checked, ...(await swfSize(data) || {}) };
+      if (rec.kept) {
+        try { await saveCopy(rec); } catch (e) { rec.kept = false; }
+      }
+      renderGamePage(lib, withOwnCopy(g, rec), { ...opts, base: g });
+    });
+  }
+  const forget = $('#forgetcopy');
+  if (forget) {
+    forget.addEventListener('click', async (e) => {
+      e.preventDefault();
+      if (ctl) ctl.destroy();
+      if (g.ownCopy.kept) await forgetCopy(g.id).catch(() => {});
+      renderGamePage(lib, opts.base || lib.get(g.id), { ...opts, base: undefined });
     });
   }
 

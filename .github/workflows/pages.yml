@@ -1,0 +1,60 @@
+name: Deploy to GitHub Pages
+
+# Runs on every push, but only deploys from the repository's default branch
+# (whatever it is called), or when started by hand from the Actions tab.
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Download Ruffle (self-hosted Flash emulator)
+        run: bash tools/fetch-ruffle.sh
+
+      # game files dropped into games/<id>/ and artwork in assets/games/ go live
+      # even if data/games.json was not updated by hand
+      - name: Pick up game files and artwork
+        run: node tools/catalog/sync-files.mjs
+
+      - name: Check the games catalogue
+        run: node tools/catalog/validate.mjs
+
+      - name: Build the games RSS feed
+        run: node tools/build-feed.mjs "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Stage the site
+        run: |
+          mkdir -p _site
+          rsync -a ./ _site/ --exclude '.git' --exclude '.github' --exclude 'tools' --exclude '_site' --exclude 'node_modules'
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

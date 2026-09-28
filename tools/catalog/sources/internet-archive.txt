@@ -1,0 +1,95 @@
+# name: Internet Archive items credited to Miniclip
+# type: archive
+# url: https://archive.org/search?query=creator%3AMiniclip
+# about: Preserved game items on the Internet Archive whose creator field
+#   names Miniclip (searched with the archive.org advanced search API; only
+#   the item metadata was read, no game files were downloaded). Items from
+#   the numbered "casa" collection carry exact dates (year= below). Other
+#   upload dates are often just the upload year and are NOT used as release
+#   years. dev= is only given when the item credits a developer.
+A Day of Slacking
+Acid Factory
+Alien Attack
+Alphattack
+Alpine Escape | year=2002 | note=Dated 28 July 2002.
+American Football
+Balance
+BearBarians | dev=Armor Games
+Battleships - General Quarters II | id=battleships | note=Preserved as "Battleships - General Quarters II".
+Beckham 'Golden Balls' | id=goldenballs
+Blair The Motivator
+Bloomin' Gardens
+Bloxorz Classic | id=bloxorz | year=2007 | note=Dated 21 June 2007.
+Britney Brawl Featuring Bill Clinton vs. Britney | aka=Britney Brawl
+Bubble Struggle | id=bubble-trouble | dev=Kresimir Cvitanovic | note=The same game by Kresimir Cvitanovic, credited to Miniclip; later known as "Bubble Struggle".
+Bug On A Wire
+Bush Aerobics
+Bush Shoot-Out
+Bush vs. Kerry | id=president-knockout
+Bush Vs. Kerry: Presidential Knock-Out | id=president-knockout
+Canyon Defense | dev=IriySoft
+Canyon Glider
+Cannon Blast
+Caravan Racers
+Clash N Slash
+Commando
+Commando III | id=commando-3
+Crash Car Combat
+Crash Down | id=crashdown
+Cube Buster
+David - Dawn of a King | id=david
+Deep Freeze
+Dr Compactor
+Dune Buggy
+Exile
+Feed Me | year=2006 | note=Dated 4 August 2006.
+Fred Figglehorn: The Game | aka=Fred Figglehorn
+Fruit Shooting Gallery
+Gravity Guy
+Gun Run
+Heli Attack 3 | dev=Squarecircleco | year=2005 | note=Dated 18 October 2005.
+Heli Attack | dev=Squarecircleco | note=The first Heli Attack. Sources disagree on 2001 or 2002, so no year is given.
+Hive Hero
+Mahjong Medley
+Master Solitaire
+Monkey Kick Off | dev=Totebo
+Monkey Lander | dev=Totebo
+Monster Trucks Nitro
+Monster Trucks Nitro II | aka=Monster Trucks Nitro 2 | dev=RedLynx | pub=Miniclip
+Mother Load | id=motherload | dev=XGen Studios
+Park A Lot | year=2002 | note=Dated 21 July 2002.
+Pearl Diver
+Pirates of the Caribbean: Dead Man's Chest | year=2006 | note=Dated 7 November 2006.
+Pod Panic
+Polar Rescue | year=2002 | note=Dated 13 August 2002.
+Presidential Paintball
+Raft Wars
+Raft Wars 2
+Red Beard
+River Raider
+Robo Rampage
+Rural Racer
+Samurai Sam | year=2006 | note=Dated 20 March 2006.
+Santa Balls | note="Santa Balls.exe" in the "66 Offline EXE Old Miniclip games" collection (without the "Miniclip Game" prefix of Miniclip's own downloads).
+Santa Balls 2 | note="Santa Balls 2.exe" in the same collection.
+Santa's Jump | id=santa-ski-jump
+Save The Sheriff
+Sheep The Game | id=sheep-game | year=2002 | note=Dated 17 July 2002.
+Shootin' Hoops
+Shove It
+Skidoo TT
+Slingette | dev=ezone
+Smashing
+Snow Line
+Space Fighter Rebellion | id=space-fighter
+Space Invaders
+SQRL Golf
+Stan Skates
+Surf's Up
+The Pharoah's Tomb | id=pharaohs-tomb
+Thunder Plunder
+Trials 2 | dev=RedLynx
+Wakeboarding XS
+War on Terrorism
+XraYe
+Zed

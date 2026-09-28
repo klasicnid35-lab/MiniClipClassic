@@ -1,0 +1,9 @@
+# Ruffle is downloaded at deploy time (see tools/fetch-ruffle.sh); keep only the README
+/vendor/ruffle/*
+!/vendor/ruffle/README.md
+
+node_modules/
+tools/test/output/
+tools/art/output/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,26 @@
+name: Check catalogue
+
+# Validates data/games.json (duplicates, categories, file paths, site.json
+# references...) and audits it against tools/catalog/sources/ on every push
+# and pull request.
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate data/games.json
+        run: node tools/catalog/validate.mjs
+      - name: Audit the historical catalogue (duplicates, aliases, sequels, sources)
+        run: node tools/catalog/audit-games.mjs --no-write
+      - name: Check JavaScript syntax
+        run: for f in assets/js/core/*.js assets/js/pages/*.js components/*.js tools/catalog/*.mjs tools/*.mjs; do node --check "$f" || exit 1; done
